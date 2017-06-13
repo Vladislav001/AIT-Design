@@ -32,13 +32,9 @@ h1 {
   float:right; /* Обтекание по правому краю */
   padding: 15px;
   margin-left: 5%;
-  margin-top: -55%;
+  margin-top: -57%;
 }
 
-.form-testImages .textQuestion {
-  margin-left: 170px;
-  margin-top: 2%;
-}
 
 .form-testImages h3 {
 	text-align: center;
@@ -64,20 +60,16 @@ h1 {
 }
 
 .wrapper {overflow: hidden; width:875px; }
-.center {float: left;  width: 420px;  margin-left: 24.7%;}
+.center {float: left;  width: 420px;  margin-left: 24.7%; margin-top: -3.5%; }
 .center .constantly {
     height: 450px;
 	  width: 430px;
 }
 
-.form-testImages .progress {
-  height: 35px;
-  background-color: #BDBDBD;
-	 border: 4px dotted #546E7A; /* Параметры границы */
-}
 
 .form-testImages .pagination {
   margin-left: 235px;
+	margin-top: 2.75%;
 }
 
 .styleImages .settings{
@@ -136,8 +128,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .text, .sound, .swap, .progressBar, .styleImagesLikeDislike, .inputStyleImagesLikeDislike,
-.styleImageStopTest, .inputStyleImageStopTest, .styleImageFinish, .inputStyleImageFinish  {
+.styleImageStopTest, .ImageStopTest, .inputStyleImageStopTest, .styleImageFinish, .inputStyleImageFinish  {
 	opacity: 0.4;
+}
+
+.ImageStopTest {
+	margin-right: 9%;
 }
 
 

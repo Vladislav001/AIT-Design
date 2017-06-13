@@ -32,12 +32,7 @@ h1 {
   float:right; /* Обтекание по правому краю */
   padding: 15px;
   margin-left: 5%;
-  margin-top: -55%;
-}
-
-.form-testImages .textQuestion {
-  margin-left: 170px;
-  margin-top: 2%;
+  margin-top: -57%;
 }
 
 .form-testImages h3 {
@@ -51,7 +46,7 @@ h1 {
 
 #SecondCategory {
   margin-left: 140px;
-  margin-top: -30.8%;
+  margin-top: -31%;
 }
 
 #ThirdCategory {
@@ -85,7 +80,7 @@ h1 {
 
 .wrapper {overflow: hidden; width:875px; }
 
-.left {float: left; width: 190px; margin-right: 3%;}
+.left {float: left; width: 190px; margin-right: 3%; margin-top: -3.5%;}
 .left .notConstantly {
     height: 125px;
 		width: 200px;
@@ -97,13 +92,13 @@ h1 {
 		margin-top: 35px;
 }
 
-.center {float: left;  width: 420px;  margin-right: 3%;}
+.center {float: left;  width: 420px;  margin-right: 3%; margin-top: -2%}
 .center .constantly {
     height: 130px;
 	  width: 140px;
 }
 
-.right {float: left; width: 190px;}
+.right {float: left; width: 190px; margin-top: -3.5%;}
 .right .notConstantly {
     height: 125px;
 		width: 200px;
@@ -169,9 +164,13 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 .text, .sound, .swap, .progressBar, .btnResult, .inputStyleImagesLikeDislike,
 .inputStyleImagesStopTest, .inputStyleImageResults, .inputStyleImageFinish,
-.styleImagesLikeDislike, .styleImageStopTest, .styleImageResults, .styleImageFinish,
+.styleImagesLikeDislike, .styleImageStopTest, .ImageStopTest, .styleImageResults, .styleImageFinish,
 .left, .right, #textCategory  {
 	opacity: 0.4;
+}
+
+.ImageStopTest {
+	margin-right: 9%;
 }
 
 #styleStopTest_1{
