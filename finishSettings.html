@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/pre-resultSettings.css" rel="stylesheet">
+    <link href="css/finishSettings.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +50,7 @@ Username
     <label><input type="checkbox" value="" disabled><div class="progressBar">Progress bar</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkBtnResult" checked=""><div class="btnResult">Btn Results</div></label>
+    <label><input type="checkbox" value="" disabled=""><div class="btnResult">Btn Results</div></label>
   </div>
 
     <div class="styleImages">
@@ -67,15 +67,15 @@ Username
     </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
-  <h5><b>Style Image: Results</b></h5>
-    <input type="range" value="1" min="1" max="5" id="styleImagesResults">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding...">Add</button>
-
-  <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
-  <div class="inputStyleImageFinish">
-  <input type="range" value="1" min="1" max="5" id="styleImagesFinish" disabled>
-  </div>
+  <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
+    <div class="inputStyleImageResults">
+    <input type="range" value="1" min="1" max="5" id="styleImagesResults" disabled>
+      </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+
+  <h5><b>Style Image: Finish</b></h5>
+  <input type="range" value="1" min="1" max="5" id="styleImagesFinish">
+  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding...">Add</button>
 
   </div>
 
@@ -109,23 +109,20 @@ Username
     <div class="wrapper">
 
     <div class="center">
-
+      <h3 class="notConstantly" id="textFinish">Finish</h3>
       <img src="1234.png" class="img-responsive constantly">
     </div>
 
 </div>
 
-<div class="styleImageBigBtnResults" id="styleImageBigBtnResults">
-<img src="1234.png" class="img-responsive bigBtnResults">
-</div>
     <br><br>
 
 <ul class="pagination">
   <li><span><a href="testSettings.html">Test</a></span></li>
   <li><a href="#">User training</a></li>
-  <li class="active"><a>Pre-result</a></li>
+  <li><a href="pre-resultSettings.html">Pre-result</a></li>
   <li><a href="resultSettings.html">Result</a></li>
-  <li><a href="finishSettings.html">Finish</a></li>
+  <li  class="active"><a href="#">Finish</a></li>
 </ul>
 
 </form>
@@ -136,13 +133,3 @@ Username
 
   </body>
 </html>
-
-<script>
-document.getElementById('checkBtnResult').onclick = function() {
-    if ( this.checked ) {
-  $("#styleImageBigBtnResults").css("opacity","1");
-    } else {
-       $("#styleImageBigBtnResults").css("opacity","0");
-    }
-};
-</script>

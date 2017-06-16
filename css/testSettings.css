@@ -170,23 +170,48 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
 
+	.form-testImages {
+	  max-width: 75%;
+	  float:right; /* Обтекание по правому краю */
+	  padding: 15px;
+	  margin-left: 5%;
+	  margin-top: -57%;
+	}
+
+	.ImageStopTest {
+		margin-right: 6%;
+	}
+
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
 
+	.navbar-default{
+		background-color: red;
+		    border-color: red;
+	}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) {
 
+	.navbar-default{
+		background-color: red;
+		    border-color: red;
+	}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
 
+	.navbar-default{
+		background-color: red;
+		    border-color: red;
+	}
 }
 
 @media only screen and (min-width : 993px) {
+
 
 }
