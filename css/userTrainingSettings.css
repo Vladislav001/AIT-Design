@@ -166,16 +166,55 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	display: none;
 }
 
-
-.in{
+.inputBack{
   position:absolute;
 	width: 23%;
   z-index: 2;
-	margin-top: 5%;
+	margin-top: 7%;
+	margin-left: 3%;
 	border-radius: 5px;
 	border: 4px dotted #546E7A; /* Параметры границы */
- color:red;
+ 	color:red;
+	background-color: #B0BEC5;
 }
+
+.inputNext{
+  position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: 7%;
+	margin-left: -11%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+	background-color: #B0BEC5;
+}
+
+.inputLike{
+  position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: 2%;
+	margin-left: 3%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+ 	background-color: #B0BEC5;
+}
+
+.inputDislike{
+  position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: 2%;
+	margin-left: -11%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+ 	background-color: #B0BEC5;
+}
+
+
 /* МЕДИА ЗАПРОСЫ - АДАПТИВНОСТЬ ПОД РАЗНЫЕ РАЗМЕРЫ ЭКРАНА */
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
@@ -185,7 +224,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	  float:right; /* Обтекание по правому краю */
 	  padding: 15px;
 	  margin-left: 5%;
-	  margin-top: -57%;
+	  margin-top: -50%;
 	}
 
 	.ImageStopTest {

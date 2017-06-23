@@ -1,0 +1,38 @@
+.navbar-default{
+	background-color: #ffffff;
+	    border-color: #ffffff;
+}
+
+h1 {
+  font-size: 120px;
+  font-family: serif;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.users-bar {
+    margin-left: 2%; /* Обтекание по правому краю */
+    /*background: #fd0; /* Цвет фона */
+    border: 1px solid black; /* Параметры рамки */
+    padding: 10px; /* Поля вокруг текста */
+    margin-right: 20px; /* Отступ справа */
+    width: 240px; /* Ширина блока */
+}
+
+.settingsUsername {
+  float: left; /* Обтекание по правому краю */
+  padding: 15px;
+  margin-left: 1%;
+  margin-top: -1%;
+}
+
+.table-inverse {
+  max-width: 90%;
+  margin-left: 2%;
+  background-color: #B0BEC5;
+}
+
+.table-inverse th {
+ text-align: center;
+ 
+}
