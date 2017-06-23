@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/testSettings.css" rel="stylesheet">
+    <link href="css/userTrainingSettings.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,18 +37,18 @@
 Username
 </div>
 
-  <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkText" checked>Text</label>
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkSound" checked>Sound</label>
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkSwap" checked>Swap</label>
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkProgressBar" checked>Progress bar</label>
-  </div>
+<div class="checkbox">
+  <label><input type="checkbox" value="checked" id="checkText" disabled checked><div class="text">Text</div></label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" id="checkSound" disabled checked><div class="sound">Sound</div></label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" id="checkSwap" disabled checked><div class="swap">Swap</div></label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" id="checkProgressBar" disabled checked><div class="progressBar">Progress bar</div></label>
+</div>
   <div class="checkbox">
     <label><input type="checkbox" value="" disabled><div class="btnResult">Btn Results</div></label>
   </div>
@@ -108,6 +108,7 @@ Username
     <div class="wrapper">
 
     <div class="left">
+      <input type='text' name='in' class="in" placeholder="If you want to return to the previous question">
       <img src="1234.png" class="img-responsive notConstantly" id="imageBack">
       <img src="1234.png" class="img-responsive constantly">
     </div>
@@ -132,8 +133,8 @@ Username
     </div>
 
 <ul class="pagination">
-  <li class="active"><span>Test</span></li>
-  <li><a href="userTrainingSettings.html">User training</a></li>
+  <li><span><a href="testSettings.html">Test</a></span></li>
+  <li class="active"><a>User training</a></li>
   <li><a href="pre-resultSettings.html">Pre-result</a></li>
   <li><a href="resultSettings.html">Result</a></li>
   <li><a href="finishSettings.html">Finish</a></li>
