@@ -1,0 +1,44 @@
+<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE НАЧАЛО. ВСТАВЬТЕ СВОЙ КОД ИЗ КОНСОЛИ FIREBASE СЮДА-->
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script>
+ // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyDIWcqGtk1OaGHXq1s8hNjF2_sGkg4iAgc",
+   authDomain: "fir-auth-f9e4a.firebaseapp.com",
+   databaseURL: "https://fir-auth-f9e4a.firebaseio.com",
+   projectId: "fir-auth-f9e4a",
+   storageBucket: "fir-auth-f9e4a.appspot.com",
+   messagingSenderId: "761401610072"
+ };
+ firebase.initializeApp(config);
+</script>
+<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE КОНЕЦ.-->
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styleLogin.css">
+<% block('title') -%>
+
+<h1 id="AIT"><b>AIT</b></h1>
+<form class="form-signin" name="login_form">
+  <h2><b><center>Authorization</center></b></h2>
+  <h5><center>Please log in to your account.</center></h5>
+  <div class="form-group">
+    <input name="email" type="email" class="form-control" id="input-email" placeholder="Email">
+  </div>
+  <div class="form-group">
+      <input name="password" type="password" class="form-control" id="input-password" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label class="btn-signin">
+      <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Sending...">Enter</button>
+      <span class="help-block error"></span>
+      </label>
+  </div>
+  <br>
+</form>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>

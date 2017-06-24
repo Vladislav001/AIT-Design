@@ -1,0 +1,42 @@
+<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE НАЧАЛО. ВСТАВЬТЕ СВОЙ КОД ИЗ КОНСОЛИ FIREBASE СЮДА-->
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script>
+ // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyDIWcqGtk1OaGHXq1s8hNjF2_sGkg4iAgc",
+   authDomain: "fir-auth-f9e4a.firebaseapp.com",
+   databaseURL: "https://fir-auth-f9e4a.firebaseio.com",
+   projectId: "fir-auth-f9e4a",
+   storageBucket: "fir-auth-f9e4a.appspot.com",
+   messagingSenderId: "761401610072"
+ };
+ firebase.initializeApp(config);
+</script>
+<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE КОНЕЦ.-->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<header>
+  <%-blocks.header%>
+</header>
+
+<%-partial('../partials/topNavigation')%>
+
+
+<section class="container">
+ <h1><%=blocks.title%></h1>
+ </section>
+
+<%-body -%>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
