@@ -6,5 +6,9 @@ module.exports = function(app) {
   //app.post('/login', require('./login').post); // при poste на login, подключаем post этого модуля()
   app.get('/personalArea', require('./personalArea').get);
   app.get('/resultTest', require('./resultTest').get);
-    app.get('/testSettings', require('./testSettings').get);
+  app.get('/testSettings', require('./testSettings').get);
+  app.get('/userTrainingSettings', require('./userTrainingSettings').get);
+  app.get('/pre-resultSettings', require('./pre-resultSettings').get);
+  app.get('/resultSettings', require('./resultSettings').get);
+  app.get('/finishSettings', require('./finishSettings').get);
 };

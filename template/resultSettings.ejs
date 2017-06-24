@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/styleTestSettings.css">
+<link rel="stylesheet" href="css/styleResultSettings.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
 
@@ -10,16 +10,16 @@ Username
 </div>
 
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkText" checked>Text</label>
+    <label><input type="checkbox" value="" id="checkText" disabled><div class="text">Text</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkSound" checked>Sound</label>
+    <label><input type="checkbox" value="" id="checkSound" disabled><div class="sound">Sound</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkSwap" checked>Swap</label>
+    <label><input type="checkbox" value="" id="checkSwap" disabled><div class="swap">Swap</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkProgressBar" checked>Progress bar</label>
+    <label><input type="checkbox" value="" id="checkProgressBar" disabled><div class="progressBar">Progress bar</div></label>
   </div>
   <div class="checkbox">
     <label><input type="checkbox" value="" disabled><div class="btnResult">Btn Results</div></label>
@@ -27,13 +27,17 @@ Username
 
     <div class="styleImages">
 
-  <h5><b>Style Images: Like/Dislike</b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding...">Add</button>
+  <h5><b><div class="styleImagesLikeDislike">Style Images: Like/Dislike</div></b></h5>
+  <div class="inputStyleImagesLikeDislike">
+  <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike" disabled>
+  </div>
+  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
-  <h5><b>Style Image: STOP TEST</b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding...">Add</button>
+  <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
+  <div class="inputStyleImagesStopTest">
+  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest" disabled >
+  </div>
+  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
   <div class="inputStyleImageResults">
@@ -67,15 +71,15 @@ Username
   </div>
 
 </form>
-  </div>
+    </div>
 
 <form class="form-testImages" name="testImages">
   <h1><b>AIT</b></h1>
 
-<div class="ImageStopTest">
-<img src="imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-<img src="imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
-</div>
+    <div class="ImageStopTest">
+    <img src="imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
+    <img src="imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
+    </div>
 
     <div class="wrapper">
 
@@ -85,8 +89,12 @@ Username
     </div>
 
     <div class="center">
-      <h3 class="notConstantly" id="textQuestion">Text question</h3>
-      <img src="imagesDefault/1234.png" class="img-responsive constantly">
+      <h3 class="notConstantly" id="textCategory">Category</h3>
+        <img src="imagesDefault/1234.png" class="img-responsive constantly" id="firstCategory">
+        <img src="imagesDefault/1234.png" class="img-responsive constantly" id="SecondCategory">
+        <img src="imagesDefault/1234.png" class="img-responsive constantly" id="ThirdCategory">
+        <img src="imagesDefault/1234.png" class="img-responsive constantly" id="Fourthategory">
+        <img src="imagesDefault/1234.png" class="img-responsive constantly" id="FifthCategory">
     </div>
 
     <div class="right">
@@ -96,50 +104,20 @@ Username
 
 </div>
     <br><br>
-    <div class="progress" id="progressBar">
-      <div class="progress-bar progress-bar-striped active" role="progressbar"
-      aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-        40%
-      </div>
-    </div>
-
-<ul class="pagination">
-  <li class="active"><span>Test</span></li>
-  <li><a href="userTrainingSettings">User training</a></li>
-  <li><a href="pre-resultSettings">Pre-result</a></li>
-  <li><a href="resultSettings">Result</a></li>
-  <li><a href="finishSettings">Finish</a></li>
-</ul>
 
 
+    <ul class="pagination">
+      <li><span><a href="testSettings">Test</a></span></li>
+      <li><a href="userTrainingSettings">User training</a></li>
+      <li><a href="pre-resultSettings">Pre-result</a></li>
+      <li class="active"><a>Result</a></li>
+      <li><a href="finishSettings">Finish</a></li>
+    </ul>
+
+</form>
+</div>
 
 <script>
-
-document.getElementById('checkText').onclick = function() {
-    if ( this.checked ) {
-  $("#textQuestion").css("opacity","1");
-    } else {
-       $("#textQuestion").css("opacity","0");
-    }
-};
-
-document.getElementById('checkSwap').onclick = function() {
-    if ( this.checked ) {
-  $("#imageBack").css("opacity","1");
-  $("#imageNext").css("opacity","1");
-    } else {
-       $("#imageBack").css("opacity","0");
-       $("#imageNext").css("opacity","0");
-    }
-};
-
-document.getElementById('checkProgressBar').onclick = function() {
-    if ( this.checked ) {
-  $("#progressBar").css("opacity","1");
-    } else {
-       $("#progressBar").css("opacity","0");
-    }
-};
 
 // Имитация клика на элемент
 setTimeout(function(){
