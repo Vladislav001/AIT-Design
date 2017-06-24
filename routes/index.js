@@ -12,3 +12,4 @@ module.exports = function(app) {
   app.get('/resultSettings', require('./resultSettings').get);
   app.get('/finishSettings', require('./finishSettings').get);
 };
+ 

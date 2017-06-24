@@ -19,9 +19,9 @@ exports.post = function(req, res, next) {
 
 	const auth = firebase.auth();
 
-     //Регаем
-   	 const promise = auth.createUserWithEmailAndPassword(email, password);
-    	promise.catch(e => console.log(e.message));
+     //Входим
+   		const promise = auth.signInWithEmailAndPassword(email, password);
+
 
   // Добавляем слушателя в реальном времени-держать сессиюю????
    firebase.auth().onAuthStateChanged(firebaseUser => {
