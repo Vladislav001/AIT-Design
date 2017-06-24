@@ -4,7 +4,7 @@ var path = require('path');
 //var config = require('./config'); // !!!СОБСТВЕННЫЙ!!! модуль config
 //var log = require('./lib/log')(module);
 //var session = require('express-session'); // специальный middleware
-//var HttpError = require('./error').HttpError;
+var HttpError = require('./error').HttpError;
 
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();
@@ -41,8 +41,8 @@ app.use(express.urlencoded());
 app.use(express.cookieParser());
 
 
-// app.use(require('./middleware/sendHttpError'));
-// app.use(require('./middleware/loadUser'));
+app.use(require('./middleware/sendHttpError'));
+//app.use(require('./middleware/loadUser'));
 
 //router - middleware (стандартный ) - говорит какие запросы как будут обработаны
 app.use(app.router);
