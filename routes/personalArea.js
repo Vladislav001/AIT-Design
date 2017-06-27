@@ -10,11 +10,14 @@ var firebase = require('firebase'); //https://metanit.com/web/nodejs/4.10.php
 
 exports.get = function(req, res) {
 
+  var links = [];  // массив в котором будут храниться сформированные адреса профилей юзеров
+	var emails = []; // хранит email-ы юзеров
+
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
       var userId = firebase.auth().currentUser.uid;
 
-        console.log(user + "THIS USER");
+        console.log(userId + " THIS USER");
 
      res.render("personalArea", {
          user: user,
