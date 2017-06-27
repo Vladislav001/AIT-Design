@@ -7,6 +7,11 @@ var async = require('async');
 var firebase = require('firebase');
 
 exports.get = function(req, res) {
-  res.render('resultTest');
+
+  firebase.auth().onAuthStateChanged(user => {
+   if (user) {
+    res.render('resultTest');
+    }
+  });
 
 };

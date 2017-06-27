@@ -19,7 +19,7 @@ ffff
     <% if (email == "admin@mail.ru") { %>
   <div class="chiefAdministrator">
   <br><br><br>
-  
+
   <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/getAllUsersInJSON\'></form>');$('#submitme').submit();return false;">Список пользователей в JSON-формате</a></li>
   <br><br>
   <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/dropDatabase\'></form>');$('#submitme').submit();return false;">ОЧИСТИТЬ БАЗУ ДАННЫХ</a></li>
@@ -41,7 +41,7 @@ ffff
     <div class="form-group">
       <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password">
     </div>
-    <!-- <h4>Username</h4>
+    <h4>Username</h4>
     <div class="form-group">
       <input name="usernameNewUser" type="text" class="form-control" id="input-usernameNewUser" placeholder="Name">
     </div>
@@ -55,7 +55,19 @@ ffff
         <OPTION>Male</OPTION>
         <OPTION>Female</OPTION>
       </SELECT>
-    </div> -->
+    </div>
+
+      <% if (email == "admin@mail.ru") { %>
+        <h4>Access level</h4>
+        <div class="form-group">
+          <SELECT name="accessLevelNewUser" type="text" class="form-control" id="input-accessLevelNewUser" >
+            <OPTION>Administrator</OPTION>
+            <OPTION>Trainer</OPTION>
+            <OPTION>Disciple</OPTION>
+          </SELECT>
+        </div>
+      <% } %>
+
     <div class="form-group">
       <label class="btn-addNewUser">
         <button type="submit" class="btn btn-primary" data-loading-text="Sending..."id="addNewUser">Add new user</button>
@@ -63,7 +75,6 @@ ffff
         <span class="help-block error"></span>
         </label>
     </div>
-</form>
 </div>
   </div>
 </div>
@@ -90,7 +101,8 @@ $.ajax({
   //   200: function() {
   //     form.html("Вы успешно зарегестрировались").addClass('alert-success');
   //     window.location.href = "/personalArea";
-  //   },
+  //   }
+  //,
   //   // если 403 - высвечивается ошибка(уже есть такой пользователь)
   //   403: function(jqXHR) {
   //     var error = JSON.parse(jqXHR.responseText);
@@ -100,10 +112,4 @@ $.ajax({
 });
 return false;
 });
-</script>
-
-<script>
-
-console.log(user.uid + " USER.UID");
-
 </script>

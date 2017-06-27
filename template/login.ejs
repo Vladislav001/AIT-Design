@@ -13,17 +13,16 @@
  firebase.initializeApp(config);
 </script> -->
 <!-- ИНИЦИАЛИЗАЦИЯ FIREBASE КОНЕЦ.-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/styleLogin.css">
 
 <% block('title') -%>
-<% layout('layout/page') -%>
+
 <h1 id="AIT"><b>AIT</b></h1>
 
-<% if (this.user) { %>
-   here, user is defined
-<% } %>
 <form class="form-signin" name="login_form">
   <h2><b><center>Authorization <%%></center></b></h2>
   <h5><center>Please log in to your account.</center></h5>
@@ -82,9 +81,3 @@
       });
 
     </script>
-
-
-<script>
-var configFirebase = require ('../config/configFirebase');
-console.log(user.uid);
-</script>

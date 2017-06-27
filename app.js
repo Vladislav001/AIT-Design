@@ -8,7 +8,7 @@ var path = require('path');
 var HttpError = require('./error').HttpError;
 var firebase = require('firebase');
 var configFirebase = require ('./config/configFirebase');
-
+var ref = firebase.app().database().ref();
 
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();
@@ -86,7 +86,7 @@ app.use(express.static(path.join(__dirname, './public')));
       }
     });
 
-//var User = require('./models/user').User; 
+//var User = require('./models/user').User;
 
 
 // Вешаем http сервер -> express будет обрабатывать все приходящие запросы
