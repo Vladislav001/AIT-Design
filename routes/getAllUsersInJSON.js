@@ -3,15 +3,23 @@ var express = require('express');
 //var HttpError = require('../../error').HttpError;
 //var AuthError = require('../../models/user').AuthError;
 var firebase = require('firebase');
-var ref = firebase.app().database().ref();
 
 
 // Получаем json - всех пользователей
 exports.get = function(req, res, next) {
 
-  User.find({}, function(err, users) {
-     if (err) return next(err);
-     res.json(users);
-  })
+  var db = firebase.app().database().ref();
+  var users = db.child('users');
+
+  // var gg = db.child('child_added', snap => {
+  //
+  // });
+
+  res.json(users);
+
+  // User.find({}, function(err, users) {
+  //    if (err) return next(err);
+  //    res.json(users);
+  // })
 
  };

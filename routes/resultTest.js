@@ -10,8 +10,12 @@ exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-    res.render('resultTest');
-    }
+     // рисуем профиль юзера с данными из его документа
+       res.render('resultTest',
+         {
+          EMAIL: user.email
+         });
+   }
   });
 
 };

@@ -15,5 +15,8 @@ module.exports = function(app) {
   app.post('/addNewUser', require('./addNewUser').post);
   app.post('/logout', require('./logout').post);
 
-  //app.get('/getAllUsersInJSON', require('./getAllUsersInJSON').get);
+  app.get('/restorePassword', require('./restorePassword').get);
+  app.post('/restorePassword', require('./restorePassword').post);
+ 
+  app.get('/getAllUsersInJSON', require('./getAllUsersInJSON').get);
 };

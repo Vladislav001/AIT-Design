@@ -22,19 +22,8 @@ exports.post = function(req, res, next) {
   }
   console.log(error + "error");
   // [END_EXCLUDE]
+
 });
-
-// [END authwithemail]
-firebase.auth().onAuthStateChanged(user => {
- if (user) {
-   console.log(user.email + " POST ЗАПРОС");
-   //window.location.href = "personalArea.html";
-
- } else {
-   console.log('not logged in');
- }
-});
-
 
 }
 
@@ -42,15 +31,26 @@ firebase.auth().onAuthStateChanged(user => {
 
 
 exports.get = function(req, res) {
+  // Берем текущего пользователя
+  var user = firebase.auth().currentUser;
+
+
   res.render('login');
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-     console.log(user.email + " GET ЗАПРОС in login");
-     //window.location.href = "personalArea.html";
+     
+     // Берем текущего пользователя
+     var user = firebase.auth().currentUser;
 
-   } else {
-     console.log('not logged in');
+     //Отправляем ему email
+     //(содержание email определяется в Консоли Firebase)
+     user.sendEmailVerification().then(function() {
+       // Email успешно отправлен
+     }, function(error) {
+       // Ошибка
+     });
+
    }
   });
 };
