@@ -16,14 +16,29 @@ exports.get = function(req, res) {
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
       var userId = firebase.auth().currentUser.uid;
+      var db = firebase.database();
 
-        console.log(userId + " THIS USER");
+      var ref = firebase.database().ref("trainers/" + userId);
+      ref.once("value")
+        .then(function(snapshot) {
+          var age = snapshot.child("age").val();
+          var gender = snapshot.child("gender").val();
+          var name = snapshot.child("name").val();
+          var accessLevel = snapshot.child("accessLevel").val();
+          console.log(age + " age");
 
-     res.render("personalArea", {
-         user: user,
-         email: user.email
+          res.render("personalArea", {
+              email: user.email,
+              accessLevel: accessLevel
+          });
+        });
 
-     });
+        // res.render("personalArea", {
+        //     user: user,
+        //     email: user.email
+        //
+        // });
+
 
    } else {
      console.log('not logged in');

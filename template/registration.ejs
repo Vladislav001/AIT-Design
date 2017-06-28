@@ -23,9 +23,9 @@
 
 <h1 id="AIT"><b>AIT</b></h1>
 
-<form class="form-signin" name="login_form">
-  <h2><b><center>Authorization</center></b></h2>
-  <h5><center>Please log in to your account.</center></h5>
+<form class="form-signin" name="registration_form">
+  <h2><b><center>Registration</center></b></h2>
+  <h5><center>Please input email and password.</center></h5>
   <div class="form-group">
     <input name="email" type="email" class="form-control" id="input-email" placeholder="Email">
   </div>
@@ -38,9 +38,6 @@
       <span class="help-block error"></span>
       </label>
   </div>
-  <a href="restorePassword">Forgot your password?</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="registration">Registration</a>
 </form>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -51,7 +48,7 @@
     <script>
     // Клиентский код //
     // Человек вводит логин, пароль
-      $(document.forms['login_form']).on('submit', function() {
+      $(document.forms['registration_form']).on('submit', function() {
         var form = $(this);
 
         $('.error', form).html('');
@@ -59,7 +56,7 @@
 
         // Этот логин, пароль отправляется на сервер
         $.ajax({
-          url: "/login", // роут: require('./login').post
+          url: "/registration", // роут: require('./login').post
           method: "POST",
           data: form.serialize(),
           complete: function() {
