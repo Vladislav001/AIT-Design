@@ -34,23 +34,22 @@ exports.get = function(req, res) {
   // Берем текущего пользователя
   var user = firebase.auth().currentUser;
 
-
   res.render('login');
-
-  firebase.auth().onAuthStateChanged(user => {
-   if (user) {
-     
-     // Берем текущего пользователя
-     var user = firebase.auth().currentUser;
-
-     //Отправляем ему email
-     //(содержание email определяется в Консоли Firebase)
-     user.sendEmailVerification().then(function() {
-       // Email успешно отправлен
-     }, function(error) {
-       // Ошибка
-     });
-
-   }
-  });
 };
+
+// firebase.auth().onAuthStateChanged(user => {
+//  if (user) {
+//
+//    // Берем текущего пользователя
+//    var user = firebase.auth().currentUser;
+//
+//    //Отправляем ему email
+//    //(содержание email определяется в Консоли Firebase)
+//    user.sendEmailVerification().then(function() {
+//      // Email успешно отправлен
+//    }, function(error) {
+//      // Ошибка
+//    });
+//
+//  }
+// });

@@ -18,11 +18,23 @@ exports.post = function(req, res, next) {
 
 
 
-    var userId = firebase.auth().currentUser.uid;
+    var trainer_ID = firebase.auth().currentUser.uid;
   //  console.log(accessLevel + " accessLevel");
 
   // [START createwithemail]
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+    var userIdStudents = firebase.auth().currentUser.uid;
+
+  var ref = firebase.app().database().ref();
+  var usersRef = ref.child('students/' + userIdStudents);
+  var userRef = usersRef.set({
+  email: email,
+  password: password,
+  name: name,
+  age: age,
+  gender: gender,
+  trainer_ID: trainer_ID
+  });
     firebase.auth().signOut();
     //Входим
   //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -30,18 +42,6 @@ exports.post = function(req, res, next) {
   });
 
 
-
-
-
- var ref = firebase.app().database().ref();
- var usersRef = ref.child('trainers/' + userId + '/students/');
- var userRef = usersRef.push({
-  email: email,
-  password: password,
-  name: name,
-  age: age,
-  gender: gender
- });
 
 
 
