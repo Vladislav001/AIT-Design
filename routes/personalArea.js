@@ -11,7 +11,7 @@ var firebase = require('firebase'); //https://metanit.com/web/nodejs/4.10.php
 exports.get = function(req, res) {
 
   var links = [];  // массив в котором будут храниться сформированные адреса профилей юзеров
-	var emails = []; // хранит email-ы юзеров
+	var usernames = []; // хранит email-ы юзеров
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
@@ -25,19 +25,15 @@ exports.get = function(req, res) {
           var gender = snapshot.child("gender").val();
           var name = snapshot.child("name").val();
           var accessLevel = snapshot.child("accessLevel").val();
-          console.log(age + " age");
 
           res.render("personalArea", {
               email: user.email,
-              accessLevel: accessLevel
+              accessLevel: accessLevel,
+
+              links: links,
+              usernames: usernames
           });
         });
-
-        // res.render("personalArea", {
-        //     user: user,
-        //     email: user.email
-        //
-        // });
 
 
    } else {

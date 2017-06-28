@@ -37,7 +37,7 @@ var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
    password: password,
    accessLevel: "Trainer"
   });
-  unsubscribe();
+  unsubscribe(); // 
 }
 });
 
