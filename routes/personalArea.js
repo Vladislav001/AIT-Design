@@ -1,10 +1,4 @@
-//////////////////////////////////
-// Модуль авторизации
-
-//var User = require('../models/user').User;
-var HttpError = require('../error').HttpError;
-//var AuthError = require('../models/user').AuthError;
-var async = require('async');
+// Модуль личного кабинета
 
 var firebase = require('firebase'); //https://metanit.com/web/nodejs/4.10.php
 
@@ -14,6 +8,8 @@ exports.get = function(req, res) {
   var links = [];  // массив в котором будут храниться сформированные адреса профилей юзеров
 	var usernames = []; // хранит имена юзеров
   var genders = []; // хранит пол юзеров
+  var logins = []; // хранит логины юзеров
+  var passwords = [] // хранит пароли юзеров
 
   var accessLevel;
   var unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -33,6 +29,9 @@ exports.get = function(req, res) {
                   links.push("resultTest/" + snapshot.key);
                   usernames.push(snapshot.child('name').val());
                   genders.push(snapshot.child('gender').val());
+                  logins.push(snapshot.child('login').val());
+                  passwords.push(snapshot.child('password').val());
+
                   // СРАБОТАЕТ ЕСЛИ ЕСТЬ STUDENTS у данного тренера!!!
                   // if (usernames.length == count_students) {
                   //   res.render("personalArea", {
@@ -41,7 +40,7 @@ exports.get = function(req, res) {
                   //
                   //       links: links,
                   //       usernames: usernames
-                  //   }); 
+                  //   });
                   // }
                 });
                 unsubscribe(); // убирает состояние
@@ -51,7 +50,9 @@ exports.get = function(req, res) {
 
                     links: links,
                     usernames: usernames,
-                    genders: genders
+                    genders: genders,
+                    logins: logins,
+                    passwords: passwords
                 });
         });
     }

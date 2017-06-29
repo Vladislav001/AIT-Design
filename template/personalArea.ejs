@@ -16,13 +16,19 @@
 <% if (accessLevel == "Trainer") { %>
   <table cellspacing="0">
     <tr>
+        <th>№</th>
         <th>Name</th>
         <th>Gender</th>
+        <th>Login</th>
+        <th>Password</th>
     </tr>
      <% for(var i=0; i<links.length; i++) { %>
     <tr>
+        <td><%=[i+1]%></td>
         <td><a href="<%=links[i]%>"><%=usernames[i]%></a></td>
         <td><%=genders[i]%></td>
+        <td><%=logins[i]%></td>
+        <td><%=passwords[i]%></td>
     </tr>
        <% } %>
 </table>
