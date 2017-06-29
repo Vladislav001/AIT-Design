@@ -10,21 +10,28 @@
           <div class="card">
 <form class="leftSide" name="cabinet_leftForm">
   <h3 class="welcomeUser">Welcome, <%=email%></h3>
-  <% if (accessLevel == "Trainer") { %>
-  <h5 class="listOfUsers">The list of users:</h5>
-  <div class="users-bar">
-                  <% for(var i=0; i<links.length; i++) { %>
-                    <div class="user-bar"><a href="<%=links[i]%>"><%=usernames[i]%></a></div>
-                  <% } %>
-                </div>
 
 
-  <% } %>
+
+<% if (accessLevel == "Trainer") { %>
+  <table cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+    </tr>
+     <% for(var i=0; i<links.length; i++) { %>
+    <tr>
+        <td><a href="<%=links[i]%>"><%=usernames[i]%></a></td>
+        <td><%=genders[i]%></td>
+    </tr>
+       <% } %>
+</table>
+<% } %>
+
 
     <% if (email == "admin@mail.ru") { %>
   <div class="chiefAdministrator">
   <br><br><br>
-
   <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/getAllUsersInJSON\'></form>');$('#submitme').submit();return false;">Список пользователей в JSON-формате</a></li>
   <br><br>
   <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/dropDatabase\'></form>');$('#submitme').submit();return false;">ОЧИСТИТЬ БАЗУ ДАННЫХ</a></li>
@@ -41,7 +48,7 @@
 <form class="form-addNewUser" name="cabinet_addNewUser">
   <h4>Login</h4>
   <div class="form-group">
-    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Email">
+    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login">
   </div>
     <h4>Password</h4>
     <div class="form-group">
