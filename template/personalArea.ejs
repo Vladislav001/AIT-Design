@@ -12,7 +12,13 @@
   <h3 class="welcomeUser">Welcome, <%=email%></h3>
   <% if (accessLevel == "Trainer") { %>
   <h5 class="listOfUsers">The list of users:</h5>
-ffff
+  <div class="users-bar">
+                  <% for(var i=0; i<links.length; i++) { %>
+                    <div class="user-bar"><a href="<%=links[i]%>"><%=usernames[i]%></a></div>
+                  <% } %>
+                </div>
+
+
   <% } %>
 
     <% if (email == "admin@mail.ru") { %>
@@ -33,9 +39,9 @@ ffff
     <div class="col-md-6">
       <div class="card">
 <form class="form-addNewUser" name="cabinet_addNewUser">
-  <h4>Email</h4>
+  <h4>Login</h4>
   <div class="form-group">
-    <input name="emailNewUser" type="email" class="form-control" id="input-emailNewUser" placeholder="Email">
+    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Email">
   </div>
     <h4>Password</h4>
     <div class="form-group">

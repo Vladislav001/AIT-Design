@@ -32,7 +32,7 @@ exports.post = function(req, res, next) {
 
 exports.get = function(req, res) {
   // Берем текущего пользователя
-  var user = firebase.auth().currentUser;
+  //var user = firebase.auth().currentUser;
 
   res.render('login');
 };

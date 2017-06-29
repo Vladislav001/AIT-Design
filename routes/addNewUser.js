@@ -10,7 +10,7 @@ var firebase = require('firebase')
 
 exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
-    var email = req.body.emailNewUser;
+    var login = req.body.loginNewUser + "@gmail.com";
     var password = req.body.passwordNewUser;
     var name = req.body.usernameNewUser;// P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
     var age = req.body.ageNewUser;                                      // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
@@ -22,27 +22,42 @@ exports.post = function(req, res, next) {
   //  console.log(accessLevel + " accessLevel");
 
   // [START createwithemail]
-  firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+  firebase.auth().createUserWithEmailAndPassword(login, password).then(function(user) {
     var userIdStudents = firebase.auth().currentUser.uid;
 
   var ref = firebase.app().database().ref();
   var usersRef = ref.child('students/' + userIdStudents);
   var userRef = usersRef.set({
-  email: email,
+  login: login,
   password: password,
   name: name,
   age: age,
   gender: gender,
   trainer_ID: trainer_ID
   });
+
+  //получить тренера
+  //и нарастить у него поле counte
+  var refTrainer = firebase.database().ref("trainers/" + trainer_ID);
+
+  refTrainer.once("value")
+    .then(function(snapshot) {
+         var count_students = snapshot.child("count_students").val();
+         var newCountStudents = count_students + 1;
+         firebase.database().ref("trainers/" + trainer_ID).update({
+         count_students: newCountStudents
+        });
+  });
+
+
+
+
+
     firebase.auth().signOut();
     //Входим
   //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // });
   });
-
-
-
 
 
 };

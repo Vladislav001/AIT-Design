@@ -88,19 +88,25 @@ app.use(express.static(path.join(__dirname, './public')));
 
 //var User = require('./models/user').User;
 
-app.get("/id:idTag/resultTest", function(req, res, next) {
+app.get("/result_test/id:idTag", function(req, res, next) {
 
+
+console.log(req.params.idTag + " req.params.idTag");
   // ищем окумент в коллекции юзеров по данному id
-  User.findById(req.params.idTag, function(err, user) {
-    if (err) return next(err);
-
-    // рисуем профиль юзера с данными из его документа
-    res.render("resultTest", {
-      EMAIL: user.email,
-    });
-  });
+  // User.findById(req.params.idTag, function(err, user) {
+  //   if (err) return next(err);
+  //
+  //   // рисуем профиль юзера с данными из его документа
+  //   res.render("resultTest", {
+  //     EMAIL: user.email,
+  //   });
+  // });
 
 });
+
+
+
+
 
 
 

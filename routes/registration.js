@@ -35,9 +35,10 @@ var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
   var userRef = usersRef.set({
    email: email,
    password: password,
+   count_students: 0,
    accessLevel: "Trainer"
   });
-  unsubscribe(); // убирает состояние 
+  unsubscribe(); // убирает состояние
 }
 });
 
