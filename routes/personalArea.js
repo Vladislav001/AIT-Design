@@ -8,12 +8,13 @@ exports.get = function(req, res) {
   var links = [];  // массив в котором будут храниться сформированные адреса профилей юзеров
 	var usernames = []; // хранит имена юзеров
   var genders = []; // хранит пол юзеров
+  var ages = []; // хранит возраст юзеров
   var logins = []; // хранит логины юзеров
   var passwords = [] // хранит пароли юзеров
 
   var accessLevel;
   var unsubscribe = firebase.auth().onAuthStateChanged(user => {
-    if (user) {
+    if (user) { 
 
       //trainer
       var userId = firebase.auth().currentUser.uid;
@@ -29,6 +30,7 @@ exports.get = function(req, res) {
                   links.push("result_test/id" + snapshot.key);
                   usernames.push(snapshot.child('name').val());
                   genders.push(snapshot.child('gender').val());
+                  ages.push(snapshot.child('age').val());
                   logins.push(snapshot.child('login').val());
                   passwords.push(snapshot.child('password').val());
 
@@ -51,6 +53,7 @@ exports.get = function(req, res) {
                     links: links,
                     usernames: usernames,
                     genders: genders,
+                    ages: ages,
                     logins: logins,
                     passwords: passwords
                 });

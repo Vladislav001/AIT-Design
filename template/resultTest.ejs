@@ -4,124 +4,66 @@
 
 <h1><b>AIT</b></h1>
 
-<div class="settingsUsername">
-<b>Settings:</b><%=loginStudent%>
-</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<a href="<%=link%>">Go to the test settings</a>
+  <div class="informationAboutStudent">
+    <table cellspacing="0">
+      <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Login</th>
+          <th>Password</th>
+          <th>Test settings</th>
+      </tr>
+      <tr>
+          <td><%=nameStudent%></td>
+          <td><%=genderStudent%></td>
+          <td><%=ageStudent%></td>
+          <td><%=loginStudent%></td>
+          <td><%=passwordStudent%></td>
+          <td><a href="<%=link%>">Start</a></td>
+      </tr>
+  </table>
+  </div>
 
-<table class="table table-bordered table-inverse">
-  <tbody>
+  <h2><b>Test results</b></h2>
+  <form class="form-resultsTest">
+  <div class="informationAboutStudentTest">
+  <table cellspacing="0">
     <tr>
-      <th scope="row" bgcolor="#fff"></th>
-      <td><span class="glyphicon glyphicon-arrow-down"></span> Question</td>
-      <td><span class="glyphicon glyphicon-arrow-down"></span> Like</td>
-      <td><span class="glyphicon glyphicon-arrow-down"></span> Dislike</td>
-      <td><span class="glyphicon glyphicon-arrow-down"></span> Not answer</td>
-    </tr>
-
-
-    <tr>
-      <th rowspan="5">Category 1</th>
-      <td><b>1</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
+        <th>№</th>
+        <th>Category</th>
+        <th>Like</th>
+        <th>Dislike</th>
+        <th>Not answer</th>
     </tr>
     <tr>
-      <td><b>2</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
+        <td>1</td>
+        <td>Food</td>
+        <td></td>
+        <td>Yes</td>
+        <td></td>
     </tr>
-    <tr>
-      <td><b>3</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>4</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>5</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-
-    <tr><th rowspan="5">Category 2</th>
-      <td><b>6</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>7</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>8</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>9</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>10</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr><th rowspan="5">Category 3</th>
-      <td><b>11</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>12</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>13</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>14</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>15</b></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <th scope="row" bgcolor="#fff"></th>
-      <td>Questions:</td>
-      <td>Likes:</td>
-      <td>Dislikes:</td>
-      <td>Not answers:</td>
-    </tr>
-  </tbody>
+    <td><em>Questions: </em></td>
+    <td><em>Categories: </em></td>
+    <td><em>Likes: </em></td>
+    <td><em>Dislikes: </em></td>
+    <td><em>Not answers: </em></td>
 </table>
+</div>
+
+<div class="informationAboutAcceptCategory">
+<table cellspacing="0">
+  <tr>
+      <th>№</th>
+      <th>Category</th>
+      <th>Accept</th>
+  </tr>
+  <tr>
+      <td>1</td>
+      <td>Food</td>
+      <td>Yes</td>
+  </tr>
+</table>
+</div>
+</form>

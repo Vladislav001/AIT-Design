@@ -1,4 +1,3 @@
-var async = require('async');
 var firebase = require('firebase')
 
 exports.post = function(req, res, next) {
@@ -11,19 +10,20 @@ exports.post = function(req, res, next) {
   // Берем email
   var emailAddress = email;
 
+console.log(emailAddress);
   // Отправляем email с паролем
   auth.sendPasswordResetEmail(emailAddress).then(function() {
     // Email отправлен
+    console.log("Пароль на email отправлен");
   }, function(error) {
     // Ошибка
+    console.log("Пароль на email не отправлен")
   });
 
 }
 
 
 
-
 exports.get = function(req, res) {
-
   res.render('restorePassword');
 };
