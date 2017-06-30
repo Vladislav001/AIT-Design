@@ -15,6 +15,12 @@
   <div class="checkbox">
     <label><input type="checkbox" value="" id="checkSwap" checked>Swap</label>
   </div>
+  <div class="checkbox checkSwapFinger">
+    <label id="checkSwapFingerText"><input type="checkbox" value="" id="checkSwapFinger" checked>Finger</label>
+  </div>
+  <div class="checkbox checkSwapArrows">
+    <label id="checkSwapArrowsText"><input type="checkbox" value="" id="checkSwapArrows" checked>Arrows</label>
+  </div>
   <div class="checkbox">
     <label><input type="checkbox" value="" id="checkProgressBar" checked>Progress bar</label>
   </div>
@@ -22,7 +28,11 @@
     <label><input type="checkbox" value="" disabled><div class="btnResult">Btn Results</div></label>
   </div>
 
-    <div class="styleImages">
+  <div class="styleImages">
+
+  <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
+  <input type="range" value="1" min="1" max="5" id="styleImagesSwap" >
+  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b>Style Images: Like/Dislike</b></h5>
   <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike">
@@ -120,13 +130,60 @@ document.getElementById('checkText').onclick = function() {
     }
 };
 
+
 document.getElementById('checkSwap').onclick = function() {
+    if ( this.checked ) {
+      $("#checkSwapFinger").css("opacity","1");
+      $( "#checkSwapFinger" ).prop( "disabled", false );
+      $("#checkSwapFingerText").css("opacity","1");
+      $( "#checkSwapArrows" ).prop( "disabled", false );
+      $("#checkSwapArrows").css("opacity","1");
+      $("#checkSwapArrowsText").css("opacity","1");
+
+      $('#checkSwapFinger').prop('checked', true);
+      $('#checkSwapArrows').prop('checked', true);
+
+      $("#imageBack").css("opacity","1");
+      $("#imageNext").css("opacity","1");
+      $("#styleImagesSwap").css("opacity","1");
+      document.getElementById("styleImagesSwap").disabled = false;
+      $(".styleImagesSwap").css("opacity","1");
+
+    } else {
+      $("#checkSwapFinger").css("opacity","0.5");
+      $( "#checkSwapFinger" ).prop( "disabled", true );
+      $("#checkSwapFinger").removeAttr("checked"); // снимает галочку
+
+      $("#checkSwapArrows").css("opacity","0.5");
+      $( "#checkSwapArrows" ).prop( "disabled", true );
+      $("#checkSwapArrows").removeAttr("checked"); // снимает галочку
+
+      $("#checkSwapFingerText").css("opacity","0.5");
+      $("#checkSwapArrowsText").css("opacity","0.5");
+
+      $("#imageBack").css("opacity","0");
+      $("#imageNext").css("opacity","0");
+
+      $("#styleImagesSwap").css("opacity","0.5");
+     document.getElementById("styleImagesSwap").disabled = true;
+     $(".styleImagesSwap").css("opacity","0.5");
+
+    }
+};
+
+document.getElementById('checkSwapArrows').onclick = function() {
     if ( this.checked ) {
   $("#imageBack").css("opacity","1");
   $("#imageNext").css("opacity","1");
+  $("#styleImagesSwap").css("opacity","1");
+  document.getElementById("styleImagesSwap").disabled = false;
+  $(".styleImagesSwap").css("opacity","1");
     } else {
        $("#imageBack").css("opacity","0");
        $("#imageNext").css("opacity","0");
+       $("#styleImagesSwap").css("opacity","0.5");
+       $(".styleImagesSwap").css("opacity","0.5");
+      document.getElementById("styleImagesSwap").disabled = true;
     }
 };
 

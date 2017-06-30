@@ -16,8 +16,6 @@ exports.post = function(req, res, next) {
     var age = req.body.ageNewUser;                                      // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
     var gender = req.body.genderNewUser;
 
-
-
     var trainer_ID = firebase.auth().currentUser.uid;
   //  console.log(accessLevel + " accessLevel");
 
@@ -48,6 +46,7 @@ exports.post = function(req, res, next) {
          count_students: newCountStudents
         });
   });
+
 
 
 

@@ -148,10 +148,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	margin-left: 75px;
 }
 
-.text, .sound, .swap, .progressBar,
-.btnResult, .styleImageLikeDislike,
+.text, .sound, .swap, .finger, .arrows, .progressBar,
+.btnResult, .styleImagesSwap, .styleImageLikeDislike,
 .styleImageStopTest, .styleImageResults,
-.styleImageFinish, .inputStyleImageStopTest,
+.styleImageFinish, .inputStyleImageSwap,
+.inputStyleImagesLikeDislike, .inputStyleImageStopTest,
 .inputStyleImageResults, .styleImageStopTest, .inputStyleImageFinish  {
 	opacity: 0.4;
 }
