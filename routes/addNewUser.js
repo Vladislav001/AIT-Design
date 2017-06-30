@@ -34,6 +34,35 @@ exports.post = function(req, res, next) {
   trainer_ID: trainer_ID
   });
 
+  //Узнаем кол-во тестов у студента
+  var refStudents = firebase.database().ref("students");
+  var countTests = 0; // Кол-во тестов
+  refStudents.orderByChild("tests").on("child_added", function(snapshot) {
+   var student = snapshot.val();
+   countTests++;
+  });
+
+  // Формируем узлы с номерами тестов и соответствующими под-узлами
+  var refNewTest = usersRef.child("tests/" + countTests);
+  var refNewTestSettings = refNewTest.child("/settings"); //
+  var refNewTestQuestions = refNewTest.child("/questions");//
+  var refNewTestManageButtons = refNewTest.child("/manage_buttons");//
+  //Для заполнения-посмотреть как выглядит в database
+  // var refNewTestSettings = refNewTestSettings.set({
+  //  settings: "settings"
+  //  });
+  //
+  // var refNewTestQuestions = refNewTestQuestions.set({
+  //   questions: "questions"
+  //   });
+  //
+  //   var refNewTestManageButtons = refNewTestManageButtons.set({
+  //     manage_buttons: "manage_buttons"
+  //     });
+
+
+
+
   //получить тренера
   //и нарастить у него поле counte
   var refTrainer = firebase.database().ref("trainers/" + trainer_ID);

@@ -1,5 +1,3 @@
-
-var async = require('async');
 var firebase = require('firebase');
 var configFirebase = require ('../config/configFirebase');
 

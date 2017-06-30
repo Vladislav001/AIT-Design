@@ -14,7 +14,7 @@ exports.get = function(req, res) {
 
   var accessLevel;
   var unsubscribe = firebase.auth().onAuthStateChanged(user => {
-    if (user) { 
+    if (user) {
 
       //trainer
       var userId = firebase.auth().currentUser.uid;
@@ -57,6 +57,7 @@ exports.get = function(req, res) {
                     logins: logins,
                     passwords: passwords
                 });
+
         });
     }
 
