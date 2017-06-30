@@ -1,13 +1,9 @@
-<link rel="stylesheet" href="css/stylePre-ResultSettings.css">
+<link rel="stylesheet" href="/css/stylePre-ResultSettings.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
 
 <form class="form-testSetting" name="testSetting">
-<h3><b>Settings</b></h3>
-<div class="form-group">
-<span class="glyphicon glyphicon-user"></span>
-Username
-</div>
+<h3><b>Settings</b></h3><%=loginStudent%>
 
   <div class="checkbox">
     <label><input type="checkbox" value="" disabled><div class="text">Text</div></label>
@@ -41,7 +37,7 @@ Username
 
   <h5><b>Style Image: Results</b></h5>
     <input type="range" value="1" min="1" max="5" id="styleImagesResults">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding...">Add</button>
+  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
   <div class="inputStyleImageFinish">
@@ -53,7 +49,7 @@ Username
 
     <br>
     <h5><b>Language</b></h5>
-    <SELECT name="Language" type="text" class="form-control" id="input-Language" >
+    <SELECT name="Language" type="text" class="form-control" id="input-Language" disabled>
       <OPTION>English</OPTION>
       <OPTION>Russian</OPTION>
     </SELECT>
@@ -74,7 +70,7 @@ Username
   <h1><b>AIT</b></h1>
 
     <div class="ImageStopTest">
-      <img src="imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
+      <img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
 
   </div>
 
@@ -82,22 +78,22 @@ Username
 
     <div class="center">
 
-      <img src="imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
 </div>
 
 <div class="styleImageBigBtnResults" id="styleImageBigBtnResults">
-<img src="imagesDefault/1234.png" class="img-responsive bigBtnResults">
+<img src="/imagesDefault/1234.png" class="img-responsive bigBtnResults">
 </div>
     <br><br>
 
 <ul class="pagination">
-  <li><span><a href="testSettings">Test</a></span></li>
-  <li><a href="userTrainingSettings">User training</a></li>
+  <li><span><a href="<%=linkTestSettings%>">Test</a></span></li>
+  <li><a href="<%=linkUserTrainingSettings%>">User training</a></li>
   <li class="active"><a>Pre-result</a></li>
-  <li><a href="resultSettings">Result</a></li>
-  <li><a href="finishSettings">Finish</a></li>
+  <li><a href="<%=linkResultSettings%>">Result</a></li>
+  <li><a href="<%=linkFinishSettings%>">Finish</a></li>
 </ul>
 
 </form>

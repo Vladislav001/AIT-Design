@@ -38,6 +38,15 @@ var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
    count_students: 0,
    accessLevel: "Trainer"
   });
+
+  //Отправляем ему email
+  //(содержание email определяется в Консоли Firebase)
+  user.sendEmailVerification().then(function() {
+    // Email успешно отправлен
+  }, function(error) {
+    // Ошибка
+  });
+
   unsubscribe(); // убирает состояние
 }
 });

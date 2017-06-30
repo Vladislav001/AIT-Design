@@ -26,7 +26,7 @@ exports.get = function(req, res) {
                var count_students = snapshot.child("count_students").val();
                 refStudents.orderByChild("trainer_ID").equalTo(userId).on("child_added", function(snapshot) {
                   //console.log(snapshot.key);
-                  links.push("resultTest/" + snapshot.key);
+                  links.push("result_test/id" + snapshot.key);
                   usernames.push(snapshot.child('name').val());
                   genders.push(snapshot.child('gender').val());
                   logins.push(snapshot.child('login').val());
@@ -41,7 +41,7 @@ exports.get = function(req, res) {
                   //       links: links,
                   //       usernames: usernames
                   //   });
-                  // }
+                  // }уь
                 });
                 unsubscribe(); // убирает состояние
                 res.render("personalArea", {

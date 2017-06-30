@@ -1,21 +1,26 @@
-// Модуль авторизации
-
-// var User = require('../models/user').User;
-// var HttpError = require('../error').HttpError;
-// var AuthError = require('../models/user').AuthError;
-var async = require('async');
+// Модуль результатов теста студентов
 var firebase = require('firebase');
 
 exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-     // рисуем профиль юзера с данными из его документа
-       res.render('resultTest',
-         {
-          EMAIL: user.email
-         });
-   }
-  });
 
+    var refStudents = firebase.database().ref("students/" + req.params.idTag);
+
+     refStudents.once("value")
+      .then(function(snapshot) {
+        var loginStudent = snapshot.child('login').val();
+        var link = "/test_settings/id" + req.params.idTag;
+
+        res.render("resultTest", {
+            loginStudent: loginStudent,
+            id: snapshot.key,
+            link: link
+        });
+      });
+
+ }
+
+  });
 };

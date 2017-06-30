@@ -7,12 +7,12 @@ module.exports = function(app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/personalArea', require('./personalArea').get);
-  app.get('/resultTest', checkAuth, require('./resultTest').get);
-  app.get('/testSettings', checkAuth, require('./testSettings').get);
-  app.get('/userTrainingSettings', checkAuth, require('./userTrainingSettings').get);
-  app.get('/pre-resultSettings', checkAuth, require('./pre-resultSettings').get);
-  app.get('/resultSettings', checkAuth, require('./resultSettings').get);
-  app.get('/finishSettings', checkAuth, require('./finishSettings').get);
+  app.get('/result_test/id:idTag', checkAuth, require('./resultTest').get);
+  app.get('/test_settings/id:idTag', checkAuth, require('./testSettings').get);
+  app.get('/user_training_settings/id:idTag', checkAuth, require('./userTrainingSettings').get);
+  app.get('/pre_result_settings/id:idTag', checkAuth, require('./pre-resultSettings').get);
+  app.get('/result_settings/id:idTag', checkAuth, require('./resultSettings').get);
+  app.get('/finish_settings/id:idTag', checkAuth, require('./finishSettings').get);
 
   app.post('/addNewUser', require('./addNewUser').post);
   app.post('/logout', require('./logout').post);

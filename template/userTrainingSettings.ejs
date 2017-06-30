@@ -1,14 +1,10 @@
-<link rel="stylesheet" href="css/styleUserTrainingSettings.css">
+<link rel="stylesheet" href="/css/styleUserTrainingSettings.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
 
 
 <form class="form-testSetting" name="testSetting">
-<h3><b>Settings</b></h3>
-<div class="form-group">
-<span class="glyphicon glyphicon-user"></span>
-Username
-</div>
+<h3><b>Settings</b></h3><%=loginStudent%>
 
 <div class="checkbox">
   <label><input type="checkbox" value="checked" id="checkText" disabled checked><div class="text">Text</div></label>
@@ -57,7 +53,7 @@ Username
 
     <br>
     <h5><b>Language</b></h5>
-    <SELECT name="Language" type="text" class="form-control" id="input-Language" >
+    <SELECT name="Language" type="text" class="form-control" id="input-Language" disabled>
       <OPTION>English</OPTION>
       <OPTION>Russian</OPTION>
     </SELECT>
@@ -78,29 +74,29 @@ Username
   <h1><b>AIT</b></h1>
 
 <div class="ImageStopTest">
-<img src="imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-<img src="imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
+<img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
+<img src="/imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
 </div>
 
     <div class="wrapper">
 
     <div class="left">
       <input type='text' name='inputBack' class="inputBack" placeholder="If you want to return to the previous question">
-      <img src="imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
+      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
       <input type='text' name='inputLike' class="inputLike" placeholder="If you like to click here">
-      <img src="imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
     <div class="center">
       <h3 class="notConstantly" id="textQuestion">Text question</h3>
-      <img src="imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
     <div class="right">
       <input type='text' name='inputNext' class="inputNext" placeholder="If you want to go to the text question">
-      <img src="imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
+      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
       <input type='text' name='inputDislike' class="inputDislike" placeholder="If you don't like to click here">
-      <img src="imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
 </div>
@@ -113,11 +109,11 @@ Username
     </div>
 
 <ul class="pagination">
-  <li><span><a href="testSettings">Test</a></span></li>
+  <li><span><a href="<%=linkTestSettings%>">Test</a></span></li>
   <li class="active"><a>User training</a></li>
-  <li><a href="pre-resultSettings">Pre-result</a></li>
-  <li><a href="resultSettings">Result</a></li>
-  <li><a href="finishSettings">Finish</a></li>
+  <li><a href="<%=linkPreResultSettings%>">Pre-result</a></li>
+  <li><a href="<%=linkResultSettings%>">Result</a></li>
+  <li><a href="<%=linkFinishSettings%>">Finish</a></li>
 </ul>
 
 </form>
