@@ -45,20 +45,34 @@ exports.post = function(req, res, next) {
   // Формируем узлы с номерами тестов и соответствующими под-узлами
   var refNewTest = usersRef.child("tests/" + countTests);
   var refNewTestSettings = refNewTest.child("/settings"); //
-  var refNewTestQuestions = refNewTest.child("/questions");//
   var refNewTestManageButtons = refNewTest.child("/manage_buttons");//
-  //Для заполнения-посмотреть как выглядит в database
-  // var refNewTestSettings = refNewTestSettings.set({
-  //  settings: "settings"
-  //  });
+  var refNewTestQuestions = refNewTest.child("/questions");//
+  //Для заполнения-посмотреть как выглядит в databaseьщ
+  var refNewTestSettings = refNewTestSettings.set({
+   text: "true",
+   sound: "checked",
+   swap: "true",
+   swap_finger: "true",
+   swap_arrows: "true",
+   progress_bar: "true",
+   btn_results: "true"
+  });
+
+   var refNewTestManageButtons = refNewTestManageButtons.set({
+    style_images_swap_arrows: "1",
+    style_images_like_dislike: "1",
+    style_image_stop_test: "1",
+    style_image_results: "1",
+    style_image_stop_finish: "1",
+   });
+
+
   //
   // var refNewTestQuestions = refNewTestQuestions.set({
   //   questions: "questions"
   //   });
   //
-  //   var refNewTestManageButtons = refNewTestManageButtons.set({
-  //     manage_buttons: "manage_buttons"
-  //     });
+
 
 
 

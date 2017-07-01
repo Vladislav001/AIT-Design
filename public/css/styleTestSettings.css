@@ -10,7 +10,7 @@ h1 {
 	margin-right: 39%;
 }
 
-.form-testSetting {
+.form_testSetting {
   max-width: 330px;
   float: left; /* Обтекание по правому краю */
   padding: 15px;
@@ -18,12 +18,12 @@ h1 {
   margin-top: -1%;
 }
 
-.form-testSetting .form-control {
+.form_testSetting .form-control {
     max-width: 120px;
     max-height: 33px;
 }
 
-.form-testSetting .btn-primary {
+.form_testSetting .btn-primary {
   max-width:none;
 }
 

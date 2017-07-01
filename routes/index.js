@@ -4,6 +4,7 @@ module.exports = function(app) {
   // Каждый 'get' подключает соотсветсвующий модуль и вызывает его метод 'get'
   app.get('/', require('./login').get);
   app.post('/login', require('./login').post); // при poste на login, подключаем post этого модуля()
+  app.post('/logout', require('./logout').post);
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/personalArea', require('./personalArea').get);
@@ -15,10 +16,14 @@ module.exports = function(app) {
   app.get('/finish_settings/id:idTag', checkAuth, require('./finishSettings').get);
 
   app.post('/addNewUser', require('./addNewUser').post);
-  app.post('/logout', require('./logout').post);
+  app.post('/updateTestSettings/id:idTag', require('./testSettings').post);
 
   app.get('/restorePassword', require('./restorePassword').get);
   app.post('/restorePassword', require('./restorePassword').post);
+
+  // ПРОВЕРИТЬ ПУТЬ !!!
+  //app.post('/updateTestSettings', require('./updateSettings/updateTestSettings').post);
+
 
   app.get('/getAllUsersInJSON', require('./getAllUsersInJSON').get);
 };

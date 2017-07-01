@@ -7,7 +7,7 @@ exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
   var email = req.body.email; // P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
   var password = req.body.password; // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
-	const auth = firebase.auth();
+	//const auth = firebase.auth();
 
   //Входим
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {

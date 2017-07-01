@@ -2,12 +2,12 @@
 <% layout('layout/page') -%>
 <% block('title') -%>
 
-<form class="form-testSetting" name="testSetting">
+<form class="form_testSetting" name="testSetting">
 <h3><b>Settings</b></h3><%=loginStudent%>
 
 
   <div class="checkbox">
-    <label><input type="checkbox" value="" id="checkText" checked>Text</label>
+    <label><input type="checkbox" name="checkText" value="True" id="checkText">Text</label>
   </div>
   <div class="checkbox">
     <label><input type="checkbox" value="" id="checkSound" checked>Sound</label>
@@ -31,28 +31,29 @@
   <div class="styleImages">
 
   <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesSwap" >
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <input type="range" name="styleImagesSwap" value="1" min="1" max="5" id="styleImagesSwap" >
+  <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <!-- <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
   <h5><b>Style Images: Like/Dislike</b></h5>
   <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b>Style Image: STOP TEST</b></h5>
   <input type="range" value="1" min="1" max="5" id="styleImagesStopTest">
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
   <div class="inputStyleImageResults">
     <input type="range" value="1" min="1" max="5" id="styleImagesResults" disabled>
   </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
   <div class="inputStyleImageFinish">
   <input type="range" value="1" min="1" max="5" id="styleImagesFinish" disabled>
   </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+  <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   </div>
 
@@ -68,7 +69,7 @@
   <br><br><br>
   <div class="form-group">
     <label class="btn-acceptSettings">
-      <button type="submit" class="btn btn-primary" data-loading-text="Sending..." t>Accept settings</button>
+      <button type="submit" class="btn btn-primary" id="updateTestSettings">Accept settings</button>
       <span class="help-block error"></span>
       </label>
   </div>
@@ -214,12 +215,22 @@ switch (styleImagesStopTest) {
 console.log(styleImagesStopTest);
 };
 
+
+// if ($("checkText").val()==="True"){
+//       $('#checkText').prop('checked', true);
+//     }
+
+</script>
+<script>
+if ($("checkText").val()==="True"){
+      $('#checkText').prop('checked', true);
+    }
 </script>
 
-<!-- <script>
+<script>
 // Клиентский код //
-// Человек вводит логин, пароль
-  $(document.forms['form-testSetting']).on('submit', function() {
+// name="testSetting" !!!
+  $(document.forms['testSetting']).on('submit', function() {
     var form = $(this);
 
     $('.error', form).html('');
@@ -227,7 +238,7 @@ console.log(styleImagesStopTest);
 
     // Этот логин, пароль отправляется на сервер
     $.ajax({
-      url: "/testSettings", // роут: require('./login').post
+      url: "/updateTestSettings/id<%=id%>", // роут: require('./login').post
       method: "POST",
       data: form.serialize(),
       complete: function() {
@@ -246,7 +257,7 @@ console.log(styleImagesStopTest);
       //     $('.error', form).html(error.message);
       //   }
       // }
-    });  //window.location.href = "/personalArea";
-  return false;
+    });  //window.location.href = "/user_training_settings/id:idT";
+  //return false;
   });
-</script> -->
+</script>
