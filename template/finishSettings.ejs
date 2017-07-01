@@ -2,29 +2,29 @@
 <% layout('layout/page') -%>
 <% block('title') -%>
 
-<form class="form-testSetting" name="testSetting">
+<form class="form-testSetting" name="finishSetting">
 <h3><b>Settings</b></h3><%=loginStudent%>
 
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled><div class="text">Text</div></label>
+    <label><input type="checkbox" value="<%=checkText%>" id="checkText" disabled><div class="text">Text</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled><div class="sound">Sound</div></label>
+    <label><input type="checkbox" value="<%=checkSound%>" id="checkSound" disabled><div class="sound">Sound</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled><div class="swap">Swap</div></label>
+    <label><input type="checkbox"  value="<%=checkSwap%>" id="checkSwap" disabled><div class="swap">Swap</div></label>
   </div>
   <div class="checkbox checkSwapFinger">
-    <label id="checkSwapFingerText"><input type="checkbox" value="" id="checkSwapFinger" disabled><div class="finger">Finger</div></label>
+    <label id="checkSwapFingerText"><input type="checkbox" value="<%=checkSwapFinger%>" id="checkSwapFinger" disabled><div class="finger">Finger</div></label>
   </div>
   <div class="checkbox checkSwapArrows">
-    <label id="checkSwapArrowsText"><input type="checkbox" value="" id="checkSwapArrows" disabled><div class="arrows">Arrows</div></label>
+    <label id="checkSwapArrowsText"><input type="checkbox" value="<%=checkSwapArrows%>" id="checkSwapArrows" disabled><div class="arrows">Arrows</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled><div class="progressBar">Progress bar</div></label>
+    <label><input type="checkbox" value="<%=checkProgressBar%>" id="checkProgressBar" disabled><div class="progressBar">Progress bar</div></label>
   </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled=""><div class="btnResult">Btn Results</div></label>
+    <label><input type="checkbox" value="<%=checkBtnResult%>"  id="checkBtnResult" disabled=""><div class="btnResult">Btn Results</div></label>
   </div>
 
     <div class="styleImages">
@@ -106,4 +106,102 @@
 </ul>
 
 </form>
-<span class="help-block error"></span>
+
+<script>
+
+// Проверка наличия текста
+document.getElementById('checkText').onclick = function() {
+    if ( this.checked ) {
+  $("#textFinish").css("opacity","1");
+    } else {
+       $("#textFinish").css("opacity","0");
+    }
+};
+
+  if (document.getElementById('checkText').value == "false") {
+    $("#textFinish").css("opacity","0");
+  }
+
+
+// Имитация клика на элемент
+setTimeout(function(){
+  $('#styleImagesStopTest').trigger('click');
+}, 0);
+document.getElementById('styleImagesStopTest').onclick = function() {
+var styleImagesStopTest = $("#styleImagesStopTest").val();
+switch (styleImagesStopTest) {
+    case "1":
+      $("#styleStopTest_1").css("display","block");
+      $("#styleStopTest_2").css("display","none");
+      break;
+    case "2":
+    $("#styleStopTest_1").css("display","none");
+    $("#styleStopTest_2").css("display","block");
+      break;
+  }
+
+};
+</script>
+
+
+<script>
+// Отрисовка галочки от значения из БД
+if (document.getElementById('checkText').value == "true") {
+      $('#checkText').prop('checked', true);
+    }
+if (document.getElementById('checkSound').value == "true") {
+    $('#checkSound').prop('checked', true);
+  }
+if (document.getElementById('checkSwap').value == "true") {
+    $('#checkSwap').prop('checked', true);
+  }
+if (document.getElementById('checkSwapFinger').value == "true") {
+    $('#checkSwapFinger').prop('checked', true);
+  }
+if (document.getElementById('checkSwapArrows').value == "true") {
+    $('#checkSwapArrows').prop('checked', true);
+  }
+if (document.getElementById('checkProgressBar').value == "true") {
+    $('#checkProgressBar').prop('checked', true);
+  }
+if (document.getElementById('checkBtnResult').value == "true") {
+    $('#checkBtnResult').prop('checked', true);
+  }
+</script>
+
+
+
+<script>
+// Клиентский код //
+// name="testSetting" !!!
+  $(document.forms['finishSetting']).on('submit', function() {
+    var form = $(this);
+
+    $('.error', form).html('');
+    $(":submit", form).button("loading");
+
+    // Этот логин, пароль отправляется на сервер
+    $.ajax({
+      url: "/updateFinishSettingsSettings/id<%=id%>", // роут: require('./login').post
+      method: "POST",
+      data: form.serialize(),
+      complete: function() {
+        $(":submit", form).button("reset");
+      }
+      // ,
+      // statusCode: {
+      //   // если ответ сервера 200 - перенаправляем человека в личный кабинет
+      //   200: function() {
+      //     form.html("Вы вошли в сайт").addClass('alert-success');
+      //     window.location.href = "/personalArea";
+      //   },
+      //   // если 403 - высвечивается ошибка
+      //   403: function(jqXHR) {
+      //     var error = JSON.parse(jqXHR.responseText);
+      //     $('.error', form).html(error.message);
+      //   }
+      // }
+    });  //window.location.href = "/user_training_settings/id:idT";
+  //return false;
+  });
+</script>

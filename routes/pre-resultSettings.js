@@ -1,16 +1,35 @@
 // Модуль авторизации
-
-// var User = require('../models/user').User;
-// var HttpError = require('../error').HttpError;
-// var AuthError = require('../models/user').AuthError;
-var async = require('async');
 var firebase = require('firebase');
+
+exports.post = function(req, res, next) {
+
+  var checkBtnResult = Boolean(req.body.checkBtnResult);
+
+  firebase.auth().onAuthStateChanged(user => {
+   if (user) {
+    //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
+    var refStudents = firebase.database().ref("students/" + req.params.idTag);
+
+     //Формируем узлы с номерами тестов и соответствующими под-узлами
+     var refNewTest = refStudents.child("tests/" + "1/");
+     var refNewTestSettings = refNewTest.child("/settings");
+     var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+
+     var refNewTestSettings = refNewTestSettings.update({
+      btn_results: checkBtnResult
+     });
+
+    }
+  });
+
+};
 
 exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
      var refStudents = firebase.database().ref("students/" + req.params.idTag);
+     var refStudentsSettings = refStudents.child("tests/1/settings/");
 
       refStudents.once("value")
        .then(function(snapshot) {
@@ -21,17 +40,36 @@ exports.get = function(req, res) {
          var linkFinishSettings = "/finish_settings/id" + req.params.idTag;
 
 
-         res.render("pre-resultSettings", {
-             loginStudent: loginStudent,
-             id: snapshot.key,
+         refStudentsSettings.once("value")
+          .then(function(snapshotSettings) {
+            var checkText = snapshotSettings.child('text').val();
+            var checkSound = snapshotSettings.child('sound').val();
+            var checkSwap = snapshotSettings.child('swap').val();
+            var checkSwapFinger = snapshotSettings.child('swap_finger').val();
+            var checkSwapArrows = snapshotSettings.child('swap_arrows').val();
+            var checkProgressBar = snapshotSettings.child('progress_bar').val();
+            var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-             linkTestSettings: linkTestSettings,
-             linkUserTrainingSettings: linkUserTrainingSettings,
-             linkResultSettings: linkResultSettings,
-             linkFinishSettings: linkFinishSettings
-         });
+            res.render("pre-resultSettings", {
+                loginStudent: loginStudent,
+                id: snapshot.key,
+
+                linkTestSettings: linkTestSettings,
+                linkUserTrainingSettings: linkUserTrainingSettings,
+                linkResultSettings: linkResultSettings,
+                linkFinishSettings: linkFinishSettings,
+
+                checkText: checkText,
+                checkSound: checkSound,
+                checkSwap: checkSwap,
+                checkSwapFinger: checkSwapFinger,
+                checkSwapArrows: checkSwapArrows,
+                checkProgressBar: checkProgressBar,
+                checkBtnResult: checkBtnResult
+              });
+            });
+
        });
     }
   });
-
 };

@@ -7,25 +7,25 @@
 <h3><b>Settings</b></h3><%=loginStudent%>
 
 <div class="checkbox">
-  <label><input type="checkbox" value="checked" id="checkText" disabled checked><div class="text">Text</div></label>
+  <label><input type="checkbox" value="<%=checkText%>" id="checkText" disabled><div class="text">Text</div></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="" id="checkSound" disabled checked><div class="sound">Sound</div></label>
+  <label><input type="checkbox" value="<%=checkSound%>" id="checkSound" disabled><div class="sound">Sound</div></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="" id="checkSwap" disabled checked><div class="swap">Swap</div></label>
+  <label><input type="checkbox" value="<%=checkSwap%>" id="checkSwap" disabled><div class="swap">Swap</div></label>
 </div>
 <div class="checkbox checkSwapFinger">
-  <label id="checkSwapFingerText"><input type="checkbox" value="" id="checkSwapFinger" disabled checked><div class="finger">Finger</div></label>
+  <label id="checkSwapFingerText"><input type="checkbox" value="<%=checkSwapFinger%>" id="checkSwapFinger" disabled><div class="finger">Finger</div></label>
 </div>
 <div class="checkbox checkSwapArrows">
-  <label id="checkSwapArrowsText"><input type="checkbox" value="" id="checkSwapArrows" disabled checked><div class="arrows">Arrows</div></label>
+  <label id="checkSwapArrowsText"><input type="checkbox" value="<%=checkSwapArrows%>" id="checkSwapArrows" disabled><div class="arrows">Arrows</div></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="" id="checkProgressBar" disabled checked><div class="progressBar">Progress bar</div></label>
+  <label><input type="checkbox" value="<%=checkProgressBar%>" id="checkProgressBar" disabled><div class="progressBar">Progress bar</div></label>
 </div>
   <div class="checkbox">
-    <label><input type="checkbox" value="" disabled><div class="btnResult">Btn Results</div></label>
+    <label><input type="checkbox" value="<%=checkBtnResult%>" id="checkBtnResult" disabled><div class="btnResult">Btn Results</div></label>
   </div>
 
     <div class="styleImages">
@@ -133,6 +133,7 @@
 
 <script>
 
+// Проверка наличия текста
 document.getElementById('checkText').onclick = function() {
     if ( this.checked ) {
   $("#textQuestion").css("opacity","1");
@@ -141,23 +142,86 @@ document.getElementById('checkText').onclick = function() {
     }
 };
 
-document.getElementById('checkSwap').onclick = function() {
-    if ( this.checked ) {
-  $("#imageBack").css("opacity","1");
-  $("#imageNext").css("opacity","1");
-    } else {
-       $("#imageBack").css("opacity","0");
-       $("#imageNext").css("opacity","0");
-    }
-};
+  if (document.getElementById('checkText').value == "false") {
+    $("#textQuestion").css("opacity","0");
+  }
 
-document.getElementById('checkProgressBar').onclick = function() {
-    if ( this.checked ) {
-  $("#progressBar").css("opacity","1");
-    } else {
-       $("#progressBar").css("opacity","0");
-    }
-};
+  // Проверка наличия свапа на стрелках
+  document.getElementById('checkSwap').onclick = function() {
+      if ( this.checked ) {
+        $("#checkSwapFinger").css("opacity","1");
+        $( "#checkSwapFinger" ).prop( "disabled", false );
+        $("#checkSwapFingerText").css("opacity","1");
+        $( "#checkSwapArrows" ).prop( "disabled", false );
+        $("#checkSwapArrows").css("opacity","1");
+        $("#checkSwapArrowsText").css("opacity","1");
+
+        $('#checkSwapFinger').prop('checked', true);
+        $('#checkSwapArrows').prop('checked', true);
+
+        $("#imageBack").css("opacity","1");
+        $("#imageNext").css("opacity","1");
+        $("#styleImagesSwap").css("opacity","1");
+        document.getElementById("styleImagesSwap").disabled = false;
+        $(".styleImagesSwap").css("opacity","1");
+
+      } else {
+        $("#checkSwapFinger").css("opacity","0.5");
+        $( "#checkSwapFinger" ).prop( "disabled", true );
+        $("#checkSwapFinger").removeAttr("checked"); // снимает галочку
+
+        $("#checkSwapArrows").css("opacity","0.5");
+        $( "#checkSwapArrows" ).prop( "disabled", true );
+        $("#checkSwapArrows").removeAttr("checked"); // снимает галочку
+
+        $("#checkSwapFingerText").css("opacity","0.5");
+        $("#checkSwapArrowsText").css("opacity","0.5");
+
+        $("#imageBack").css("opacity","0");
+        $("#imageNext").css("opacity","0");
+
+        $("#styleImagesSwap").css("opacity","0.5");
+       document.getElementById("styleImagesSwap").disabled = true;
+       $(".styleImagesSwap").css("opacity","0.5");
+
+      }
+  };
+
+  document.getElementById('checkSwapArrows').onclick = function() {
+      if ( this.checked ) {
+    $("#imageBack").css("opacity","1");
+    $("#imageNext").css("opacity","1");
+    $("#styleImagesSwap").css("opacity","1");
+    document.getElementById("styleImagesSwap").disabled = false;
+    $(".styleImagesSwap").css("opacity","1");
+      } else {
+         $("#imageBack").css("opacity","0");
+         $("#imageNext").css("opacity","0");
+         $("#styleImagesSwap").css("opacity","0.5");
+         $(".styleImagesSwap").css("opacity","0.5");
+        document.getElementById("styleImagesSwap").disabled = true;
+      }
+  };
+
+  if (document.getElementById('checkSwapArrows').value == "false") {
+    $("#imageBack").css("opacity","0");
+    $("#imageNext").css("opacity","0");
+  }
+
+  // Проверка наличия прогресс-бара
+  document.getElementById('checkProgressBar').onclick = function() {
+      if ( this.checked ) {
+    $("#progressBar").css("opacity","1");
+      } else {
+         $("#progressBar").css("opacity","0");
+      }
+  };
+
+  if (document.getElementById('checkProgressBar').value == "false") {
+    $("#progressBar").css("opacity","0");
+  }
+
+
 
 // Имитация клика на элемент
 setTimeout(function(){
@@ -175,7 +239,67 @@ switch (styleImagesStopTest) {
     $("#styleStopTest_2").css("display","block");
       break;
   }
-console.log(styleImagesStopTest);
-};
 
+};
+</script>
+
+
+<script>
+// Отрисовка галочки от значения из БД
+if (document.getElementById('checkText').value == "true") {
+      $('#checkText').prop('checked', true);
+    }
+if (document.getElementById('checkSound').value == "true") {
+    $('#checkSound').prop('checked', true);
+  }
+if (document.getElementById('checkSwap').value == "true") {
+    $('#checkSwap').prop('checked', true);
+  }
+if (document.getElementById('checkSwapFinger').value == "true") {
+    $('#checkSwapFinger').prop('checked', true);
+  }
+if (document.getElementById('checkSwapArrows').value == "true") {
+    $('#checkSwapArrows').prop('checked', true);
+  }
+if (document.getElementById('checkProgressBar').value == "true") {
+    $('#checkProgressBar').prop('checked', true);
+  }
+if (document.getElementById('checkBtnResult').value == "true") {
+    $('#checkBtnResult').prop('checked', true);
+  }
+</script>
+
+<script>
+// Клиентский код //
+// name="testSetting" !!!
+  $(document.forms['userTrainingSettingsSetting']).on('submit', function() {
+    var form = $(this);
+
+    $('.error', form).html('');
+    $(":submit", form).button("loading");
+
+    // Этот логин, пароль отправляется на сервер
+    $.ajax({
+      url: "/updateUserTrainingSettings/id<%=id%>", // роут: require('./login').post
+      method: "POST",
+      data: form.serialize(),
+      complete: function() {
+        $(":submit", form).button("reset");
+      }
+      // ,
+      // statusCode: {
+      //   // если ответ сервера 200 - перенаправляем человека в личный кабинет
+      //   200: function() {
+      //     form.html("Вы вошли в сайт").addClass('alert-success');
+      //     window.location.href = "/personalArea";
+      //   },
+      //   // если 403 - высвечивается ошибка
+      //   403: function(jqXHR) {
+      //     var error = JSON.parse(jqXHR.responseText);
+      //     $('.error', form).html(error.message);
+      //   }
+      // }
+    });  //window.location.href = "/user_training_settings/id:idT";
+  //return false;
+  });
 </script>

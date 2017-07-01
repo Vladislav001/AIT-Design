@@ -17,6 +17,10 @@ module.exports = function(app) {
 
   app.post('/addNewUser', require('./addNewUser').post);
   app.post('/updateTestSettings/id:idTag', require('./testSettings').post);
+  app.post('/updateUserTrainingSettings/id:idTag', require('./userTrainingSettings').post);
+  app.post('/updatePre-ResultSettings/id:idTag', require('./pre-resultSettings').post);
+  app.post('/updateResultSettings/id:idTag', require('./resultSettings').post);
+  app.post('/updateFinishSettingsSettings/id:idTag', require('./finishSettings').post);
 
   app.get('/restorePassword', require('./restorePassword').get);
   app.post('/restorePassword', require('./restorePassword').post);

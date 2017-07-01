@@ -31,12 +31,13 @@ exports.post = function(req, res, next) {
   name: name,
   age: age,
   gender: gender,
-  trainer_ID: trainer_ID
+  trainer_ID: trainer_ID,
+  current_test: "1"
   });
 
   //Узнаем кол-во тестов у студента
-  var refStudents = firebase.database().ref("students");
-  var countTests = 0; // Кол-во тестов
+  var refStudents = firebase.database().ref("students/" + userIdStudents + "/tests");
+  var countTests = 1; // Кол-во тестов
   refStudents.orderByChild("tests").on("child_added", function(snapshot) {
    var student = snapshot.val();
    countTests++;
@@ -50,7 +51,7 @@ exports.post = function(req, res, next) {
   //Для заполнения-посмотреть как выглядит в databaseьщ
   var refNewTestSettings = refNewTestSettings.set({
    text: "true",
-   sound: "checked",
+   sound: "true",
    swap: "true",
    swap_finger: "true",
    swap_arrows: "true",
