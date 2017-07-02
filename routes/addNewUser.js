@@ -56,7 +56,11 @@ exports.post = function(req, res, next) {
    swap_finger: "true",
    swap_arrows: "true",
    progress_bar: "true",
-   btn_results: "true"
+   btn_results: "true",
+   text_back_question: "If you want to return to the previous question",
+   text_next_question: "If you want to go to the text question",
+   text_like_question: "If you like to click here",
+   text_dislike_question: "If you don't like to click here"
   });
 
    var refNewTestManageButtons = refNewTestManageButtons.set({

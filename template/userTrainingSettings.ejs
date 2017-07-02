@@ -3,7 +3,7 @@
 <% block('title') -%>
 
 
-<form class="form-testSetting" name="testSetting">
+<form class="form-testSetting">
 <h3><b>Settings</b></h3><%=loginStudent%>
 
 <div class="checkbox">
@@ -72,17 +72,18 @@
 
 
   <br><br><br>
-  <div class="form-group">
+  <!-- КОСТЫЛЬ - ОТПРАВКА В ДРУГОЙ ФОРМЕ>
+  <!-- <div class="form-group">
     <label class="btn-acceptSettings">
       <button type="submit" class="btn btn-primary" data-loading-text="Sending..." t>Accept settings</button>
       <span class="help-block error"></span>
       </label>
-  </div>
+  </div> -->
 
 </form>
   </div>
 
-<form class="form-testImages" name="testImages">
+<form class="form-testImages" name="userTrainingSettings">
   <h1><b>AIT</b></h1>
 
 <div class="ImageStopTest">
@@ -91,11 +92,10 @@
 </div>
 
     <div class="wrapper">
-
     <div class="left">
-      <input type='text' name='inputBack' class="inputBack" placeholder="If you want to return to the previous question">
+      <input type='text' name='inputTextBack' class="inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
-      <input type='text' name='inputLike' class="inputLike" placeholder="If you like to click here">
+      <input type='text' name='inputTextLike' class="inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
       <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
@@ -105,9 +105,9 @@
     </div>
 
     <div class="right">
-      <input type='text' name='inputNext' class="inputNext" placeholder="If you want to go to the text question">
+      <input type='text' name='inputTextNext' class="inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
-      <input type='text' name='inputDislike' class="inputDislike" placeholder="If you don't like to click here">
+      <input type='text' name='inputTextDislike' class="inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
       <img src="/imagesDefault/1234.png" class="img-responsive constantly">
     </div>
 
@@ -128,8 +128,13 @@
   <li><a href="<%=linkFinishSettings%>">Finish</a></li>
 </ul>
 
-</form>
+<div class="form-group">
+  <label class="btn-acceptSettings">
+    <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Accept settings</button>
+    <span class="help-block error"></span>
+    </label>
 </div>
+</form>
 
 <script>
 
@@ -144,7 +149,15 @@ document.getElementById('checkText').onclick = function() {
 
   if (document.getElementById('checkText').value == "false") {
     $("#textQuestion").css("opacity","0");
+    $("#likeQuestionText").css("opacity","0");
+    $("#dislikeQuestionText").css("opacity","0");
   }
+
+  if (document.getElementById('checkText').value == "false" || document.getElementById('checkSwapArrows').value == "false") {
+    $("#backQuestionText").css("opacity","0");
+    $("#nextQuestionText").css("opacity","0");
+  }
+
 
   // Проверка наличия свапа на стрелках
   document.getElementById('checkSwap').onclick = function() {
@@ -272,7 +285,7 @@ if (document.getElementById('checkBtnResult').value == "true") {
 <script>
 // Клиентский код //
 // name="testSetting" !!!
-  $(document.forms['userTrainingSettingsSetting']).on('submit', function() {
+  $(document.forms['userTrainingSettings']).on('submit', function() {
     var form = $(this);
 
     $('.error', form).html('');

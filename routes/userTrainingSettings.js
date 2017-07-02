@@ -3,6 +3,11 @@ var firebase = require('firebase');
 
 exports.post = function(req, res, next) {
 
+  var textBackQuestion = req.body.inputTextBack;
+  var textNextQuestion = req.body.inputTextNext;
+  var textLikeQuestion = req.body.inputTextLike;
+  var textDislikeQuestion = req.body.inputTextDislike;
+
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
@@ -12,19 +17,16 @@ exports.post = function(req, res, next) {
      var refNewTestSettings = refNewTest.child("/settings");
      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
-    //  var refNewTestSettings = refNewTestSettings.update({
-    //   text: checkText,
-    //   sound: checkSound,
-    //   swap: checkSwap,
-    //   swap_finger: checkSwapFinger,
-    //   swap_arrows: checkSwapArrows,
-    //   progress_bar: checkProgressBar,
-    //   btn_results: checkBtnResult
-    //  });
+     var refNewTestSettings = refNewTestSettings.update({
+      text_back_question: textBackQuestion,
+      text_next_question: textNextQuestion,
+      text_like_question: textLikeQuestion,
+      text_dislike_question: textDislikeQuestion
+     });
 
     }
   });
-
+  console.log(textBackQuestion + " textBackQuestion");
 };
 
 exports.get = function(req, res) {
@@ -53,6 +55,11 @@ exports.get = function(req, res) {
            var checkProgressBar = snapshotSettings.child('progress_bar').val();
            var checkBtnResult = snapshotSettings.child('btn_results').val();
 
+           var textBackQuestion = snapshotSettings.child('text_back_question').val();
+           var textNextQuestion = snapshotSettings.child('text_next_question').val();
+           var textLikeQuestion = snapshotSettings.child('text_like_question').val();
+           var textDislikeQuestion = snapshotSettings.child('text_dislike_question').val();
+
            res.render("userTrainingSettings", {
                loginStudent: loginStudent,
                id: snapshot.key,
@@ -68,7 +75,12 @@ exports.get = function(req, res) {
                checkSwapFinger: checkSwapFinger,
                checkSwapArrows: checkSwapArrows,
                checkProgressBar: checkProgressBar,
-               checkBtnResult: checkBtnResult
+               checkBtnResult: checkBtnResult,
+
+               textBackQuestion: textBackQuestion,
+               textNextQuestion: textNextQuestion,
+               textLikeQuestion: textLikeQuestion,
+               textDislikeQuestion: textDislikeQuestion
              });
            });
 

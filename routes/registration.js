@@ -23,7 +23,7 @@ exports.post = function(req, res, next) {
 var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   var userId = firebase.auth().currentUser.uid;
-  console.log(userId + " userId");
+
   var ref = firebase.app().database().ref();
   var usersRef = ref.child('trainers/' + userId);
   // Create a new ref and log it’s push key
