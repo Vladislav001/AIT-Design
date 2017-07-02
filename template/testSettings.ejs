@@ -1,4 +1,4 @@
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
 <link rel="stylesheet" href="/css/styleTestSettings.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
@@ -101,7 +101,7 @@
 
     <div class="right">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly" id="imageDislike">
+      <img src="" class="img-responsive constantly" id="imageDislike">
     </div>
 
 </div>
@@ -318,16 +318,29 @@ if (document.getElementById('checkBtnResult').value == "true") {
   $("#styleImagesLikeDislike").on("input change", function() {
     var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
     var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
     urlLike.getDownloadURL().then(function(url) {
       console.log(url);
       $("#imageLike").attr('src', url);
     });
+    urlDislike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageDislike").attr('src', url);
+    });
+
    });
    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+   var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
    urlLike.getDownloadURL().then(function(url) {
      console.log(url);
      $("#imageLike").attr('src', url);
+  });
+  urlDislike.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageDislike").attr('src', url);
   });
 
 

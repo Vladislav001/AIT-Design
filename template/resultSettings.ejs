@@ -37,7 +37,7 @@
 
   <h5><b><div class="styleImagesLikeDislike">Style Images: Like/Dislike</div></b></h5>
   <div class="inputStyleImagesLikeDislike">
-  <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike" disabled>
+  <input type="range" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike" disabled>
   </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -93,7 +93,7 @@
 
     <div class="left">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageLike">
     </div>
 
     <div class="center">
@@ -107,7 +107,7 @@
 
     <div class="right">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageDislike">
     </div>
 
 </div>
@@ -299,4 +299,52 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });  //window.location.href = "/user_training_settings/id:idT";
   //return false;
   });
+</script>
+
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+  // Стиль лайка и дизлайка
+  $("#styleImagesLikeDislike").on("input change", function() {
+    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
+    urlLike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageLike").attr('src', url);
+    });
+    urlDislike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageDislike").attr('src', url);
+    });
+
+   });
+   var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+   var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+   var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
+   urlLike.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageLike").attr('src', url);
+  });
+  urlDislike.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageDislike").attr('src', url);
+  });
+
+
 </script>

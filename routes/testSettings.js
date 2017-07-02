@@ -11,7 +11,7 @@ exports.post = function(req, res, next) {
   var checkProgressBar = Boolean(req.body.checkProgressBar);
   var checkBtnResult = Boolean(req.body.checkBtnResult);
   var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
-
+ 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");

@@ -36,6 +36,7 @@ exports.get = function(req, res) {
    if (user) {
      var refStudents = firebase.database().ref("students/" + req.params.idTag);
      var refStudentsSettings = refStudents.child("tests/1/settings/");
+     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
 
       refStudents.once("value")
        .then(function(snapshot) {
@@ -55,25 +56,34 @@ exports.get = function(req, res) {
             var checkProgressBar = snapshotSettings.child('progress_bar').val();
             var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-            res.render("resultSettings", {
-                loginStudent: loginStudent,
-                id: snapshot.key,
+            refStudentsManageButtons.once("value")
+             .then(function(snapshotManageButtons) {
+               var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
 
-                linkTestSettings: linkTestSettings,
-                linkUserTrainingSettings: linkUserTrainingSettings,
-                linkPreResultSettings: linkPreResultSettings,
-                linkFinishSettings: linkFinishSettings,
+               res.render("resultSettings", {
+                   loginStudent: loginStudent,
+                   id: snapshot.key,
 
-                checkText: checkText,
-                checkSound: checkSound,
-                checkSwap: checkSwap,
-                checkSwapFinger: checkSwapFinger,
-                checkSwapArrows: checkSwapArrows,
-                checkProgressBar: checkProgressBar,
-                checkBtnResult: checkBtnResult
-              });
-            });
+                   linkTestSettings: linkTestSettings,
+                   linkUserTrainingSettings: linkUserTrainingSettings,
+                   linkPreResultSettings: linkPreResultSettings,
+                   linkFinishSettings: linkFinishSettings,
 
+                   checkText: checkText,
+                   checkSound: checkSound,
+                   checkSwap: checkSwap,
+                   checkSwapFinger: checkSwapFinger,
+                   checkSwapArrows: checkSwapArrows,
+                   checkProgressBar: checkProgressBar,
+                   checkBtnResult: checkBtnResult,
+
+                   styleImagesLikeDislike: styleImagesLikeDislike
+                 });
+             });
+
+
+
+          });
       });
     }
   });

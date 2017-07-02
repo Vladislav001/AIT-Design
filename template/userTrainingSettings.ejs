@@ -38,7 +38,7 @@
 
   <h5><b><div class="styleImageLikeDislike">Style Images: Like/Dislike</div></b></h5>
   <div class="inputStyleImagesLikeDislike">
-  <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike" disabled>
+  <input type="range" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike" disabled>
   </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -96,7 +96,7 @@
       <input type='text' name='inputTextBack' class="inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
       <input type='text' name='inputTextLike' class="inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageLike">
     </div>
 
     <div class="center">
@@ -108,7 +108,7 @@
       <input type='text' name='inputTextNext' class="inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
       <input type='text' name='inputTextDislike' class="inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageDislike">
     </div>
 
 </div>
@@ -315,4 +315,51 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });  //window.location.href = "/user_training_settings/id:idT";
   //return false;
   });
+</script>
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+  // Стиль лайка и дизлайка
+  $("#styleImagesLikeDislike").on("input change", function() {
+    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
+    urlLike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageLike").attr('src', url);
+    });
+    urlDislike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageDislike").attr('src', url);
+    });
+
+   });
+   var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+   var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+   var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
+
+   urlLike.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageLike").attr('src', url);
+  });
+  urlDislike.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageDislike").attr('src', url);
+  });
+
+
 </script>

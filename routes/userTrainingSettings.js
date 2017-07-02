@@ -34,7 +34,6 @@ exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
     var refStudentsSettings = refStudents.child("tests/1/settings/");
     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
@@ -58,36 +57,49 @@ exports.get = function(req, res) {
            var checkProgressBar = snapshotSettings.child('progress_bar').val();
            var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-           refStudentsPreTest.once("value")
-            .then(function(snapshotSettingsPreTest) {
-              var textBackQuestion = snapshotSettingsPreTest.child('text_back').val();
-              var textNextQuestion = snapshotSettingsPreTest.child('text_next').val();
-              var textLikeQuestion = snapshotSettingsPreTest.child('text_like').val();
-              var textDislikeQuestion = snapshotSettingsPreTest.child('text_dislike').val();
+           refStudentsManageButtons.once("value")
+            .then(function(snapshotManageButtons) {
+              var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
 
-              res.render("userTrainingSettings", {
-                  loginStudent: loginStudent,
-                  id: snapshot.key,
+              refStudentsPreTest.once("value")
+               .then(function(snapshotSettingsPreTest) {
+                 var textBackQuestion = snapshotSettingsPreTest.child('text_back').val();
+                 var textNextQuestion = snapshotSettingsPreTest.child('text_next').val();
+                 var textLikeQuestion = snapshotSettingsPreTest.child('text_like').val();
+                 var textDislikeQuestion = snapshotSettingsPreTest.child('text_dislike').val();
 
-                  linkTestSettings: linkTestSettings,
-                  linkPreResultSettings: linkPreResultSettings,
-                  linkResultSettings: linkResultSettings,
-                  linkFinishSettings: linkFinishSettings,
+                 res.render("userTrainingSettings", {
+                     loginStudent: loginStudent,
+                     id: snapshot.key,
 
-                  checkText: checkText,
-                  checkSound: checkSound,
-                  checkSwap: checkSwap,
-                  checkSwapFinger: checkSwapFinger,
-                  checkSwapArrows: checkSwapArrows,
-                  checkProgressBar: checkProgressBar,
-                  checkBtnResult: checkBtnResult,
+                     linkTestSettings: linkTestSettings,
+                     linkPreResultSettings: linkPreResultSettings,
+                     linkResultSettings: linkResultSettings,
+                     linkFinishSettings: linkFinishSettings,
 
-                  textBackQuestion: textBackQuestion,
-                  textNextQuestion: textNextQuestion,
-                  textLikeQuestion: textLikeQuestion,
-                  textDislikeQuestion: textDislikeQuestion
-                });
-              });
+                     checkText: checkText,
+                     checkSound: checkSound,
+                     checkSwap: checkSwap,
+                     checkSwapFinger: checkSwapFinger,
+                     checkSwapArrows: checkSwapArrows,
+                     checkProgressBar: checkProgressBar,
+                     checkBtnResult: checkBtnResult,
+
+                     textBackQuestion: textBackQuestion,
+                     textNextQuestion: textNextQuestion,
+                     textLikeQuestion: textLikeQuestion,
+                     textDislikeQuestion: textDislikeQuestion,
+
+                     styleImagesLikeDislike: styleImagesLikeDislike
+                   });
+                 });
+
+
+
+            });
+
+
+
 
 
 
