@@ -1,3 +1,4 @@
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <link rel="stylesheet" href="/css/styleTestSettings.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
@@ -36,7 +37,7 @@
   <!-- <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
   <h5><b>Style Images: Like/Dislike</b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesLikeDislike">
+  <input type="range" name="styleImagesLikeDislike" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike">
   <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b>Style Image: STOP TEST</b></h5>
@@ -89,7 +90,7 @@
 
     <div class="left">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageLike">
     </div>
 
 
@@ -100,7 +101,7 @@
 
     <div class="right">
       <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="/imagesDefault/1234.png" class="img-responsive constantly" id="imageDislike">
     </div>
 
 </div>
@@ -294,4 +295,40 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });  //window.location.href = "/user_training_settings/id:idT";
   //return false;
   });
+</script>
+
+
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+  // Стиль лайка и дизлайка
+  $("#styleImagesLikeDislike").on("input change", function() {
+    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+    urlLike.getDownloadURL().then(function(url) {
+      console.log(url);
+      $("#imageLike").attr('src', url);
+    });
+   });
+   var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+   var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
+   urlLike.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageLike").attr('src', url);
+  });
+
+
 </script>

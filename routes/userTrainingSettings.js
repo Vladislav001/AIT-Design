@@ -15,13 +15,14 @@ exports.post = function(req, res, next) {
      //Формируем узлы с номерами тестов и соответствующими под-узлами
      var refNewTest = refStudents.child("tests/" + "1/");
      var refNewTestSettings = refNewTest.child("/settings");
+    var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
-     var refNewTestSettings = refNewTestSettings.update({
-      text_back_question: textBackQuestion,
-      text_next_question: textNextQuestion,
-      text_like_question: textLikeQuestion,
-      text_dislike_question: textDislikeQuestion
+     var refNewTestSettings = refStudentsPreTest.update({
+      text_back: textBackQuestion,
+      text_next: textNextQuestion,
+      text_like: textLikeQuestion,
+      text_dislike: textDislikeQuestion
      });
 
     }
@@ -36,6 +37,8 @@ exports.get = function(req, res) {
 
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
     var refStudentsSettings = refStudents.child("tests/1/settings/");
+    var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
+    var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
 
      refStudents.once("value")
       .then(function(snapshot) {
@@ -55,37 +58,43 @@ exports.get = function(req, res) {
            var checkProgressBar = snapshotSettings.child('progress_bar').val();
            var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-           var textBackQuestion = snapshotSettings.child('text_back_question').val();
-           var textNextQuestion = snapshotSettings.child('text_next_question').val();
-           var textLikeQuestion = snapshotSettings.child('text_like_question').val();
-           var textDislikeQuestion = snapshotSettings.child('text_dislike_question').val();
+           refStudentsPreTest.once("value")
+            .then(function(snapshotSettingsPreTest) {
+              var textBackQuestion = snapshotSettingsPreTest.child('text_back').val();
+              var textNextQuestion = snapshotSettingsPreTest.child('text_next').val();
+              var textLikeQuestion = snapshotSettingsPreTest.child('text_like').val();
+              var textDislikeQuestion = snapshotSettingsPreTest.child('text_dislike').val();
 
-           res.render("userTrainingSettings", {
-               loginStudent: loginStudent,
-               id: snapshot.key,
+              res.render("userTrainingSettings", {
+                  loginStudent: loginStudent,
+                  id: snapshot.key,
 
-               linkTestSettings: linkTestSettings,
-               linkPreResultSettings: linkPreResultSettings,
-               linkResultSettings: linkResultSettings,
-               linkFinishSettings: linkFinishSettings,
+                  linkTestSettings: linkTestSettings,
+                  linkPreResultSettings: linkPreResultSettings,
+                  linkResultSettings: linkResultSettings,
+                  linkFinishSettings: linkFinishSettings,
 
-               checkText: checkText,
-               checkSound: checkSound,
-               checkSwap: checkSwap,
-               checkSwapFinger: checkSwapFinger,
-               checkSwapArrows: checkSwapArrows,
-               checkProgressBar: checkProgressBar,
-               checkBtnResult: checkBtnResult,
+                  checkText: checkText,
+                  checkSound: checkSound,
+                  checkSwap: checkSwap,
+                  checkSwapFinger: checkSwapFinger,
+                  checkSwapArrows: checkSwapArrows,
+                  checkProgressBar: checkProgressBar,
+                  checkBtnResult: checkBtnResult,
 
-               textBackQuestion: textBackQuestion,
-               textNextQuestion: textNextQuestion,
-               textLikeQuestion: textLikeQuestion,
-               textDislikeQuestion: textDislikeQuestion
-             });
-           });
+                  textBackQuestion: textBackQuestion,
+                  textNextQuestion: textNextQuestion,
+                  textLikeQuestion: textLikeQuestion,
+                  textDislikeQuestion: textDislikeQuestion
+                });
+              });
 
+
+
+
+
+          });
       });
-
   }
  });
 };

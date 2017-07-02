@@ -8,7 +8,10 @@ var path = require('path');
 var HttpError = require('./error').HttpError;
 var firebase = require('firebase');
 var configFirebase = require ('./config/configFirebase');
-var ref = firebase.app().database().ref();
+//var ref = firebase.app().database().ref();
+
+
+
 
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();

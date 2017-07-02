@@ -9,4 +9,5 @@ var config = {
    messagingSenderId: "664101035809"
  };
 var configFirebase = firebase.initializeApp(config);
-module.exports.configFirebase = configFirebase.database(); //this doesnt have to be database only
+//module.exports.configFirebase = configFirebase.database(); //this doesnt have to be database only
+module.exports.configFirebase = configFirebase; // 2.07.17

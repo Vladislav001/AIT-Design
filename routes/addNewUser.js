@@ -46,6 +46,7 @@ exports.post = function(req, res, next) {
   // Формируем узлы с номерами тестов и соответствующими под-узлами
   var refNewTest = usersRef.child("tests/" + countTests);
   var refNewTestSettings = refNewTest.child("/settings"); //
+  var refNewTestPreTest = refNewTest.child("pre_test/");
   var refNewTestManageButtons = refNewTest.child("/manage_buttons");//
   var refNewTestQuestions = refNewTest.child("/questions");//
   //Для заполнения-посмотреть как выглядит в databaseьщ
@@ -56,19 +57,23 @@ exports.post = function(req, res, next) {
    swap_finger: "true",
    swap_arrows: "true",
    progress_bar: "true",
-   btn_results: "true",
-   text_back_question: "If you want to return to the previous question",
-   text_next_question: "If you want to go to the text question",
-   text_like_question: "If you like to click here",
-   text_dislike_question: "If you don't like to click here"
+   btn_results: "true"
   });
 
+  var refNewTestPreTest = refNewTestPreTest.set({
+    text_back: "If you want to return to the previous question",
+    text_next: "If you want to go to the text question",
+    text_like: "If you like to click here",
+    text_dislike: "If you don't like to click here"
+  });
+
+
    var refNewTestManageButtons = refNewTestManageButtons.set({
-    style_images_swap_arrows: "1",
-    style_images_like_dislike: "1",
-    style_image_stop_test: "1",
-    style_image_results: "1",
-    style_image_stop_finish: "1",
+    style_images_swap_arrows: "0",
+    style_images_like_dislike: "0",
+    style_image_stop_test: "0",
+    style_image_results: "0",
+    style_image_stop_finish: "0",
    });
 
 
