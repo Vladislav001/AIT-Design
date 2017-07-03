@@ -58,6 +58,7 @@ exports.get = function(req, res) {
 
             refStudentsManageButtons.once("value")
              .then(function(snapshotManageButtons) {
+               var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
                var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
 
                res.render("resultSettings", {
@@ -77,6 +78,7 @@ exports.get = function(req, res) {
                    checkProgressBar: checkProgressBar,
                    checkBtnResult: checkBtnResult,
 
+                   styleImagesSwap: styleImagesSwap,
                    styleImagesLikeDislike: styleImagesLikeDislike
                  });
              });

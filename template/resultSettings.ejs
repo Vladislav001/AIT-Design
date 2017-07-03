@@ -31,7 +31,7 @@
 
   <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
   <div class="inputStyleImageSwap">
-  <input type="range" value="1" min="1" max="5" id="styleImagesSwap" disabled>
+  <input type="range" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" disabled>
   </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -92,7 +92,7 @@
     <div class="wrapper">
 
     <div class="left">
-      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
+      <img src="" class="img-responsive notConstantly" id="imageBack">
       <img src="" class="img-responsive constantly" id="imageLike">
     </div>
 
@@ -106,7 +106,7 @@
     </div>
 
     <div class="right">
-      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
+      <img src="" class="img-responsive notConstantly" id="imageNext">
       <img src="" class="img-responsive constantly" id="imageDislike">
     </div>
 
@@ -317,6 +317,25 @@ if (document.getElementById('checkBtnResult').value == "true") {
 
   // Получаем доступ к Хранилищу
   var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+      // Стиль назад и вперед
+      $("#styleImagesSwap").on("input change", function() {
+        var styleImagesSwap = $("#styleImagesSwap").val();
+
+        var urlBack = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"back.png");
+        var urlNext = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"next.png");
+
+        urlBack.getDownloadURL().then(function(url) {
+          console.log(url);
+          $("#imageBack").attr('src', url);
+        });
+        urlNext.getDownloadURL().then(function(url) {
+          console.log(url);
+          $("#imageNext").attr('src', url);
+        });
+
+       });
+
   // Стиль лайка и дизлайка
   $("#styleImagesLikeDislike").on("input change", function() {
     var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
@@ -333,6 +352,23 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });
 
    });
+
+   /////////////////////////////////////////////////////////////////////////////////////////////
+   var styleImagesSwap = $("#styleImagesSwap").val();
+   var urlBack = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"back.png");
+   var urlNext = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"next.png");
+
+   urlBack.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageBack").attr('src', url);
+   });
+   urlNext.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageNext").attr('src', url);
+   });
+
+
+
    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
@@ -345,6 +381,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
     console.log(url);
     $("#imageDislike").attr('src', url);
   });
-
+  $("#styleImagesLikeDislike").attr('src', url);
 
 </script>

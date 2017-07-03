@@ -3,6 +3,11 @@ var firebase = require('firebase');
 
 exports.post = function(req, res, next) {
 
+  var textTitleBackQuestion = req.body.inputTitleTextBack;
+  var textTitleNextQuestion = req.body.inputTitleTextNext;
+  var textTitleLikeQuestion = req.body.inputTitleTextLike;
+  var textTitleDislikeQuestion = req.body.inputTitleTextDislike;
+
   var textBackQuestion = req.body.inputTextBack;
   var textNextQuestion = req.body.inputTextNext;
   var textLikeQuestion = req.body.inputTextLike;
@@ -15,19 +20,26 @@ exports.post = function(req, res, next) {
      //Формируем узлы с номерами тестов и соответствующими под-узлами
      var refNewTest = refStudents.child("tests/" + "1/");
      var refNewTestSettings = refNewTest.child("/settings");
-    var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
+     var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
      var refNewTestSettings = refStudentsPreTest.update({
-      text_back: textBackQuestion,
-      text_next: textNextQuestion,
-      text_like: textLikeQuestion,
-      text_dislike: textDislikeQuestion
+      title_text_btn_back: textTitleBackQuestion, // Заголовок
+      description_text_btn_back: textBackQuestion, // Описание
+
+      title_text_btn_next: textTitleNextQuestion,
+      description_text_btn_next: textNextQuestion,
+
+      title_text_btn_like: textTitleLikeQuestion,
+      description_text_btn_like: textLikeQuestion,
+
+      title_text_btn_dislike: textTitleDislikeQuestion,
+      description_text_btn_dislike: textDislikeQuestion
      });
 
     }
   });
-  console.log(textBackQuestion + " textBackQuestion");
+  console.log(textTitleNextQuestion + " textTitleNextQuestion");
 };
 
 exports.get = function(req, res) {
@@ -59,14 +71,22 @@ exports.get = function(req, res) {
 
            refStudentsManageButtons.once("value")
             .then(function(snapshotManageButtons) {
+              var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
               var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
 
               refStudentsPreTest.once("value")
                .then(function(snapshotSettingsPreTest) {
-                 var textBackQuestion = snapshotSettingsPreTest.child('text_back').val();
-                 var textNextQuestion = snapshotSettingsPreTest.child('text_next').val();
-                 var textLikeQuestion = snapshotSettingsPreTest.child('text_like').val();
-                 var textDislikeQuestion = snapshotSettingsPreTest.child('text_dislike').val();
+                 var textTitleBackQuestion = snapshotSettingsPreTest.child('title_text_btn_back').val();
+                 var textBackQuestion = snapshotSettingsPreTest.child('description_text_btn_back').val();
+
+                 var textTitleNextQuestion = snapshotSettingsPreTest.child('title_text_btn_next').val();
+                 var textNextQuestion = snapshotSettingsPreTest.child('description_text_btn_next').val();
+
+                 var textTitleLikeQuestion = snapshotSettingsPreTest.child('title_text_btn_like').val();
+                 var textLikeQuestion = snapshotSettingsPreTest.child('description_text_btn_like').val();
+
+                 var textTitleDislikeQuestion = snapshotSettingsPreTest.child('title_text_btn_dislike').val();
+                 var textDislikeQuestion = snapshotSettingsPreTest.child('description_text_btn_dislike').val();
 
                  res.render("userTrainingSettings", {
                      loginStudent: loginStudent,
@@ -85,11 +105,16 @@ exports.get = function(req, res) {
                      checkProgressBar: checkProgressBar,
                      checkBtnResult: checkBtnResult,
 
+                     textTitleBackQuestion: textTitleBackQuestion,
                      textBackQuestion: textBackQuestion,
+                     textTitleNextQuestion: textTitleNextQuestion,
                      textNextQuestion: textNextQuestion,
+                     textTitleLikeQuestion: textTitleLikeQuestion,
                      textLikeQuestion: textLikeQuestion,
+                     textTitleDislikeQuestion: textTitleDislikeQuestion,
                      textDislikeQuestion: textDislikeQuestion,
 
+                     styleImagesSwap: styleImagesSwap,
                      styleImagesLikeDislike: styleImagesLikeDislike
                    });
                  });

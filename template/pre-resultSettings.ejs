@@ -47,8 +47,8 @@
     </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
-  <h5><b>Style Image: Results</b></h5>
-    <input type="range" value="1" min="1" max="5" id="styleImagesResults">
+  <h5><b><div class="styleImageResults">Style Image: Results<div></b></h5>
+  <input type="range" value="1" min="1" max="5" id="styleImageResults">
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
@@ -115,8 +115,14 @@
 document.getElementById('checkBtnResult').onclick = function() {
     if ( this.checked ) {
   $("#styleImageBigBtnResults").css("opacity","1");
+  document.getElementById("styleImageResults").disabled = false;
+  $(".styleImageResults").css("opacity","1");
+  $("#styleImageResults").css("opacity","1");
     } else {
        $("#styleImageBigBtnResults").css("opacity","0");
+       document.getElementById("styleImageResults").disabled = true;
+       $(".styleImageResults").css("opacity","0.5");
+       $("#styleImageResults").css("opacity","0.5");
     }
 };
 

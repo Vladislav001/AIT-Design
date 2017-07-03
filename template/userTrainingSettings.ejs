@@ -32,7 +32,7 @@
 
   <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
   <div class="inputStyleImageSwap">
-  <input type="range" value="1" min="1" max="5" id="styleImagesSwap" disabled>
+  <input type="range" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" disabled>
   </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -93,8 +93,10 @@
 
     <div class="wrapper">
     <div class="left">
+      <input type='text' name='inputTitleTextBack' class="inputTitleBack" value="<%=textTitleBackQuestion%>" id="titleBackText" placeholder="Button back">
       <input type='text' name='inputTextBack' class="inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
-      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageBack">
+      <img src="" class="img-responsive notConstantly" id="imageBack">
+      <input type='text' name='inputTitleTextLike' class="inputTitleLike" value="<%=textTitleLikeQuestion%>" id="titleLikeQuestionText" placeholder="Button like">
       <input type='text' name='inputTextLike' class="inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
       <img src="" class="img-responsive constantly" id="imageLike">
     </div>
@@ -105,8 +107,10 @@
     </div>
 
     <div class="right">
+      <input type='text' name='inputTitleTextNext' class="inputTitleNext" value="<%=textTitleNextQuestion%>" id="titleNextText" placeholder="Button next">
       <input type='text' name='inputTextNext' class="inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
-      <img src="/imagesDefault/1234.png" class="img-responsive notConstantly" id="imageNext">
+      <img src="" class="img-responsive notConstantly" id="imageNext">
+      <input type='text' name='inputTitleTextDislike' class="inputTitleDislike" value="<%=textTitleDislikeQuestion%>" id="titleDislikeQuestionText" placeholder="Button dislike">
       <input type='text' name='inputTextDislike' class="inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
       <img src="" class="img-responsive constantly" id="imageDislike">
     </div>
@@ -149,12 +153,16 @@ document.getElementById('checkText').onclick = function() {
 
   if (document.getElementById('checkText').value == "false") {
     $("#textQuestion").css("opacity","0");
+    $("#titleLikeQuestionText").css("opacity","0");
     $("#likeQuestionText").css("opacity","0");
+    $("#titleDislikeQuestionText").css("opacity","0");
     $("#dislikeQuestionText").css("opacity","0");
   }
 
   if (document.getElementById('checkText').value == "false" || document.getElementById('checkSwapArrows').value == "false") {
+    $("#titleBackText").css("opacity","0");
     $("#backQuestionText").css("opacity","0");
+    $("#titleNextText").css("opacity","0");
     $("#nextQuestionText").css("opacity","0");
   }
 
@@ -332,6 +340,25 @@ if (document.getElementById('checkBtnResult').value == "true") {
 
   // Получаем доступ к Хранилищу
   var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+      // Стиль назад и вперед
+      $("#styleImagesSwap").on("input change", function() {
+        var styleImagesSwap = $("#styleImagesSwap").val();
+
+        var urlBack = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"back.png");
+        var urlNext = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"next.png");
+
+        urlBack.getDownloadURL().then(function(url) {
+          console.log(url);
+          $("#imageBack").attr('src', url);
+        });
+        urlNext.getDownloadURL().then(function(url) {
+          console.log(url);
+          $("#imageNext").attr('src', url);
+        });
+
+       });
+
   // Стиль лайка и дизлайка
   $("#styleImagesLikeDislike").on("input change", function() {
     var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
@@ -348,6 +375,23 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });
 
    });
+
+   /////////////////////////////////////////////////////////////////////////////////////////////
+   var styleImagesSwap = $("#styleImagesSwap").val();
+   var urlBack = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"back.png");
+   var urlNext = storage.ref("/manager_buttons/next_back/" + styleImagesSwap + "/" +"next.png");
+
+   urlBack.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageBack").attr('src', url);
+   });
+   urlNext.getDownloadURL().then(function(url) {
+     console.log(url);
+     $("#imageNext").attr('src', url);
+   });
+
+
+
    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
@@ -360,6 +404,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
     console.log(url);
     $("#imageDislike").attr('src', url);
   });
-
+  $("#styleImagesLikeDislike").attr('src', url);
 
 </script>

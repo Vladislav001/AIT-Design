@@ -11,7 +11,8 @@ exports.post = function(req, res, next) {
   var checkProgressBar = Boolean(req.body.checkProgressBar);
   var checkBtnResult = Boolean(req.body.checkBtnResult);
   var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
- 
+  var styleImagesSwap = req.body.styleImagesSwap;
+
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
@@ -34,6 +35,7 @@ exports.post = function(req, res, next) {
 
 
      var refNewTestManageButtons = refNewTestManageButtons.update({
+      style_images_swap_arrows: styleImagesSwap,
       style_images_like_dislike: styleImagesLikeDislike
      });
 
@@ -73,6 +75,7 @@ exports.get = function(req, res) {
 
                refStudentsManageButtons.once("value")
                 .then(function(snapshotManageButtons) {
+                  var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
                   var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
 
                   res.render("testSettings", {
@@ -92,6 +95,7 @@ exports.get = function(req, res) {
                       checkProgressBar: checkProgressBar,
                       checkBtnResult: checkBtnResult,
 
+                      styleImagesSwap: styleImagesSwap,
                       styleImagesLikeDislike: styleImagesLikeDislike
                     });
 

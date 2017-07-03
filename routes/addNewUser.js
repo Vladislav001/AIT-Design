@@ -61,10 +61,15 @@ exports.post = function(req, res, next) {
   });
 
   var refNewTestPreTest = refNewTestPreTest.set({
-    text_back: "If you want to return to the previous question",
-    text_next: "If you want to go to the text question",
-    text_like: "If you like to click here",
-    text_dislike: "If you don't like to click here"
+    title_text_btn_back: "Button back",
+    description_text_btn_back: "If you want to return to the previous question",
+    title_text_btn_next: "Button next",
+    description_text_btn_next: "If you want to go to the text question",
+    title_text_btn_like: "Button like",
+    description_text_btn_like: "If you like to click here",
+    title_text_btn_dislike: "Button dislike",
+    description_text_btn_dislike: "If you don't like to click here"
+
   });
 
 
@@ -73,7 +78,7 @@ exports.post = function(req, res, next) {
     style_images_like_dislike: "0",
     style_image_stop_test: "0",
     style_image_results: "0",
-    style_image_stop_finish: "0",
+    style_image_finish: "0",
    });
 
 

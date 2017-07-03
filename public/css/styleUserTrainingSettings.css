@@ -171,11 +171,23 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	display: none;
 }
 
+.inputTitleBack {
+	position:absolute;
+	width: 23%;
+	z-index: 2;
+	margin-top: 7%;
+	margin-left: 3%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+	color:red;
+	background-color: #B0BEC5;
+}
+
 .inputBack{
   position:absolute;
 	width: 23%;
   z-index: 2;
-	margin-top: 7%;
+	margin-top: 11%;
 	margin-left: 3%;
 	border-radius: 5px;
 	border: 4px dotted #546E7A; /* Параметры границы */
@@ -183,8 +195,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	background-color: #B0BEC5;
 }
 
-.inputNext{
-  position:absolute;
+.inputTitleNext{
+	position:absolute;
 	width: 23%;
   z-index: 2;
 	margin-top: 7%;
@@ -195,12 +207,48 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	background-color: #B0BEC5;
 }
 
+.inputNext{
+  position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: 11%;
+	margin-left: -11%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+	background-color: #B0BEC5;
+}
+
+.inputTitleLike {
+	  position:absolute;
+		width: 23%;
+	  z-index: 2;
+		margin-top: 2%;
+		margin-left: 3%;
+		border-radius: 5px;
+		border: 4px dotted #546E7A; /* Параметры границы */
+	 	color:red;
+	 	background-color: #B0BEC5;
+}
+
 .inputLike{
   position:absolute;
 	width: 23%;
   z-index: 2;
-	margin-top: 2%;
+	margin-top: 6%;
 	margin-left: 3%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+ 	background-color: #B0BEC5;
+}
+
+.inputTitleDislike {
+	position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: 2%;
+	margin-left: -11%;
 	border-radius: 5px;
 	border: 4px dotted #546E7A; /* Параметры границы */
  	color:red;
@@ -211,7 +259,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   position:absolute;
 	width: 23%;
   z-index: 2;
-	margin-top: 2%;
+	margin-top: 6%;
 	margin-left: -11%;
 	border-radius: 5px;
 	border: 4px dotted #546E7A; /* Параметры границы */
