@@ -60,6 +60,7 @@ exports.get = function(req, res) {
              .then(function(snapshotManageButtons) {
                var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
                var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
+               var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
 
                res.render("resultSettings", {
                    loginStudent: loginStudent,
@@ -79,7 +80,8 @@ exports.get = function(req, res) {
                    checkBtnResult: checkBtnResult,
 
                    styleImagesSwap: styleImagesSwap,
-                   styleImagesLikeDislike: styleImagesLikeDislike
+                   styleImagesLikeDislike: styleImagesLikeDislike,
+                   styleImageStopTest: styleImageStopTest
                  });
              });
 

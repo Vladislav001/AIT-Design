@@ -43,12 +43,12 @@
 
   <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
   <div class="inputStyleImageStopTest">
-  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest" disabled>
+  <input type="range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest" disabled>
     </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
-  <h5><b><div class="styleImageResults">Style Image: Results<div></b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImageResults">
+  <h5><b><div class="styleImageResult">Style Image: Results<div></b></h5>
+  <input type="range" name="styleImageResult" value="<%=styleImageResult%>" min="0" max="1" id="styleImageResult">
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
@@ -82,9 +82,8 @@
   <h1><b>AIT</b></h1>
 
     <div class="ImageStopTest">
-      <img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-
-  </div>
+    <img src="" class="img-responsive stopTest" id="imageStopTest">
+    </div>
 
     <div class="wrapper">
 
@@ -96,7 +95,7 @@
 </div>
 
 <div class="styleImageBigBtnResults" id="styleImageBigBtnResults">
-<img src="/imagesDefault/1234.png" class="img-responsive bigBtnResults">
+<img src="" class="img-responsive bigBtnResults" id="imageResult">
 </div>
     <br><br>
 
@@ -115,14 +114,14 @@
 document.getElementById('checkBtnResult').onclick = function() {
     if ( this.checked ) {
   $("#styleImageBigBtnResults").css("opacity","1");
-  document.getElementById("styleImageResults").disabled = false;
-  $(".styleImageResults").css("opacity","1");
-  $("#styleImageResults").css("opacity","1");
+  document.getElementById("styleImageResult").disabled = false;
+  $(".styleImageResult").css("opacity","1");
+  $("#styleImageResult").css("opacity","1");
     } else {
        $("#styleImageBigBtnResults").css("opacity","0");
-       document.getElementById("styleImageResults").disabled = true;
-       $(".styleImageResults").css("opacity","0.5");
-       $("#styleImageResults").css("opacity","0.5");
+       document.getElementById("styleImageResult").disabled = true;
+       $(".styleImageResult").css("opacity","0.5");
+       $("#styleImageResult").css("opacity","0.5");
     }
 };
 
@@ -189,4 +188,63 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });  //window.location.href = "/user_training_settings/id:idT";
   //return false;
   });
+</script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+
+   // Стиль стоп теста
+   $("#styleImageStopTest").on("input change", function() {
+     var styleImageStopTest = $("#styleImageStopTest").val();
+     var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+     urlStopTest.getDownloadURL().then(function(url) {
+       console.log(url);
+       $("#imageStopTest").attr('src', url);
+     });
+    });
+
+    // Стиль кнопки результатов
+    $("#styleImageResult").on("input change", function() {
+      var styleImageResult = $("#styleImageResult").val();
+      var urlResult = storage.ref("/manager_buttons/btn_result/" + styleImageResult + "/" +"result.png");
+
+      urlResult.getDownloadURL().then(function(url) {
+        console.log(url);
+        $("#imageResult").attr('src', url);
+      });
+     });
+
+
+   /////////////////////////////////////////////////////////////////////////////////////////////
+  var styleImageStopTest = $("#styleImageStopTest").val();
+  var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+  urlStopTest.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageStopTest").attr('src', url);
+  });
+
+  var styleImageResult = $("#styleImageResult").val();
+  var urlResult = storage.ref("/manager_buttons/btn_result/" + styleImageResult + "/" +"result.png");
+
+  urlResult.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageResult").attr('src', url);
+  });
+
+
 </script>

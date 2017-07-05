@@ -12,6 +12,7 @@ exports.post = function(req, res, next) {
   var checkBtnResult = Boolean(req.body.checkBtnResult);
   var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
   var styleImagesSwap = req.body.styleImagesSwap;
+  var styleImageStopTest = req.body.styleImageStopTest;
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
@@ -36,7 +37,8 @@ exports.post = function(req, res, next) {
 
      var refNewTestManageButtons = refNewTestManageButtons.update({
       style_images_swap_arrows: styleImagesSwap,
-      style_images_like_dislike: styleImagesLikeDislike
+      style_images_like_dislike: styleImagesLikeDislike,
+      style_image_stop_test: styleImageStopTest
      });
 
 
@@ -77,6 +79,7 @@ exports.get = function(req, res) {
                 .then(function(snapshotManageButtons) {
                   var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
                   var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
+                  var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
 
                   res.render("testSettings", {
                       loginStudent: loginStudent,
@@ -96,7 +99,8 @@ exports.get = function(req, res) {
                       checkBtnResult: checkBtnResult,
 
                       styleImagesSwap: styleImagesSwap,
-                      styleImagesLikeDislike: styleImagesLikeDislike
+                      styleImagesLikeDislike: styleImagesLikeDislike,
+                      styleImageStopTest: styleImageStopTest
                     });
 
                    });

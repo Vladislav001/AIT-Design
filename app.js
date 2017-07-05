@@ -93,7 +93,12 @@ app.use(express.static(path.join(__dirname, './public')));
 
 
 
-// Вешаем http сервер -> express будет обрабатывать все приходящие запросы
-http.createServer(app).listen(5000, function(){
-  console.log("START SERVER");
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
 });
+
+// Вешаем http сервер -> express будет обрабатывать все приходящие запросы
+// http.createServer(app).listen(5000, function(){
+//   console.log("START SERVER");
+// });

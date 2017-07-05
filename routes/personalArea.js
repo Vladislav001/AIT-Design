@@ -43,7 +43,7 @@ exports.get = function(req, res) {
                   //       links: links,
                   //       usernames: usernames
                   //   });
-                  // }уь
+                  // }
                 });
                 unsubscribe(); // убирает состояние
                 res.render("personalArea", {

@@ -48,8 +48,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
 
+    <!-- <label>
+        <textarea name="message" style="display:block;width:400px;height:80px"></textarea>
+      </label> -->
     <script>
-    
+
     // Клиентский код //
     // Человек вводит логин, пароль
       $(document.forms['login_form']).on('submit', function() {
@@ -65,21 +68,22 @@
           data: form.serialize(),
           complete: function() {
             $(":submit", form).button("reset");
+          } // НЕ ОЧЕНЬ РАБОТАЕТ ПРОВЕРКА!
+          ,
+          statusCode: {
+            // если ответ сервера 200 - перенаправляем человека в личный кабинет
+            200: function() {
+              form.html("Вы вошли в сайт").addClass('alert-success');
+             //window.location.href = "/personalArea";
+            },
+            // если 403 - высвечивается ошибка
+            403: function(jqXHR) {
+              var error = JSON.parse(jqXHR.responseText);
+              $('.error', form).html(error.message);
+            }
           }
-          // ,
-          // statusCode: {
-          //   // если ответ сервера 200 - перенаправляем человека в личный кабинет
-          //   200: function() {
-          //     form.html("Вы вошли в сайт").addClass('alert-success');
-          //     window.location.href = "/personalArea";
-          //   },
-          //   // если 403 - высвечивается ошибка
-          //   403: function(jqXHR) {
-          //     var error = JSON.parse(jqXHR.responseText);
-          //     $('.error', form).html(error.message);
-          //   }
-          // }
-        });  window.location.href = "/personalArea";
+        });
+        window.location.href = "/personalArea"; // Пока костылина такая-грузит почему то один фиг, если ошибка
       return false;
       });
 

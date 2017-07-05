@@ -1,16 +1,13 @@
 {
-  "name": "ait",
+  "name": "app-ait",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "connect-session-firebase": "^5.0.0",
-    "firebase-admin": "^5.0.0",
-    "firebase-schema": "0.0.8"
+      "express": "3.1.x",
+      "firebase": "3.5.x",
+      "ejs-locals": "~1.0.2"
+    },
+    "engines": {
+      "node": "6.9.3",
+      "npm": "3.10.10"
+    }
   }
-}

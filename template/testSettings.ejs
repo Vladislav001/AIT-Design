@@ -41,7 +41,7 @@
   <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b>Style Image: STOP TEST</b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest">
+  <input type="range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest">
   <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
@@ -52,7 +52,7 @@
 
   <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
   <div class="inputStyleImageFinish">
-  <input type="range" value="1" min="1" max="5" id="styleImagesFinish" disabled>
+  <input type="range" value="1" min="1" max="5" id="styleImageFinish" disabled>
   </div>
   <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -82,8 +82,7 @@
   <h1><b>AIT</b></h1>
 
 <div class="ImageStopTest">
-<img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-<img src="/imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
+<img src="" class="img-responsive stopTest" id="imageStopTest">
 </div>
 
     <div class="wrapper">
@@ -212,26 +211,6 @@ document.getElementById('checkText').onclick = function() {
     $("#progressBar").css("opacity","0");
   }
 
-
-
-// Имитация клика на элемент
-setTimeout(function(){
-  $('#styleImagesStopTest').trigger('click');
-}, 0);
-document.getElementById('styleImagesStopTest').onclick = function() {
-var styleImagesStopTest = $("#styleImagesStopTest").val();
-switch (styleImagesStopTest) {
-    case "1":
-      $("#styleStopTest_1").css("display","block");
-      $("#styleStopTest_2").css("display","none");
-      break;
-    case "2":
-    $("#styleStopTest_1").css("display","none");
-    $("#styleStopTest_2").css("display","block");
-      break;
-  }
-
-};
 </script>
 
 
@@ -330,7 +309,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
           console.log(url);
           $("#imageNext").attr('src', url);
         });
-
        });
 
   // Стиль лайка и дизлайка
@@ -347,8 +325,19 @@ if (document.getElementById('checkBtnResult').value == "true") {
       console.log(url);
       $("#imageDislike").attr('src', url);
     });
-
    });
+
+   // Стиль стоп теста
+   $("#styleImageStopTest").on("input change", function() {
+     var styleImageStopTest = $("#styleImageStopTest").val();
+     var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+     urlStopTest.getDownloadURL().then(function(url) {
+       console.log(url);
+       $("#imageStopTest").attr('src', url);
+     });
+    });
+
 
    /////////////////////////////////////////////////////////////////////////////////////////////
    var styleImagesSwap = $("#styleImagesSwap").val();
@@ -365,7 +354,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
    });
 
 
-
    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
@@ -378,6 +366,16 @@ if (document.getElementById('checkBtnResult').value == "true") {
     console.log(url);
     $("#imageDislike").attr('src', url);
   });
-  $("#styleImagesLikeDislike").attr('src', url);
+  //$("#styleImagesLikeDislike").attr('src', url);
+
+
+  var styleImageStopTest = $("#styleImageStopTest").val();
+  var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+  urlStopTest.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageStopTest").attr('src', url);
+  });
+
 
 </script>

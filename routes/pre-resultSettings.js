@@ -4,6 +4,7 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
 
   var checkBtnResult = Boolean(req.body.checkBtnResult);
+  var styleImageResult = req.body.styleImageResult;
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
@@ -19,6 +20,10 @@ exports.post = function(req, res, next) {
       btn_results: checkBtnResult
      });
 
+     var refNewTestManageButtons = refNewTestManageButtons.update({
+      style_image_results: styleImageResult
+     });
+
     }
   });
 
@@ -30,6 +35,7 @@ exports.get = function(req, res) {
    if (user) {
      var refStudents = firebase.database().ref("students/" + req.params.idTag);
      var refStudentsSettings = refStudents.child("tests/1/settings/");
+     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
 
       refStudents.once("value")
        .then(function(snapshot) {
@@ -50,23 +56,35 @@ exports.get = function(req, res) {
             var checkProgressBar = snapshotSettings.child('progress_bar').val();
             var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-            res.render("pre-resultSettings", {
-                loginStudent: loginStudent,
-                id: snapshot.key,
+            refStudentsManageButtons.once("value")
+             .then(function(snapshotManageButtons) {
+               var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
+               var styleImageResult = snapshotManageButtons.child('style_image_results').val();
 
-                linkTestSettings: linkTestSettings,
-                linkUserTrainingSettings: linkUserTrainingSettings,
-                linkResultSettings: linkResultSettings,
-                linkFinishSettings: linkFinishSettings,
+               res.render("pre-resultSettings", {
+                   loginStudent: loginStudent,
+                   id: snapshot.key,
 
-                checkText: checkText,
-                checkSound: checkSound,
-                checkSwap: checkSwap,
-                checkSwapFinger: checkSwapFinger,
-                checkSwapArrows: checkSwapArrows,
-                checkProgressBar: checkProgressBar,
-                checkBtnResult: checkBtnResult
-              });
+                   linkTestSettings: linkTestSettings,
+                   linkUserTrainingSettings: linkUserTrainingSettings,
+                   linkResultSettings: linkResultSettings,
+                   linkFinishSettings: linkFinishSettings,
+
+                   checkText: checkText,
+                   checkSound: checkSound,
+                   checkSwap: checkSwap,
+                   checkSwapFinger: checkSwapFinger,
+                   checkSwapArrows: checkSwapArrows,
+                   checkProgressBar: checkProgressBar,
+                   checkBtnResult: checkBtnResult,
+
+                   styleImageStopTest: styleImageStopTest,
+                   styleImageResult: styleImageResult
+                 });
+
+             });
+
+
             });
 
        });

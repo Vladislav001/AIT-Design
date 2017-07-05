@@ -10,6 +10,7 @@ exports.post = function(req, res, next) {
   // Handle Errors here.
   var errorCode = error.code;
    var errorMessage = error.message;
+
   // [START_EXCLUDE]
   if (errorCode == 'auth/weak-password') {
     console.log('The password is too weak.');
@@ -18,7 +19,7 @@ exports.post = function(req, res, next) {
   }
   console.log(error);
   // [END_EXCLUDE]
-  });  // [END createwithemail]
+  }); 
 
 var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
   if (user) {

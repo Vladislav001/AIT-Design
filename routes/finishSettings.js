@@ -3,6 +3,7 @@ var firebase = require('firebase');
 
 exports.post = function(req, res, next) {
 
+  var styleImageFinish = req.body.styleImageFinish;
 
 
   firebase.auth().onAuthStateChanged(user => {
@@ -14,15 +15,9 @@ exports.post = function(req, res, next) {
      var refNewTestSettings = refNewTest.child("/settings");
      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
-    //  var refNewTestSettings = refNewTestSettings.update({
-    //   text: checkText,
-    //   sound: checkSound,
-    //   swap: checkSwap,
-    //   swap_finger: checkSwapFinger,
-    //   swap_arrows: checkSwapArrows,
-    //   progress_bar: checkProgressBar,
-    //   btn_results: checkBtnResult
-    //  });
+     var refNewTestManageButtons = refNewTestManageButtons.update({
+      style_image_finish: styleImageFinish
+     });
 
     }
   });
@@ -35,6 +30,7 @@ exports.get = function(req, res) {
    if (user) {
      var refStudents = firebase.database().ref("students/" + req.params.idTag);
      var refStudentsSettings = refStudents.child("tests/1/settings/");
+     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
 
       refStudents.once("value")
        .then(function(snapshot) {
@@ -54,25 +50,35 @@ exports.get = function(req, res) {
             var checkProgressBar = snapshotSettings.child('progress_bar').val();
             var checkBtnResult = snapshotSettings.child('btn_results').val();
 
-            res.render("finishSettings", {
-                loginStudent: loginStudent,
-                id: snapshot.key,
+            refStudentsManageButtons.once("value")
+             .then(function(snapshotManageButtons) {
+               var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
+               var styleImageFinish = snapshotManageButtons.child('style_image_finish').val();
 
-                linkTestSettings: linkTestSettings,
-                linkUserTrainingSettings: linkUserTrainingSettings,
-                linkPreResultSettings: linkPreResultSettings,
-                linkResultSettings: linkResultSettings,
+               res.render("finishSettings", {
+                   loginStudent: loginStudent,
+                   id: snapshot.key,
 
-                checkText: checkText,
-                checkSound: checkSound,
-                checkSwap: checkSwap,
-                checkSwapFinger: checkSwapFinger,
-                checkSwapArrows: checkSwapArrows,
-                checkProgressBar: checkProgressBar,
-                checkBtnResult: checkBtnResult
-              });
+                   linkTestSettings: linkTestSettings,
+                   linkUserTrainingSettings: linkUserTrainingSettings,
+                   linkPreResultSettings: linkPreResultSettings,
+                   linkResultSettings: linkResultSettings,
+
+                   checkText: checkText,
+                   checkSound: checkSound,
+                   checkSwap: checkSwap,
+                   checkSwapFinger: checkSwapFinger,
+                   checkSwapArrows: checkSwapArrows,
+                   checkProgressBar: checkProgressBar,
+                   checkBtnResult: checkBtnResult,
+
+                   styleImageStopTest: styleImageStopTest,
+                   styleImageFinish: styleImageFinish
+                 });
+             });
+
+
             });
-
        });
     }
   });

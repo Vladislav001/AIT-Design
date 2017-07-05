@@ -1,12 +1,12 @@
 var crypto = require('crypto');
 var async = require('async'); // - т.е чтобы не писать просто на колбэках + доп.возможности(у нас waterfall)
 var util = require('util');
-
-var Firebase = require('firebase');
-var FirebaseSchema = require('firebase-schema');
-var { string, number, boolean, list, hash, index, key } = FirebaseSchema.Types;
-
-var HOST = 'https://fir-auth-f9e4a.firebaseio.com';
+//
+// var Firebase = require('firebase');
+// var FirebaseSchema = require('firebase-schema');
+// var { string, number, boolean, list, hash, index, key } = FirebaseSchema.Types;
+//
+// var HOST = 'https://fir-auth-f9e4a.firebaseio.com';
 
 
 

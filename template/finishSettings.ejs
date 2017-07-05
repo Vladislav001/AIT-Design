@@ -43,7 +43,7 @@
 
   <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
   <div class="inputStyleImageStopTest">
-  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest" disabled>
+  <input type="range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest" disabled>
     </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -54,7 +54,7 @@
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   <h5><b>Style Image: Finish</b></h5>
-  <input type="range" value="1" min="1" max="5" id="styleImagesFinish">
+  <input type="range" name="styleImageFinish" value="<%=styleImageFinish%>" min="0" max="1" id="styleImageFinish">
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
   </div>
@@ -82,15 +82,14 @@
   <h1><b>AIT</b></h1>
 
     <div class="ImageStopTest">
-      <img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-
-  </div>
+    <img src="" class="img-responsive stopTest" id="imageStopTest">
+    </div>
 
     <div class="wrapper">
 
     <div class="center">
       <h3 class="notConstantly" id="textFinish">Finish</h3>
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+      <img src="" class="img-responsive constantly" id="imageFinish">
     </div>
 
 </div>
@@ -204,4 +203,64 @@ if (document.getElementById('checkBtnResult').value == "true") {
     });  //window.location.href = "/user_training_settings/id:idT";
   //return false;
   });
+</script>
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+
+   // Стиль стоп теста
+   $("#styleImageStopTest").on("input change", function() {
+     var styleImageStopTest = $("#styleImageStopTest").val();
+     var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+     urlStopTest.getDownloadURL().then(function(url) {
+       console.log(url);
+       $("#imageStopTest").attr('src', url);
+     });
+    });
+
+    // Стиль финиша
+    $("#styleImageFinish").on("input change", function() {
+      var styleImageFinish = $("#styleImageFinish").val();
+      var urlFinish = storage.ref("/manager_buttons/finish/" + styleImageFinish + "/" +"finish.png");
+
+      urlFinish.getDownloadURL().then(function(url) {
+        console.log(url);
+        $("#imageFinish").attr('src', url);
+      });
+     });
+
+
+   /////////////////////////////////////////////////////////////////////////////////////////////
+  var styleImageStopTest = $("#styleImageStopTest").val();
+  var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+  urlStopTest.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageStopTest").attr('src', url);
+  });
+
+  var styleImageFinish = $("#styleImageFinish").val();
+  var urlFinish = storage.ref("/manager_buttons/finish/" + styleImageFinish + "/" +"finish.png");
+
+  urlFinish.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageFinish").attr('src', url);
+  });
+
+
 </script>

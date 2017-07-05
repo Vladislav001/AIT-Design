@@ -44,7 +44,7 @@
 
   <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
   <div class="inputStyleImageStopTest">
-  <input type="range" value="1" min="1" max="5" id="styleImagesStopTest" disabled>
+  <input type="range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest" disabled>
   </div>
   <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
 
@@ -87,8 +87,7 @@
   <h1><b>AIT</b></h1>
 
 <div class="ImageStopTest">
-<img src="/imagesDefault/1234.png" class="img-responsive stopTest" id="styleStopTest_1">
-<img src="/imagesDefault/4321.png" class="img-responsive stopTest" id="styleStopTest_2">
+<img src="" class="img-responsive stopTest" id="imageStopTest">
 </div>
 
     <div class="wrapper">
@@ -356,7 +355,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
           console.log(url);
           $("#imageNext").attr('src', url);
         });
-
        });
 
   // Стиль лайка и дизлайка
@@ -373,8 +371,19 @@ if (document.getElementById('checkBtnResult').value == "true") {
       console.log(url);
       $("#imageDislike").attr('src', url);
     });
-
    });
+
+   // Стиль стоп теста
+   $("#styleImageStopTest").on("input change", function() {
+     var styleImageStopTest = $("#styleImageStopTest").val();
+     var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+     urlStopTest.getDownloadURL().then(function(url) {
+       console.log(url);
+       $("#imageStopTest").attr('src', url);
+     });
+    });
+
 
    /////////////////////////////////////////////////////////////////////////////////////////////
    var styleImagesSwap = $("#styleImagesSwap").val();
@@ -391,7 +400,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
    });
 
 
-
    var styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
    var urlLike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"like.png");
    var urlDislike = storage.ref("/manager_buttons/like_dislike/" + styleImagesLikeDislike + "/" +"dislike.png");
@@ -404,6 +412,16 @@ if (document.getElementById('checkBtnResult').value == "true") {
     console.log(url);
     $("#imageDislike").attr('src', url);
   });
-  $("#styleImagesLikeDislike").attr('src', url);
+  //$("#styleImagesLikeDislike").attr('src', url);
+
+
+  var styleImageStopTest = $("#styleImageStopTest").val();
+  var urlStopTest = storage.ref("/manager_buttons/stop_test/" + styleImageStopTest + "/" +"stop.png");
+
+  urlStopTest.getDownloadURL().then(function(url) {
+    console.log(url);
+    $("#imageStopTest").attr('src', url);
+  });
+
 
 </script>
