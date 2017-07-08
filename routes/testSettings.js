@@ -31,7 +31,7 @@ exports.post = function(req, res, next) {
       swap_finger: checkSwapFinger,
       swap_arrows: checkSwapArrows,
       progress_bar: checkProgressBar,
-      btn_results: checkBtnResult,
+      btn_results: checkBtnResult
      });
 
 

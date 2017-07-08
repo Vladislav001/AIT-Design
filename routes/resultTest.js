@@ -1,6 +1,33 @@
 // Модуль результатов теста студентов
 var firebase = require('firebase');
 
+exports.post = function(req, res, next) {
+
+  var updateLoginStudent = req.body.updateLoginStudent;
+  var updatePasswordStudent = req.body.updatePasswordStudent;
+  var updateNameStudent = req.body.updateNameStudent;
+  var updateAgeStudent = req.body.updateAgeStudent;
+  var updateGenderStudent = req.body.updateGenderStudent;
+
+  firebase.auth().onAuthStateChanged(user => {
+   if (user) {
+    var refStudents = firebase.database().ref("students/" + req.params.idTag);
+
+     var refStudents = refStudents.update({
+       login: updateLoginStudent,
+       password: updatePasswordStudent,
+       name: updateNameStudent,
+       age: updateAgeStudent,
+       gender: updateGenderStudent
+     });
+
+    }
+  });
+
+};
+
+
+
 exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
@@ -24,7 +51,7 @@ exports.get = function(req, res) {
             genderStudent: genderStudent,
             ageStudent: ageStudent,
             passwordStudent: passwordStudent,
-            
+
             id: snapshot.key,
             link: link
         });

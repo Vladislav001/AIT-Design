@@ -4,7 +4,7 @@
 
 <h1><b>AIT</b></h1>
 
-
+  <form class="form-updateStudent" name="cabinet_updateStudent">
   <div class="informationAboutStudent">
     <table cellspacing="0">
       <tr>
@@ -16,15 +16,32 @@
           <th>Test settings</th>
       </tr>
       <tr>
-          <td><%=nameStudent%></td>
-          <td><%=genderStudent%></td>
-          <td><%=ageStudent%></td>
-          <td><%=loginStudent%></td>
-          <td><%=passwordStudent%></td>
+          <td><input name="updateNameStudent" type="text" value="<%=nameStudent%>" class="form-control" id="input-updateNameStudent" placeholder="Name"></td>
+          <td><SELECT name="updateGenderStudent" type="text" class="form-control" id="input-genderNewUser" >
+            <% switch (genderStudent) {
+                case "Male": %>
+                  <OPTION><%=genderStudent%></OPTION>
+                  <OPTION>Female</OPTION>
+                   <% break; %><%
+                  case "Female": %>
+                    <OPTION><%=genderStudent%></OPTION>
+                    <OPTION>Male</OPTION>
+                     <% break; %> <% } %>
+          </SELECT></td>
+          <td><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="form-control" id="input-updateAgeStudent" placeholder="Age"></td>
+          <td><input name="updateLoginStudent" type="text" value="<%=loginStudent%>" class="form-control" id="input-updateLoginStudent" placeholder="Login"></td>
+          <td><input name="updatePasswordStudent" type="text" value="<%=passwordStudent%>" class="form-control" id="input-updatePasswordStudent" placeholder="Password"></td>
           <td><a href="<%=link%>">Start</a></td>
+          <td><button type="submit" class="btn btn-primary updateStudent" data-loading-text="Sending..."id="updateStudent">Update student</button></td>
       </tr>
   </table>
   </div>
+</form>
+
+<form class="form-deleteStudent" name="cabinet_deleteStudent">
+<button type="submit" class="btn btn-primary deleteStudent" data-loading-text="Sending..."id="deleteStudent">Delete student</button>
+</form>
+
 
   <h2><b>Test results</b></h2>
   <form class="form-resultsTest">
@@ -67,3 +84,73 @@
 </table>
 </div>
 </form>
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_updateStudent']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/result_test/id<%=id%>", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  }
+  // ,
+  // statusCode: {
+  //   // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+  //   200: function() {
+  //     form.html("Вы успешно зарегестрировались").addClass('alert-success');
+  //     window.location.href = "/personalArea";
+  //   }
+  //,
+  //   // если 403 - высвечивается ошибка(уже есть такой пользователь)
+  //   403: function(jqXHR) {
+  //     var error = JSON.parse(jqXHR.responseText);
+  //     $('.error', form).html(error.message);
+  //   }
+  // }
+});  //window.location.href = "/";
+//return false;
+
+});
+</script>
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_deleteStudent']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/deleteStudent/id<%=id%>", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  }
+  // ,
+  // statusCode: {
+  //   // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+  //   200: function() {
+  //     form.html("Вы успешно зарегестрировались").addClass('alert-success');
+  //     window.location.href = "/personalArea";
+  //   }
+  //,
+  //   // если 403 - высвечивается ошибка(уже есть такой пользователь)
+  //   403: function(jqXHR) {
+  //     var error = JSON.parse(jqXHR.responseText);
+  //     $('.error', form).html(error.message);
+  //   }
+  // }
+});  //window.location.href = "/";
+//return false;
+
+});
+</script>
