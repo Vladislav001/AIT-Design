@@ -19,7 +19,7 @@ exports.post = function(req, res, next) {
   }
   console.log(error);
   // [END_EXCLUDE]
-  }); 
+  });
 
 var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
   if (user) {

@@ -87,7 +87,9 @@
   <h1><b>AIT</b></h1>
 
 <div class="ImageStopTest">
-<img src="" class="img-responsive stopTest" id="imageStopTest">
+  <input type='text' name='inputTitleStopTest' class="inputTitleStopTest" value="<%=textTitleStopTest%>" id="titleStopTest" placeholder="Button stop test">
+  <input type='text' name='inputTextStopTest' class="inputTextStopTest" value="<%=textStopTest%>" id="stopTest" placeholder="If you want to stop the test">
+  <img src="" class="img-responsive stopTest" id="imageStopTest">
 </div>
 
     <div class="wrapper">
@@ -151,6 +153,8 @@ document.getElementById('checkText').onclick = function() {
 };
 
   if (document.getElementById('checkText').value == "false") {
+    $("#titleStopTest").css("opacity","0");
+    $("#stopTest").css("opacity","0");
     $("#textQuestion").css("opacity","0");
     $("#titleLikeQuestionText").css("opacity","0");
     $("#likeQuestionText").css("opacity","0");
@@ -241,26 +245,6 @@ document.getElementById('checkText').onclick = function() {
     $("#progressBar").css("opacity","0");
   }
 
-
-
-// Имитация клика на элемент
-setTimeout(function(){
-  $('#styleImagesStopTest').trigger('click');
-}, 0);
-document.getElementById('styleImagesStopTest').onclick = function() {
-var styleImagesStopTest = $("#styleImagesStopTest").val();
-switch (styleImagesStopTest) {
-    case "1":
-      $("#styleStopTest_1").css("display","block");
-      $("#styleStopTest_2").css("display","none");
-      break;
-    case "2":
-    $("#styleStopTest_1").css("display","none");
-    $("#styleStopTest_2").css("display","block");
-      break;
-  }
-
-};
 </script>
 
 

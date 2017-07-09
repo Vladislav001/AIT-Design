@@ -61,6 +61,8 @@ exports.post = function(req, res, next) {
   });
 
   var refNewTestPreTest = refNewTestPreTest.set({
+    title_text_btn_stop: "Button stop test",
+    description_text_btn_stop: "If you want to stop the test",
     title_text_btn_back: "Button back",
     description_text_btn_back: "If you want to return to the previous question",
     title_text_btn_next: "Button next",

@@ -171,6 +171,34 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	display: none;
 }
 
+
+
+.inputTitleStopTest {
+	position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: -6%;
+	margin-left: 41.5%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+ 	background-color: #B0BEC5;
+}
+
+.inputTextStopTest {
+	position:absolute;
+	width: 23%;
+  z-index: 2;
+	margin-top: -2%;
+	margin-left: 41.5%;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+ 	color:red;
+	background-color: #B0BEC5;
+}
+
+
+
 .inputTitleBack {
 	position:absolute;
 	width: 23%;

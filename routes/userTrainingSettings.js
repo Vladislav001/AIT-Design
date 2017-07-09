@@ -3,11 +3,13 @@ var firebase = require('firebase');
 
 exports.post = function(req, res, next) {
 
+  var textTitleStopTest = req.body.inputTitleStopTest;
   var textTitleBackQuestion = req.body.inputTitleTextBack;
   var textTitleNextQuestion = req.body.inputTitleTextNext;
   var textTitleLikeQuestion = req.body.inputTitleTextLike;
   var textTitleDislikeQuestion = req.body.inputTitleTextDislike;
 
+  var textStopTest = req.body.inputTextStopTest;
   var textBackQuestion = req.body.inputTextBack;
   var textNextQuestion = req.body.inputTextNext;
   var textLikeQuestion = req.body.inputTextLike;
@@ -24,6 +26,9 @@ exports.post = function(req, res, next) {
      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
      var refNewTestSettings = refStudentsPreTest.update({
+      title_text_btn_stop: textTitleStopTest,
+      description_text_btn_stop: textStopTest,
+
       title_text_btn_back: textTitleBackQuestion, // Заголовок
       description_text_btn_back: textBackQuestion, // Описание
 
@@ -78,6 +83,9 @@ exports.get = function(req, res) {
 
               refStudentsPreTest.once("value")
                .then(function(snapshotSettingsPreTest) {
+                 var textTitleStopTest = snapshotSettingsPreTest.child('title_text_btn_stop').val();
+                 var textStopTest = snapshotSettingsPreTest.child('description_text_btn_stop').val();
+
                  var textTitleBackQuestion = snapshotSettingsPreTest.child('title_text_btn_back').val();
                  var textBackQuestion = snapshotSettingsPreTest.child('description_text_btn_back').val();
 
@@ -107,6 +115,8 @@ exports.get = function(req, res) {
                      checkProgressBar: checkProgressBar,
                      checkBtnResult: checkBtnResult,
 
+                     textTitleStopTest: textTitleStopTest,
+                     textStopTest: textStopTest,
                      textTitleBackQuestion: textTitleBackQuestion,
                      textBackQuestion: textBackQuestion,
                      textTitleNextQuestion: textTitleNextQuestion,
