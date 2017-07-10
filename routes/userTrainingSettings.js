@@ -19,27 +19,32 @@ exports.post = function(req, res, next) {
    if (user) {
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-     //Формируем узлы с номерами тестов и соответствующими под-узлами
-     var refNewTest = refStudents.child("tests/" + "1/");
-     var refNewTestSettings = refNewTest.child("/settings");
-     var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
-     var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+    refStudents.once("value")
+     .then(function(snapshot) {
+      var currentTest = snapshot.child('current_test').val();
 
-     var refNewTestSettings = refStudentsPreTest.update({
-      title_text_btn_stop: textTitleStopTest,
-      description_text_btn_stop: textStopTest,
+       //Формируем узлы с номерами тестов и соответствующими под-узлами
+      var refNewTest = refStudents.child("tests/" + currentTest);
+      var refNewTestSettings = refNewTest.child("/settings");
+      var refStudentsPreTest = refStudents.child("tests/" + currentTest + "/pre_test/");
+      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
 
-      title_text_btn_back: textTitleBackQuestion, // Заголовок
-      description_text_btn_back: textBackQuestion, // Описание
+      var refNewTestSettings = refStudentsPreTest.update({
+       title_text_btn_stop: textTitleStopTest,
+       description_text_btn_stop: textStopTest,
 
-      title_text_btn_next: textTitleNextQuestion,
-      description_text_btn_next: textNextQuestion,
+       title_text_btn_back: textTitleBackQuestion, // Заголовок
+       description_text_btn_back: textBackQuestion, // Описание
 
-      title_text_btn_like: textTitleLikeQuestion,
-      description_text_btn_like: textLikeQuestion,
+       title_text_btn_next: textTitleNextQuestion,
+       description_text_btn_next: textNextQuestion,
 
-      title_text_btn_dislike: textTitleDislikeQuestion,
-      description_text_btn_dislike: textDislikeQuestion
+       title_text_btn_like: textTitleLikeQuestion,
+       description_text_btn_like: textLikeQuestion,
+
+       title_text_btn_dislike: textTitleDislikeQuestion,
+       description_text_btn_dislike: textDislikeQuestion
+      });
      });
 
     }

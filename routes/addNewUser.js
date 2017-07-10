@@ -46,7 +46,7 @@ exports.post = function(req, res, next) {
   // Формируем узлы с номерами тестов и соответствующими под-узлами
   var refNewTest = usersRef.child("tests/" + countTests);
   var refNewTestSettings = refNewTest.child("/settings"); //
-  var refNewTestPreTest = refNewTest.child("pre_test/");
+  var refNewTestPreTest = refNewTest.child("/pre_test");
   var refNewTestManageButtons = refNewTest.child("/manage_buttons");//
   var refNewTestCategories = refNewTest.child("/categories");//
   //Для заполнения-посмотреть как выглядит в databaseьщ
@@ -351,7 +351,7 @@ exports.post = function(req, res, next) {
   // });
   });
 
-
+ 
 
 
 

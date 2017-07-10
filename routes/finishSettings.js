@@ -10,13 +10,18 @@ exports.post = function(req, res, next) {
    if (user) {
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-     //Формируем узлы с номерами тестов и соответствующими под-узлами
-     var refNewTest = refStudents.child("tests/" + "1/");
-     var refNewTestSettings = refNewTest.child("/settings");
-     var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+    refStudents.once("value")
+     .then(function(snapshot) {
+       var currentTest = snapshot.child('current_test').val();
 
-     var refNewTestManageButtons = refNewTestManageButtons.update({
-      style_image_finish: styleImageFinish
+       //Формируем узлы с номерами тестов и соответствующими под-узлами
+      var refNewTest = refStudents.child("tests/" + currentTest);
+      var refNewTestSettings = refNewTest.child("/settings");
+      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+
+      var refNewTestManageButtons = refNewTestManageButtons.update({
+       style_image_finish: styleImageFinish
+      });
      });
 
     }

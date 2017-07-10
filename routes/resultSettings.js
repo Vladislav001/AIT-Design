@@ -10,10 +10,17 @@ exports.post = function(req, res, next) {
     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-     //Формируем узлы с номерами тестов и соответствующими под-узлами
-     var refNewTest = refStudents.child("tests/" + "1/");
-     var refNewTestSettings = refNewTest.child("/settings");
-     var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+    refStudents.once("value")
+     .then(function(snapshot) {
+       var currentTest = snapshot.child('current_test').val();
+
+       //Формируем узлы с номерами тестов и соответствующими под-узлами
+       var refNewTest = refStudents.child("tests/" + currentTest);
+
+       var refNewTestSettings = refNewTest.child("/settings");
+       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+     });
+
 
     //  var refNewTestSettings = refNewTestSettings.update({
     //   text: checkText,
