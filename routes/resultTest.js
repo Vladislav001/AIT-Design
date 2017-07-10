@@ -8,6 +8,7 @@ exports.post = function(req, res, next) {
   var updateNameStudent = req.body.updateNameStudent;
   var updateAgeStudent = req.body.updateAgeStudent;
   var updateGenderStudent = req.body.updateGenderStudent;
+  var updateCurrentTest = req.body.updateCurrentTest;
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
@@ -18,7 +19,8 @@ exports.post = function(req, res, next) {
        password: updatePasswordStudent,
        name: updateNameStudent,
        age: updateAgeStudent,
-       gender: updateGenderStudent
+       gender: updateGenderStudent,
+       current_test: updateCurrentTest
      });
 
     }
@@ -42,8 +44,9 @@ exports.get = function(req, res) {
         var genderStudent = snapshot.child('gender').val();
         var ageStudent = snapshot.child('age').val();
         var passwordStudent = snapshot.child('password').val();
+        var currentTest = snapshot.child('current_test').val();
 
-        var link = "/test_settings/id" + req.params.idTag;
+        var link = "/" + currentTest + "/test_settings/id" + req.params.idTag;
 
         res.render("resultTest", {
             loginStudent: loginStudent,
@@ -51,6 +54,7 @@ exports.get = function(req, res) {
             genderStudent: genderStudent,
             ageStudent: ageStudent,
             passwordStudent: passwordStudent,
+            currentTest: currentTest,
 
             id: snapshot.key,
             link: link

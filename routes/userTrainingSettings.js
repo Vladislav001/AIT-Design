@@ -54,15 +54,19 @@ exports.get = function(req, res) {
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
     var refStudentsSettings = refStudents.child("tests/1/settings/");
     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
-    var refStudentsPreTest = refStudents.child("tests/1/pre_test/");
+
 
      refStudents.once("value")
       .then(function(snapshot) {
         var loginStudent = snapshot.child('login').val();
-        var linkTestSettings = "/test_settings/id" + req.params.idTag;
-        var linkPreResultSettings = "/pre_result_settings/id" + req.params.idTag;
-        var linkResultSettings = "/result_settings/id" + req.params.idTag;
-        var linkFinishSettings = "/finish_settings/id" + req.params.idTag;
+        var currentTest = snapshot.child('current_test').val();
+        var refStudentsSettings = refStudents.child("tests/" + currentTest + "/settings/");
+        var refStudentsManageButtons = refStudents.child("tests/" + currentTest + "/manage_buttons/");
+        var refStudentsPreTest = refStudents.child("tests/" + currentTest + "/pre_test/");
+        var linkTestSettings = "/" + currentTest +  "/test_settings/id" + req.params.idTag;
+        var linkPreResultSettings = "/" + currentTest +  "/pre_result_settings/id" + req.params.idTag;
+        var linkResultSettings = "/" + currentTest +  "/result_settings/id" + req.params.idTag;
+        var linkFinishSettings = "/" + currentTest +  "/finish_settings/id" + req.params.idTag;
 
         refStudentsSettings.once("value")
          .then(function(snapshotSettings) {
@@ -100,6 +104,7 @@ exports.get = function(req, res) {
 
                  res.render("userTrainingSettings", {
                      loginStudent: loginStudent,
+                     currentTest: currentTest,
                      id: snapshot.key,
 
                      linkTestSettings: linkTestSettings,

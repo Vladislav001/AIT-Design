@@ -19,29 +19,34 @@ exports.post = function(req, res, next) {
     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-     //Формируем узлы с номерами тестов и соответствующими под-узлами
-     var refNewTest = refStudents.child("tests/" + "1/");
-     var refNewTestSettings = refNewTest.child("/settings");
-     var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+    refStudents.once("value")
+     .then(function(snapshot) {
+       var currentTest = snapshot.child('current_test').val();
 
-     var refNewTestSettings = refNewTestSettings.update({
-      text: checkText,
-      sound: checkSound,
-      swap: checkSwap,
-      swap_finger: checkSwapFinger,
-      swap_arrows: checkSwapArrows,
-      progress_bar: checkProgressBar,
-      btn_results: checkBtnResult
+       //Формируем узлы с номерами тестов и соответствующими под-узлами
+       var refNewTest = refStudents.child("tests/" + currentTest);
+       var refNewTestSettings = refNewTest.child("/settings");
+       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+
+       var refNewTestSettings = refNewTestSettings.update({
+        text: checkText,
+        sound: checkSound,
+        swap: checkSwap,
+        swap_finger: checkSwapFinger,
+        swap_arrows: checkSwapArrows,
+        progress_bar: checkProgressBar,
+        btn_results: checkBtnResult
+       });
+
+
+       var refNewTestManageButtons = refNewTestManageButtons.update({
+        style_images_swap_arrows: styleImagesSwap,
+        style_images_like_dislike: styleImagesLikeDislike,
+        style_image_stop_test: styleImageStopTest
+       });
+
+
      });
-
-
-     var refNewTestManageButtons = refNewTestManageButtons.update({
-      style_images_swap_arrows: styleImagesSwap,
-      style_images_like_dislike: styleImagesLikeDislike,
-      style_image_stop_test: styleImageStopTest
-     });
-
-
 
     }
   });
@@ -53,17 +58,18 @@ exports.get = function(req, res) {
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
      var refStudents = firebase.database().ref("students/" + req.params.idTag); // в ejs лежит в запросе id
-     var refStudentsSettings = refStudents.child("tests/1/settings/");
-     var refStudentsManageButtons = refStudents.child("tests/1/manage_buttons/");
-
 
       refStudents.once("value")
        .then(function(snapshot) {
          var loginStudent = snapshot.child('login').val();
-         var linkUserTrainingSettings = "/user_training_settings/id" + req.params.idTag;
-         var linkPreResultSettings = "/pre_result_settings/id" + req.params.idTag;
-         var linkResultSettings = "/result_settings/id" + req.params.idTag;
-         var linkFinishSettings = "/finish_settings/id" + req.params.idTag;
+         var currentTest = snapshot.child('current_test').val();
+         var refStudentsSettings = refStudents.child("tests/" + currentTest + "/settings/");
+         var refStudentsManageButtons = refStudents.child("tests/" + currentTest + "/manage_buttons/");
+
+         var linkUserTrainingSettings = "/" + currentTest + "/user_training_settings/id" + req.params.idTag;
+         var linkPreResultSettings = "/" + currentTest + "/pre_result_settings/id" + req.params.idTag;
+         var linkResultSettings = "/" + currentTest + "/result_settings/id" + req.params.idTag;
+         var linkFinishSettings = "/" + currentTest + "/finish_settings/id" + req.params.idTag;
 
          refStudentsSettings.once("value")
           .then(function(snapshotSettings) {
@@ -83,6 +89,7 @@ exports.get = function(req, res) {
 
                   res.render("testSettings", {
                       loginStudent: loginStudent,
+                      currentTest: currentTest,
                       id: snapshot.key,
 
                       linkUserTrainingSettings: linkUserTrainingSettings,

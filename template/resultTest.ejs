@@ -13,6 +13,7 @@
           <th>Age</th>
           <th>Login</th>
           <th>Password</th>
+          <th>Current test</th>
           <th>Test settings</th>
       </tr>
       <tr>
@@ -31,6 +32,17 @@
           <td><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="form-control" id="input-updateAgeStudent" placeholder="Age"></td>
           <td><input name="updateLoginStudent" type="text" value="<%=loginStudent%>" class="form-control" id="input-updateLoginStudent" placeholder="Login"></td>
           <td><input name="updatePasswordStudent" type="text" value="<%=passwordStudent%>" class="form-control" id="input-updatePasswordStudent" placeholder="Password"></td>
+          <td><SELECT name="updateCurrentTest" type="text" class="form-control" id="input-currentTest" >
+            <% switch (currentTest) {
+                case "1": %>
+                  <OPTION><%=currentTest%></OPTION>
+                  <OPTION>2</OPTION>
+                   <% break; %><%
+                  case "2": %>
+                    <OPTION><%=currentTest%></OPTION>
+                    <OPTION>1</OPTION>
+                     <% break; %> <% } %>
+          </SELECT></td>
           <td><a href="<%=link%>">Start</a></td>
           <td><button type="submit" class="btn btn-primary updateStudent" data-loading-text="Sending..."id="updateStudent">Update student</button></td>
       </tr>
