@@ -1,18 +1,3 @@
-<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE НАЧАЛО. ВСТАВЬТЕ СВОЙ КОД ИЗ КОНСОЛИ FIREBASE СЮДА-->
-<!-- <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
-<script>
- // Initialize Firebase
- var config = {
-   apiKey: "AIzaSyDIWcqGtk1OaGHXq1s8hNjF2_sGkg4iAgc",
-   authDomain: "fir-auth-f9e4a.firebaseapp.com",
-   databaseURL: "https://fir-auth-f9e4a.firebaseio.com",
-   projectId: "fir-auth-f9e4a",
-   storageBucket: "fir-auth-f9e4a.appspot.com",
-   messagingSenderId: "761401610072"
- };
- firebase.initializeApp(config);
-</script> -->
-<!-- ИНИЦИАЛИЗАЦИЯ FIREBASE КОНЕЦ.-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
@@ -63,20 +48,21 @@
           complete: function() {
             $(":submit", form).button("reset");
           }
-          // ,
-          // statusCode: {
-          //   // если ответ сервера 200 - перенаправляем человека в личный кабинет
-          //   200: function() {
-          //     form.html("Вы вошли в сайт").addClass('alert-success');
-          //     window.location.href = "/personalArea";
-          //   },
-          //   // если 403 - высвечивается ошибка
-          //   403: function(jqXHR) {
-          //     var error = JSON.parse(jqXHR.responseText);
-          //     $('.error', form).html(error.message);
-          //   }
-          // }
-        });  window.location.href = "/personalArea";
+          ,
+          statusCode: {
+            // если ответ сервера 200 - перенаправляем человека в личный кабинет
+            200: function() {
+              form.html("Вы вошли в сайт").addClass('alert-success');
+              //window.location.href = "/personalArea";
+            },
+            // если 403 - высвечивается ошибка
+            403: function(jqXHR) {
+              var error = JSON.parse(jqXHR.responseText);
+              $('.error', form).html("error.message");
+            }
+          }
+        });
+        window.location.href = "/personalArea";
       return false;
       });
 

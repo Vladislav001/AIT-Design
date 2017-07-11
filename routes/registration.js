@@ -1,5 +1,7 @@
 var firebase = require('firebase');
 var configFirebase = require ('../config/configFirebase');
+var HttpError = require('../error').HttpError;
+var AuthError = require('../models/user').AuthError;
 
 exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
@@ -9,15 +11,16 @@ exports.post = function(req, res, next) {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
-   var errorMessage = error.message;
+  var errorMessage = error.message;
 
   // [START_EXCLUDE]
   if (errorCode == 'auth/weak-password') {
     console.log('The password is too weak.');
+    return next(new HttpError(403, error.message)); //403 - отказ регистрации
   } else {
-    console.log(errorMessage);
+      console.log(errorMessage + "errorMessage");
   }
-  console.log(error);
+  console.log(error + "error");
   // [END_EXCLUDE]
   });
 

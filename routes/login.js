@@ -1,6 +1,4 @@
-
-var async = require('async');
-var firebase = require('firebase')
+var firebase = require('firebase');
 var configFirebase = require ('../config/configFirebase');
 var HttpError = require('../error').HttpError;
 var AuthError = require('../models/user').AuthError;
