@@ -17,8 +17,8 @@
           <th>Test settings</th>
       </tr>
       <tr>
-          <td><input name="updateNameStudent" type="text" value="<%=nameStudent%>" class="form-control" id="input-updateNameStudent" placeholder="Name"></td>
-          <td><SELECT name="updateGenderStudent" type="text" class="form-control" id="input-genderNewUser" >
+          <td><input name="updateNameStudent" type="text" value="<%=nameStudent%>" class="form-control" id="input-updateNameStudent" placeholder="Name" required></td>
+          <td><SELECT name="updateGenderStudent" type="text" class="form-control" id="input-genderNewUser" required>
             <% switch (genderStudent) {
                 case "Male": %>
                   <OPTION><%=genderStudent%></OPTION>
@@ -29,10 +29,10 @@
                     <OPTION>Male</OPTION>
                      <% break; %> <% } %>
           </SELECT></td>
-          <td><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="form-control" id="input-updateAgeStudent" placeholder="Age"></td>
-          <td><input name="updateLoginStudent" type="text" value="<%=loginStudent%>" class="form-control" id="input-updateLoginStudent" placeholder="Login"></td>
-          <td><input name="updatePasswordStudent" type="text" value="<%=passwordStudent%>" class="form-control" id="input-updatePasswordStudent" placeholder="Password"></td>
-          <td><SELECT name="updateCurrentTest" type="text" class="form-control" id="input-currentTest" >
+          <td><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="form-control" id="input-updateAgeStudent" placeholder="Age" required pattern="^[ 0-9]+$"></td>
+          <td><input name="updateLoginStudent" type="text" value="<%=loginStudent%>" class="form-control" id="input-updateLoginStudent" placeholder="Login" required></td>
+          <td><input name="updatePasswordStudent" type="text" value="<%=passwordStudent%>" class="form-control" id="input-updatePasswordStudent" placeholder="Password" required pattern="^[a-zA-Z0-9]+${4,}"></td>
+          <td><SELECT name="updateCurrentTest" type="text" class="form-control" id="input-currentTest" required>
             <% switch (currentTest) {
                 case "1": %>
                   <OPTION><%=currentTest%></OPTION>
@@ -128,7 +128,7 @@ $.ajax({
   // }
 });  //window.location.href = "/";
 //return false;
-
+location.reload();
 });
 </script>
 
@@ -165,5 +165,6 @@ $.ajax({
 //return false;
 window.location.href = "/personalArea";
 return false;
+location.reload();
 });
 </script>

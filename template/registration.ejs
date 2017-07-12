@@ -15,7 +15,7 @@
     <input name="email" type="email" class="form-control" id="input-email" placeholder="Email">
   </div>
   <div class="form-group">
-      <input name="password" type="password" class="form-control" id="input-password" placeholder="Password">
+      <input name="password" type="password" class="form-control" id="input-password" placeholder="Password - (min 6 symbols)">
   </div>
   <div class="form-group">
     <label class="btn-signin">
@@ -58,11 +58,11 @@
             // если 403 - высвечивается ошибка
             403: function(jqXHR) {
               var error = JSON.parse(jqXHR.responseText);
-              $('.error', form).html("error.message");
+              $('.error', form).html(error.message);
             }
           }
         });
-        window.location.href = "/personalArea";
+      window.location.href = "/personalArea";
       return false;
       });
 

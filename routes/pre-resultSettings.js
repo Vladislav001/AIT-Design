@@ -4,6 +4,7 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
 
   var checkBtnResult = Boolean(req.body.checkBtnResult);
+  checkBtnResult = String(checkBtnResult);
   var styleImageResult = req.body.styleImageResult;
 
   firebase.auth().onAuthStateChanged(user => {

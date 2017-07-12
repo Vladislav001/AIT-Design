@@ -327,7 +327,44 @@ exports.post = function(req, res, next) {
 
 
 var refNewTest2 = usersRef.child("tests/2");
+var refNewTestSettings2 = refNewTest2.child("/settings"); //
+var refNewTestPreTest2 = refNewTest2.child("/pre_test");
+var refNewTestManageButtons2 = refNewTest2.child("/manage_buttons");//
 var refNewTestCategories2 = refNewTest2.child("/categories");//
+
+var refNewTestSettings2 = refNewTestSettings2.set({
+ text: "false",
+ sound: "false",
+ swap: "false",
+ swap_finger: "false",
+ swap_arrows: "false",
+ progress_bar: "false",
+ btn_results: "false"
+});
+
+var refNewTestPreTest2 = refNewTestPreTest2.set({
+  title_text_btn_stop: "Button stop test",
+  description_text_btn_stop: "If you want to stop the test",
+  title_text_btn_back: "Button back",
+  description_text_btn_back: "If you want to return to the previous question",
+  title_text_btn_next: "Button next",
+  description_text_btn_next: "If you want to go to the text question",
+  title_text_btn_like: "Button like",
+  description_text_btn_like: "If you like to click here",
+  title_text_btn_dislike: "Button dislike",
+  description_text_btn_dislike: "If you don't like to click here"
+
+});
+
+
+ var refNewTestManageButtons2 = refNewTestManageButtons2.set({
+  style_images_swap_arrows: "0",
+  style_images_like_dislike: "0",
+  style_image_stop_test: "0",
+  style_image_results: "0",
+  style_image_finish: "0",
+ });
+
 var refNewTestCategories2 = refNewTestCategories2.set({
   "0": {
     name: "CATEGORY 1",

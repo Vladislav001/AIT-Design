@@ -11,7 +11,7 @@ exports.post = function(req, res, next) {
 
 
   //Входим
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  var unsubscribe = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -26,7 +26,7 @@ exports.post = function(req, res, next) {
   console.log(error + "error");
   //return next(error);
   //[END_EXCLUDE]
-
+unsubscribe ();
 });
 
 }

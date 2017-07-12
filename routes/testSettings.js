@@ -4,12 +4,18 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
 
   var checkText = Boolean(req.body.checkText);
+  checkText = String(checkText);
   var checkSound = Boolean(req.body.checkSound);
+  checkSound = String(checkSound);
   var checkSwap = Boolean(req.body.checkSwap);
+  checkSwap = String(checkSwap);
   var checkSwapFinger = Boolean(req.body.checkSwapFinger);
+  checkSwapFinger = String(checkSwapFinger);
   var checkSwapArrows = Boolean(req.body.checkSwapArrows);
+  checkSwapArrows = String(checkSwapArrows);
   var checkProgressBar = Boolean(req.body.checkProgressBar);
-  var checkBtnResult = Boolean(req.body.checkBtnResult);
+  checkProgressBar = String(checkProgressBar);
+
   var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
   var styleImagesSwap = req.body.styleImagesSwap;
   var styleImageStopTest = req.body.styleImageStopTest;
@@ -34,8 +40,7 @@ exports.post = function(req, res, next) {
         swap: checkSwap,
         swap_finger: checkSwapFinger,
         swap_arrows: checkSwapArrows,
-        progress_bar: checkProgressBar,
-        btn_results: checkBtnResult
+        progress_bar: checkProgressBar
        });
 
 

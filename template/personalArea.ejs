@@ -55,23 +55,23 @@
 <form class="form-addNewUser" name="cabinet_addNewUser">
   <h4>Login</h4>
   <div class="form-group">
-    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login">
+    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login" required>
   </div>
     <h4>Password</h4>
     <div class="form-group">
-      <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password">
+      <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password - (min 4 symbols)" required pattern="^[a-zA-Z0-9]+${4,}">
     </div>
     <h4>Username</h4>
     <div class="form-group">
-      <input name="usernameNewUser" type="text" class="form-control" id="input-usernameNewUser" placeholder="Name">
+      <input name="usernameNewUser" type="text" class="form-control" id="input-usernameNewUser" placeholder="Name" required>
     </div>
     <h4>Age</h4>
     <div class="form-group">
-      <input name="ageNewUser" type="text" class="form-control" id="input-ageNewUser" placeholder="Age">
+      <input name="ageNewUser" type="text" class="form-control" id="input-ageNewUser" placeholder="Age" required pattern="^[ 0-9]+$">
     </div>
     <h4>Gender</h4>
     <div class="form-group">
-      <SELECT name="genderNewUser" type="text" class="form-control" id="input-genderNewUser" >
+      <SELECT name="genderNewUser" type="text" class="form-control" id="input-genderNewUser" required>
         <OPTION>Male</OPTION>
         <OPTION>Female</OPTION>
       </SELECT>
@@ -118,9 +118,9 @@ $.ajax({
   //     $('.error', form).html(error.message);
   //   }
   // }
-}); 
+});
 //return false;
-
+location.reload();
 });
 </script>
 
