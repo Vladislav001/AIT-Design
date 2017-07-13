@@ -26,6 +26,8 @@ exports.post = function(req, res, next) {
     }
   });
 
+//Для обновления страницы - костыль
+res.redirect("/personalArea");
 };
 
 

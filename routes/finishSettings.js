@@ -22,8 +22,11 @@ exports.post = function(req, res, next) {
       var refNewTestManageButtons = refNewTestManageButtons.update({
        style_image_finish: styleImageFinish
       });
-     });
 
+      //Для обновления страницы - костыль
+      var linkFinishSettings = "/" + currentTest + "/finish_settings/id" + req.params.idTag;
+      res.redirect(linkFinishSettings);
+     });
     }
   });
 

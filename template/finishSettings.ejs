@@ -186,23 +186,20 @@ if (document.getElementById('checkBtnResult').value == "true") {
       data: form.serialize(),
       complete: function() {
         $(":submit", form).button("reset");
+      },
+      statusCode: {
+        // если ответ сервера 200 - перенаправляем человека в личный кабинет
+        200: function() {
+            location.reload();
+        },
+        // если 403 - высвечивается ошибка
+        403: function(jqXHR) {
+          var error = JSON.parse(jqXHR.responseText);
+          $('.error', form).html(error.message);
+        }
       }
-      // ,
-      // statusCode: {
-      //   // если ответ сервера 200 - перенаправляем человека в личный кабинет
-      //   200: function() {
-      //     form.html("Вы вошли в сайт").addClass('alert-success');
-      //     window.location.href = "/personalArea";
-      //   },
-      //   // если 403 - высвечивается ошибка
-      //   403: function(jqXHR) {
-      //     var error = JSON.parse(jqXHR.responseText);
-      //     $('.error', form).html(error.message);
-      //   }
-      // }
-    });  //window.location.href = "/user_training_settings/id:idT";
-  //return false;
-  location.reload();
+    });
+  return false;
   });
 </script>
 

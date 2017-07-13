@@ -45,11 +45,14 @@ exports.post = function(req, res, next) {
        title_text_btn_dislike: textTitleDislikeQuestion,
        description_text_btn_dislike: textDislikeQuestion
       });
-     });
 
+      //Для обновления страницы - костыль
+      var linkUserTrainingSettings = "/" + currentTest + "/user_training_settings/id" + req.params.idTag;
+      res.redirect(linkUserTrainingSettings);
+     });
     }
   });
-  console.log(textTitleNextQuestion + " textTitleNextQuestion");
+  
 };
 
 exports.get = function(req, res) {

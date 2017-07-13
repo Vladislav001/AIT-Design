@@ -28,8 +28,11 @@ exports.post = function(req, res, next) {
      var refNewTestManageButtons = refNewTestManageButtons.update({
       style_image_results: styleImageResult
      });
-     });
 
+     //Для обновления страницы - костыль
+     var linkPreResultSettings = "/" + currentTest + "/pre_result_settings/id" + req.params.idTag;
+     res.redirect(linkPreResultSettings);
+     });
     }
   });
 

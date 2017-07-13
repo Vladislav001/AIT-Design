@@ -19,6 +19,7 @@ exports.post = function(req, res, next) {
     return next(new HttpError(403, error.message)); //403 - отказ регистрации
   } else {
       console.log(errorMessage + "errorMessage");
+      return next(new HttpError(403, error.message)); //403 - отказ регистрации
   }
   console.log(error + "error");
   // [END_EXCLUDE]

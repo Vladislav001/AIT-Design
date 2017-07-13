@@ -103,24 +103,22 @@ $.ajax({
   data: form.serialize(),
   complete: function() {
     $(":submit", form).button("reset");
+  },
+  statusCode: {
+    // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+    200: function() {
+      //form.html("Student Added").addClass('alert-success');
+      location.reload();
+    },
+    // если 403 - высвечивается ошибка(уже есть такой пользователь)
+    403: function(jqXHR) {
+      var error = JSON.parse(jqXHR.responseText);
+      $('.error', form).html(error.message);
+    }
   }
-  // ,
-  // statusCode: {
-  //   // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
-  //   200: function() {
-  //     form.html("Вы успешно зарегестрировались").addClass('alert-success');
-  //     window.location.href = "/personalArea";
-  //   }
-  //,
-  //   // если 403 - высвечивается ошибка(уже есть такой пользователь)
-  //   403: function(jqXHR) {
-  //     var error = JSON.parse(jqXHR.responseText);
-  //     $('.error', form).html(error.message);
-  //   }
-  // }
 });
-//return false;
-location.reload();
+return false;
+// location.reload();
 });
 </script>
 

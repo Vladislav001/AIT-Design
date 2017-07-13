@@ -19,6 +19,10 @@ exports.post = function(req, res, next) {
 
        var refNewTestSettings = refNewTest.child("/settings");
        var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+
+       //Для обновления страницы - костыль
+       var linkResultSettings = "/" + currentTest + "/result_settings/id" + req.params.idTag;
+       res.redirect(linkResultSettings);
      });
 
 

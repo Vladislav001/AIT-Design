@@ -11,7 +11,7 @@ exports.post = function(req, res, next) {
 
 
   //Входим
-  var unsubscribe = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -22,13 +22,17 @@ exports.post = function(req, res, next) {
       return next(new HttpError(403, error.message)); //403 - отказ регистрации
   } else {
       console.log(errorMessage + "errorMessage");
+      return next(new HttpError(403, error.message)); //403 - отказ регистрации
   }
   console.log(error + "error");
-  //return next(error);
-  //[END_EXCLUDE]
-unsubscribe ();
-});
 
+//unsubscribe ();
+});
+//Для обновления страницы(перехода в лк) - костыль
+//  firebase.auth().onAuthStateChanged(user => {
+//   if (user) {
+//     res.redirect("/personalArea");}
+// });
 }
 
 

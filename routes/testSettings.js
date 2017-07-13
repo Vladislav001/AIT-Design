@@ -51,8 +51,10 @@ exports.post = function(req, res, next) {
        });
 
 
+       //Для обновления страницы - костыль
+       var linkTestSettings = "/" + currentTest +  "/test_settings/id" + req.params.idTag;
+       res.redirect(linkTestSettings);
      });
-
     }
   });
 

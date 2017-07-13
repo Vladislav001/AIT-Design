@@ -14,6 +14,15 @@ exports.post = function(req, res, next) {
 
     var trainer_ID = firebase.auth().currentUser.uid;
 
+    var loginFirst;
+
+    // Проверим имеется ли такой логин в БД
+    var refStudents = firebase.database().ref("students");
+    refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
+    loginFirst = snapshot.child("login").val();
+    });
+
+      if (login != loginFirst) {
   //Генерируем уникальный ключ
   var userIdStudents =  firebase.app().database().ref().push().getKey();
 
@@ -408,7 +417,6 @@ var refNewTestCategories2 = refNewTestCategories2.set({
   }
 });
 
-
   //получить тренера
   //и нарастить у него поле counte
   var refTrainer = firebase.database().ref("trainers/" + trainer_ID);
@@ -421,5 +429,9 @@ var refNewTestCategories2 = refNewTestCategories2.set({
          count_students: newCountStudents
         });
   });
-
+// Без этого не обновляет страницу
+res.redirect("/personalArea");
+} else {
+    return next(new HttpError(403, "This login already exists")); //403 - отказ регистрации
+  }
 };
