@@ -38,6 +38,12 @@ exports.post = function(req, res, next) {
   current_test: "1"
   });
 
+  var studentState = usersRef.child("/student_state");
+  var studentState = studentState.set({
+   state: "inactive ",
+   current_question: "0"
+  });
+
   //Узнаем кол-во тестов у студента
   // var refStudents = firebase.database().ref("students/" + userIdStudents + "/tests");
   // var countTests = 1; // Кол-во тестов
