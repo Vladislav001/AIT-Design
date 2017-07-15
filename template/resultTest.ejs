@@ -118,17 +118,18 @@ firebase.initializeApp(config);
 var refStudents = firebase.database().ref("students/" + "<%=id%>");
 var refCurrentQuestion = refStudents.child("/student_state");
 
-var timerId = setInterval(function() {
-  refCurrentQuestion.once("value")
-   .then(function(snapshotState) {
-     var currentQuestion = snapshotState.child('current_question').val();
+// устанавливаем слушатель child_changed
+refStudents.on('child_changed', function(data) {
+// существующий текущий вопр был изменен, получаем снэпшот, берем оттуда данные и обновляем пользовательский интерфейс
+refCurrentQuestion.once("value")
+ .then(function(snapshotState) {
+   var currentQuestion = snapshotState.child('current_question').val();
 
-         var currentQuestionHTML = currentQuestion;
-         document.getElementById('currentQuestion').innerHTML = currentQuestionHTML;
+       var currentQuestionHTML = currentQuestion;
+       document.getElementById('currentQuestion').innerHTML = currentQuestionHTML;
 
-   });
-}, 0);
-
+ });
+});
 </script>
 
 <!-- <script>
