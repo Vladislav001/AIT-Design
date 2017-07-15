@@ -14,6 +14,7 @@
           <th>Login</th>
           <th>Password</th>
           <th>Current test</th>
+          <th>Current result</th>
           <th>Test settings</th>
       </tr>
       <tr>
@@ -43,6 +44,12 @@
                     <OPTION>1</OPTION>
                      <% break; %> <% } %>
           </SELECT></td>
+            <td><SELECT name="updateCurrentResult" type="text" class="form-control" id="input-currentResult" required>
+            <OPTION><%=currentResult%></OPTION>
+              <% for(var i=1; i<=numbersResults; i++) { %>
+            <OPTION><%=[i]%></OPTION>
+             <% } %>
+          </SELECT></td>
           <td><a href="<%=link%>">Start</a></td>
           <td><button type="submit" class="btn btn-primary updateStudent" data-loading-text="Sending..."id="updateStudent">Update student</button></td>
       </tr>
@@ -65,26 +72,36 @@
     <tr>
         <th>№</th>
         <th>Category</th>
-        <th>Like</th>
-        <th>Dislike</th>
-        <th>Not answer</th>
+        <th>Title</th>
+        <th>Answer</th>
     </tr>
+      <% for(var i=0; i<countFolderResults; i++) { %>
     <tr>
-        <td>1</td>
-        <td>Food</td>
-        <td></td>
-        <td>Yes</td>
-        <td></td>
+        <td><%=[i+1]%></td>
+        <td><%=categories[i]%></td>
+        <td><%=titles[i]%></td>
+        <% if(answers[i] == "-1") { %>
+        <td>Dislike</td>
+         <% } %>
+         <% if(answers[i] == "0") { %>
+         <td>Swap</td>
+          <% } %>
+          <% if(answers[i] == "1") { %>
+          <td>Like</td>
+           <% } %>
     </tr>
-    <td><em>Questions: </em></td>
+ <% } %>
+
+    <!-- <td><em>Questions: </em></td>
     <td><em>Categories: </em></td>
     <td><em>Likes: </em></td>
     <td><em>Dislikes: </em></td>
-    <td><em>Not answers: </em></td>
-</table>
+    <td><em>Not answers: </em></td> -->
+</table
+
 </div>
 
-<div class="informationAboutAcceptCategory">
+<!-- <div class="informationAboutAcceptCategory">
 <table cellspacing="0">
   <tr>
       <th>№</th>
@@ -97,7 +114,7 @@
       <td>Yes</td>
   </tr>
 </table>
-</div>
+</div> -->
 </form>
 
 

@@ -35,13 +35,15 @@ exports.post = function(req, res, next) {
   age: age,
   gender: gender,
   trainer_ID: trainer_ID,
-  current_test: "1"
+  current_test: "1",
+  current_result_web: "1"
   });
 
   var studentState = usersRef.child("/student_state");
   var studentState = studentState.set({
-   state: "inactive ",
-   current_question: "0"
+   state: "inactive",
+   current_question: "0",
+   current_result: "1"
   });
 
   //Узнаем кол-во тестов у студента
