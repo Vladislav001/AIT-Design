@@ -3,9 +3,9 @@
 <% block('title') -%>
 
 <h1><b>AIT</b></h1>
-
   <form class="form-updateStudent" name="cabinet_updateStudent">
   <div class="informationAboutStudent">
+
     <table cellspacing="0">
       <tr>
           <th>Name</th>
@@ -50,10 +50,13 @@
   </div>
 </form>
 
+<div class="currentQuestion">
+<div id="textCurrentQuestion"><b>Current question: </div></b><div id="currentQuestion"><%=currentQuestion%></div>
+</div>
+
 <form class="form-deleteStudent" name="cabinet_deleteStudent">
 <button type="submit" class="btn btn-primary deleteStudent" data-loading-text="Sending..."id="deleteStudent">Delete student</button>
 </form>
-
 
   <h2><b>Test results</b></h2>
   <form class="form-resultsTest">
@@ -96,6 +99,45 @@
 </table>
 </div>
 </form>
+
+
+
+
+<script>
+var config = {
+  apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+  authDomain: "profpref-c5ce0.firebaseapp.com",
+  databaseURL: "https://profpref-c5ce0.firebaseio.com",
+  projectId: "profpref-c5ce0",
+  storageBucket: "profpref-c5ce0.appspot.com",
+  messagingSenderId: "664101035809"
+};
+firebase.initializeApp(config);
+
+// Отслеживаем текущий вопрос студента
+var refStudents = firebase.database().ref("students/" + "<%=id%>");
+var refCurrentQuestion = refStudents.child("/student_state");
+
+var timerId = setInterval(function() {
+  refCurrentQuestion.once("value")
+   .then(function(snapshotState) {
+     var currentQuestion = snapshotState.child('current_question').val();
+
+         var currentQuestionHTML = currentQuestion;
+         document.getElementById('currentQuestion').innerHTML = currentQuestionHTML;
+
+   });
+}, 0);
+
+</script>
+
+<!-- <script>
+    $(document).ready(function() {
+        var danfa = 'Форум web-мастера и ПК'; // Создаём переменную
+        $('#display').html(danfa);
+    });
+</script> -->
+
 
 <script>
 // Клиентский код //

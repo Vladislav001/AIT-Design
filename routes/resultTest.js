@@ -50,20 +50,28 @@ exports.get = function(req, res) {
 
         var link = "/" + currentTest + "/test_settings/id" + req.params.idTag;
 
-        res.render("resultTest", {
-            loginStudent: loginStudent,
-            nameStudent: nameStudent,
-            genderStudent: genderStudent,
-            ageStudent: ageStudent,
-            passwordStudent: passwordStudent,
-            currentTest: currentTest,
+        var refCurrentQuestion = refStudents.child("/student_state");
 
-            id: snapshot.key,
-            link: link
-        });
+        refCurrentQuestion.once("value")
+         .then(function(snapshotState) {
+           var currentQuestion = snapshotState.child('current_question').val();
+
+           res.render("resultTest", {
+               loginStudent: loginStudent,
+               nameStudent: nameStudent,
+               genderStudent: genderStudent,
+               ageStudent: ageStudent,
+               passwordStudent: passwordStudent,
+               currentTest: currentTest,
+
+               id: snapshot.key,
+               link: link,
+
+               currentQuestion: currentQuestion
+           });
+         });
+
       });
-
- }
-
+    }
   });
 };
