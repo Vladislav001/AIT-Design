@@ -81,13 +81,13 @@
         <td><%=categories[i]%></td>
         <td><%=titles[i]%></td>
         <% if(answers[i] == "-1") { %>
-        <td>Dislike</td>
+        <td><font color="#D50000">Dislike</font></td>
          <% } %>
          <% if(answers[i] == "0") { %>
-         <td>Swap</td>
+         <td><font color="#F9A825">Swap</font></td>
           <% } %>
           <% if(answers[i] == "1") { %>
-          <td>Like</td>
+          <td><font color="#4CAF50">Like</font></td>
            <% } %>
     </tr>
  <% } %>
