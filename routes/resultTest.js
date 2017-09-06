@@ -38,9 +38,6 @@ exports.get = function(req, res) {
 
   var countResults;
   var countQuestionsInResult = [];
-  var answers = [];
-  var categories = [];
-  var titles = [];
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
@@ -66,26 +63,10 @@ exports.get = function(req, res) {
        refNumbersResults.once("value").then(function(snapshotNumbersResults) {
          var numbersResults = snapshotNumbersResults.child('current_result').val();
 
-
-
-       refResultStudents.once("value").then(function(snapshotResultStudents) {
-         countFolderResults = snapshotResultStudents.numChildren(); // вносим результы(попытка 1,2...)
-
-         for (var i = 1; i <= countFolderResults; i++) {
-           var currentResultChange = refResultStudents.child("/" + i);
-
-           currentResultChange.once("value")
-            .then(function(snapshotCurrentResult) {
-                answers.push(snapshotCurrentResult.child('answer').val());
-                categories.push(snapshotCurrentResult.child('category').val());
-                titles.push(snapshotCurrentResult.child('title').val());
-
-            });
-         }
-
         refCurrentQuestion.once("value")
          .then(function(snapshotState) {
            var currentQuestion = snapshotState.child('current_question').val();
+           var currentState = snapshotState.child('state').val();
 
            res.render("resultTest", {
                loginStudent: loginStudent,
@@ -100,14 +81,11 @@ exports.get = function(req, res) {
                link: link,
 
                numbersResults: numbersResults,
-               countFolderResults: countFolderResults,
-               answers: answers,
-               categories: categories,
-               titles: titles,
-               currentQuestion: currentQuestion
+               currentQuestion: currentQuestion,
+               currentState: currentState
            });
          });
-       });
+
       });
      });
     }

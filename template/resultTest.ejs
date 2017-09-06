@@ -59,6 +59,8 @@
 
 <div class="currentQuestion">
 <div id="textCurrentQuestion"><b>Current question: </div></b><div id="currentQuestion"><%=currentQuestion%></div>
+<br>
+<div id="textCurrentQuestion"><b>Current state: </div></b><div id="currentState"><%=currentState%></div>
 </div>
 
 <form class="form-deleteStudent" name="cabinet_deleteStudent">
@@ -68,53 +70,30 @@
   <h2><b>Test results</b></h2>
   <form class="form-resultsTest">
   <div class="informationAboutStudentTest">
-  <table cellspacing="0">
+  <table cellspacing="0" id="tl_results">
     <tr>
         <th>№</th>
         <th>Category</th>
         <th>Title</th>
         <th>Answer</th>
+        <th>Level of happiness</th>
     </tr>
-      <% for(var i=0; i<countFolderResults; i++) { %>
-    <tr>
-        <td><%=[i+1]%></td>
-        <td><%=categories[i]%></td>
-        <td><%=titles[i]%></td>
-        <% if(answers[i] == "-1") { %>
-        <td><font color="#D50000">Dislike</font></td>
-         <% } %>
-         <% if(answers[i] == "0") { %>
-         <td><font color="#F9A825">Swap</font></td>
-          <% } %>
-          <% if(answers[i] == "1") { %>
-          <td><font color="#4CAF50">Like</font></td>
-           <% } %>
-    </tr>
- <% } %>
-
-    <!-- <td><em>Questions: </em></td>
-    <td><em>Categories: </em></td>
-    <td><em>Likes: </em></td>
-    <td><em>Dislikes: </em></td>
-    <td><em>Not answers: </em></td> -->
-</table
-
+</table>
 </div>
+<br><br>
 
-<!-- <div class="informationAboutAcceptCategory">
-<table cellspacing="0">
+
+<h2><b>Category results</b></h2>
+<div class="informationAboutStudentTest">
+<table cellspacing="0" id="tl_category_results">
   <tr>
       <th>№</th>
       <th>Category</th>
       <th>Accept</th>
-  </tr>
-  <tr>
-      <td>1</td>
-      <td>Food</td>
-      <td>Yes</td>
+      <th>Counter</th>
   </tr>
 </table>
-</div> -->
+</div>
 </form>
 
 
@@ -133,7 +112,8 @@ firebase.initializeApp(config);
 
 // Отслеживаем текущий вопрос студента
 var refStudents = firebase.database().ref("students/" + "<%=id%>");
-var refCurrentQuestion = refStudents.child("/student_state");
+var refCurrentQuestion = refStudents.child("/student_state/");
+
 
 // устанавливаем слушатель child_changed
 refStudents.on('child_changed', function(data) {
@@ -141,20 +121,94 @@ refStudents.on('child_changed', function(data) {
 refCurrentQuestion.once("value")
  .then(function(snapshotState) {
    var currentQuestion = snapshotState.child('current_question').val();
+   var currentState = snapshotState.child('state').val();
 
        var currentQuestionHTML = currentQuestion;
+       var currentStateHTML = currentState;
        document.getElementById('currentQuestion').innerHTML = currentQuestionHTML;
-
+       document.getElementById('currentState').innerHTML = currentStateHTML;
+       console.log(currentQuestion + " studentState");
  });
 });
+
+
+var refAnswer = firebase.database().ref("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>");
+//console.log("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>");
+
+// устанавливаем слушатель child_changed
+refAnswer.on('child_added', function(snapshot) {
+  // console.log(snapshot.child('answer').val());
+  // console.log(snapshot.child('category').val());
+  // console.log(snapshot.child('title').val());
+  var answer;
+  var levelHappiness;
+
+  if(snapshot.child('answer').val() == "-1") {
+     answer = "<font color=" + "#D50000" + ">Dislike</font>"
+   }
+   if(snapshot.child('answer').val() == "0") {
+     answer = "<font color=" + "#F9A825" + ">Swap</font>"
+   }
+    if(snapshot.child('answer').val() == "1") {
+     answer = "<font color=" + "#4CAF50"+ ">Like</font>"
+   }
+
+  if (snapshot.child('category').val() != null) {
+    $('#tl_results tbody').append('<tr cla ss="child"><td>' + (Number(snapshot.key) + 1) + '</td>' +
+                                                    '<td>' + snapshot.child('category').val() + '</td>' +
+                                                    '<td>' + snapshot.child('title').val() + '</td>' +
+                                                    '<td>' + answer + '</td>' +
+                                                    '<td>' + snapshot.child('pushHappines').val() + '</td>' +
+                                                           + '</tr>');
+                                                      }
+});
+
+
+// Обсчет результатов - сколько набрала какая категория и т.п
+var refCategory = firebase.database().ref("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>" + "/category/");
+
+refCategory.on('child_added', function(snapshotCountCategory) {
+//console.log(snapshotCountCategory.child('stateAccept').val());
+//console.log(snapshotCountCategory.child('titleCategory').val());
+
+
+// var point = 0;
+// refAnswer.on('child_added', function(snapshotAnswer) {
+//  if(snapshotCountCategory.child('titleCategory').val() == snapshotAnswer.child('category').val()) {
+//     var answerQuestion = Number(snapshotAnswer.child('answer').val());
+//     point += answerQuestion;
+//   }console.log(answerQuestion + " point");
+// });
+
+// ХЗ ПОКА ЧТО ХЗ ПОКА ЧТО ХЗ ПОКА ЧТО ХЗ ПОКА ЧТО ХЗ ПОКА ЧТО
+// refAnswer.once('child_added', function(snapshotAnswer) {
+//    var point = 0;
+//
+//    if(snapshotCountCategory.child('titleCategory').val() == snapshotAnswer.child('category').val())
+//    {
+//      var answerQuestion = Number(snapshotAnswer.child('answer').val());
+//      point += answerQuestion;
+//    }
+//    console.log(point + " point");
+//
+// });
+
+  var category;
+  if(snapshotCountCategory.child('stateAccept').val() == "-1") {
+    category = "<td><font color=" + "#4CAF50" + ">Accept</font></td>"
+   }
+    if(snapshotCountCategory.child('stateAccept').val() == "1") {
+     category = "<td><font color=" + "#D50000"+ ">Not accept</font></td"
+   }
+
+   //console.log(category);
+   $('#tl_category_results tbody').append('<tr class="child"><td>' + (Number(snapshotCountCategory.key) + 1) + '</td>' +
+                                                             '<td>' + snapshotCountCategory.child('titleCategory').val() + '</td>' +
+                                                               category +
+                                                             + '</tr>');
+ });
 </script>
 
-<!-- <script>
-    $(document).ready(function() {
-        var danfa = 'Форум web-мастера и ПК'; // Создаём переменную
-        $('#display').html(danfa);
-    });
-</script> -->
 
 
 <script>
