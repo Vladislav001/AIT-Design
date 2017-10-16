@@ -9,8 +9,8 @@ exports.get = function(req, res) {
 	var usernames = []; // хранит имена юзеров
   var genders = []; // хранит пол юзеров
   var ages = []; // хранит возраст юзеров
-  var logins = []; // хранит логины юзеров
-  var passwords = [] // хранит пароли юзеров
+  //var logins = []; // хранит логины юзеров
+  //var passwords = [] // хранит пароли юзеров
 
   var accessLevel;
   var unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -31,8 +31,8 @@ exports.get = function(req, res) {
                   usernames.push(snapshot.child('name').val());
                   genders.push(snapshot.child('gender').val());
                   ages.push(snapshot.child('age').val());
-                  logins.push(snapshot.child('login').val());
-                  passwords.push(snapshot.child('password').val());
+                  //logins.push(snapshot.child('login').val());
+                  //passwords.push(snapshot.child('password').val());
 
                   // СРАБОТАЕТ ЕСЛИ ЕСТЬ STUDENTS у данного тренера!!!
                   // if (usernames.length == count_students) {
@@ -53,9 +53,7 @@ exports.get = function(req, res) {
                     links: links,
                     usernames: usernames,
                     genders: genders,
-                    ages: ages,
-                    logins: logins,
-                    passwords: passwords
+                    ages: ages
                 });
 
         });

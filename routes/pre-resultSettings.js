@@ -47,7 +47,7 @@ exports.get = function(req, res) {
 
       refStudents.once("value")
        .then(function(snapshot) {
-         var loginStudent = snapshot.child('login').val();
+        // var loginStudent = snapshot.child('login').val();
          var currentTest = snapshot.child('current_test').val();
          var refStudentsSettings = refStudents.child("tests/" + currentTest + "/settings/");
          var refStudentsManageButtons = refStudents.child("tests/" + currentTest + "/manage_buttons/");
@@ -74,7 +74,7 @@ exports.get = function(req, res) {
                var styleImageResult = snapshotManageButtons.child('style_image_results').val();
 
                res.render("pre-resultSettings", {
-                   loginStudent: loginStudent,
+                  //  loginStudent: loginStudent,
                    currentTest: currentTest,
                    id: snapshot.key,
 

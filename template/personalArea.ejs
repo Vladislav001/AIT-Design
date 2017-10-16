@@ -19,8 +19,8 @@
         <th>Name</th>
         <th>Gender</th>
         <th>Age</th>
-        <th>Login</th>
-        <th>Password</th>
+        <!-- <th>Login</th> -->
+        <!-- <th>Password</th> -->
     </tr>
      <% for(var i=0; i<links.length; i++) { %>
     <tr>
@@ -28,8 +28,7 @@
         <td><a href="<%=links[i]%>"><%=usernames[i]%></a></td>
         <td><%=genders[i]%></td>
         <td><%=ages[i]%></td>
-        <td><%=logins[i]%></td>
-        <td><%=passwords[i]%></td>
+
     </tr>
        <% } %>
 </table>
@@ -55,12 +54,69 @@
 <form class="form-addNewUser" name="cabinet_addNewUser">
   <h4>Login</h4>
   <div class="form-group">
-    <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login" required>
+    <!-- <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login" required> -->
+    <div class = "settings_entrance_input" id="">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_1">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_2">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_3">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_4">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_5">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_6">
+    <img src="" class="img-responsive" id="imageEntranceLoginInput_7">
+    <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
+    <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
+    <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
+    <input name="imageEntranceLoginInput_4" class="imageEntranceLoginInput_4" type="hidden" value="">
+    <input name="imageEntranceLoginInput_5" class="imageEntranceLoginInput_5" type="hidden" value="">
+    <input name="imageEntranceLoginInput_6" class="imageEntranceLoginInput_6" type="hidden" value="">
+    <input name="imageEntranceLoginInput_7" class="imageEntranceLoginInput_7" type="hidden" value="">
+    <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login">
+    </div>
+
+    <br><br><br><br>
+    <div class = "settings_entrance" id="styleSettingsEntrance">
+    <img src="" class="img-responsive" id="imageEntranceLogin_1">
+    <img src="" class="img-responsive" id="imageEntranceLogin_2">
+    <img src="" class="img-responsive" id="imageEntranceLogin_3">
+    <img src="" class="img-responsive" id="imageEntranceLogin_4">
+    <img src="" class="img-responsive" id="imageEntranceLogin_5">
+    <img src="" class="img-responsive" id="imageEntranceLogin_6">
+    <img src="" class="img-responsive" id="imageEntranceLogin_7">
+    </div>
   </div>
+  <br><br><br>
     <h4>Password</h4>
     <div class="form-group">
-      <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password - (min 4 symbols)" required pattern="^[a-zA-Z0-9]+${4,}">
+      <!-- <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password - (min 4 symbols)" required > -->
+      <div class = "settings_entrance_input" id="">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_1">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_2">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_3">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_4">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_5">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_6">
+      <img src="" class="img-responsive" id="imageEntrancePasswordInput_7">
+      <input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_5" class="imageEntrancePasswordInput_5" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_6" class="imageEntrancePasswordInput_6" type="hidden" value="">
+      <input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
+      <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password">
+      </div>
+      <br><br><br><br>
+      <div class = "settings_entrance" id="">
+      <img src="" class="img-responsive" id="imageEntrancePassword_1">
+      <img src="" class="img-responsive" id="imageEntrancePassword_2">
+      <img src="" class="img-responsive" id="imageEntrancePassword_3">
+      <img src="" class="img-responsive" id="imageEntrancePassword_4">
+      <img src="" class="img-responsive" id="imageEntrancePassword_5">
+      <img src="" class="img-responsive" id="imageEntrancePassword_6">
+      <img src="" class="img-responsive" id="imageEntrancePassword_7">
+      </div>
     </div>
+    <br><br><br>
     <h4>Username</h4>
     <div class="form-group">
       <input name="usernameNewUser" type="text" class="form-control" id="input-usernameNewUser" placeholder="Name" required>
@@ -122,6 +178,595 @@ return false;
 });
 </script>
 
-<!-- <script>
-      location.reload();
-</script> -->
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+    authDomain: "profpref-c5ce0.firebaseapp.com",
+    databaseURL: "https://profpref-c5ce0.firebaseio.com",
+    projectId: "profpref-c5ce0",
+    storageBucket: "profpref-c5ce0.appspot.com",
+    messagingSenderId: "664101035809"
+  };
+  firebase.initializeApp(config);
+
+  // Получаем доступ к Хранилищу
+  var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+  // Подкгружаем из хранилища набор дефолтных каритнок для составления логина и пароля
+   var url_1= storage.ref("entrance/1.png");
+   var url_2 = storage.ref("entrance/2.png");
+   var url_3 = storage.ref("entrance/3.png");
+   var url_4= storage.ref("entrance/4.png");
+   var url_5 = storage.ref("entrance/5.png");
+   var url_6 = storage.ref("entrance/6.png");
+   var url_7 = storage.ref("entrance/7.png");
+
+
+  // Подгруз логина НАЧАЛО
+  url_1.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_1").attr('src', url);
+
+    $("#imageEntranceLogin_1").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+          //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+          console.log (url + " url");
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+             $(".imageEntranceLoginInput_2").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+           $("#imageEntranceLoginInput_3").attr("src", url);
+             $(".imageEntranceLoginInput_3").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+          $("#imageEntranceLoginInput_4").attr("src", url);
+            $(".imageEntranceLoginInput_4").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+         $("#imageEntranceLoginInput_5").attr("src", url);
+           $(".imageEntranceLoginInput_5").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+        $("#imageEntranceLoginInput_6").attr("src", url);
+          $(".imageEntranceLoginInput_6").val(url);
+    }
+    else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+       $("#imageEntranceLoginInput_7").attr("src", url);
+         $(".imageEntranceLoginInput_7").val(url);
+   }
+    });
+  });
+
+  url_2.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_2").attr('src', url);
+
+    $("#imageEntranceLogin_2").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+           $("#imageEntranceLoginInput_3").attr("src", url);
+           $(".imageEntranceLoginInput_3").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+          $("#imageEntranceLoginInput_4").attr("src", url);
+          $(".imageEntranceLoginInput_4").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+         $("#imageEntranceLoginInput_5").attr("src", url);
+         $(".imageEntranceLoginInput_5").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+        $("#imageEntranceLoginInput_6").attr("src", url);
+        $(".imageEntranceLoginInput_6").val(url);
+    }
+    else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+       $("#imageEntranceLoginInput_7").attr("src", url);
+       $(".imageEntranceLoginInput_7").val(url);
+   }
+    });
+  });
+
+
+  url_3.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_3").attr('src', url);
+
+    $("#imageEntranceLogin_3").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+            $("#imageEntranceLoginInput_3").attr("src", url);
+            $(".imageEntranceLoginInput_3").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+           $("#imageEntranceLoginInput_4").attr("src", url);
+           $(".imageEntranceLoginInput_4").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+          $("#imageEntranceLoginInput_5").attr("src", url);
+          $(".imageEntranceLoginInput_5").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+         $("#imageEntranceLoginInput_6").attr("src", url);
+         $(".imageEntranceLoginInput_6").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+        $("#imageEntranceLoginInput_7").attr("src", url);
+        $(".imageEntranceLoginInput_7").val(url);
+    }
+    });
+  });
+
+  url_4.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_4").attr('src', url);
+
+    $("#imageEntranceLogin_4").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+            $("#imageEntranceLoginInput_3").attr("src", url);
+            $(".imageEntranceLoginInput_3").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+           $("#imageEntranceLoginInput_4").attr("src", url);
+           $(".imageEntranceLoginInput_4").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+          $("#imageEntranceLoginInput_5").attr("src", url);
+          $(".imageEntranceLoginInput_5").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+         $("#imageEntranceLoginInput_6").attr("src", url);
+         $(".imageEntranceLoginInput_6").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+        $("#imageEntranceLoginInput_7").attr("src", url);
+        $(".imageEntranceLoginInput_7").val(url);
+    }
+    });
+  });
+
+  url_5.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_5").attr('src', url);
+
+    $("#imageEntranceLogin_5").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+            $("#imageEntranceLoginInput_3").attr("src", url);
+            $(".imageEntranceLoginInput_3").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+           $("#imageEntranceLoginInput_4").attr("src", url);
+           $(".imageEntranceLoginInput_4").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+          $("#imageEntranceLoginInput_5").attr("src", url);
+          $(".imageEntranceLoginInput_5").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+         $("#imageEntranceLoginInput_6").attr("src", url);
+         $(".imageEntranceLoginInput_6").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+        $("#imageEntranceLoginInput_7").attr("src", url);
+        $(".imageEntranceLoginInput_7").val(url);
+    }
+    });
+  });
+
+  url_6.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_6").attr('src', url);
+
+    $("#imageEntranceLogin_6").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+            $("#imageEntranceLoginInput_3").attr("src", url);
+            $(".imageEntranceLoginInput_3").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+           $("#imageEntranceLoginInput_4").attr("src", url);
+           $(".imageEntranceLoginInput_4").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+          $("#imageEntranceLoginInput_5").attr("src", url);
+          $(".imageEntranceLoginInput_5").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+         $("#imageEntranceLoginInput_6").attr("src", url);
+         $(".imageEntranceLoginInput_6").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+        $("#imageEntranceLoginInput_7").attr("src", url);
+        $(".imageEntranceLoginInput_7").val(url);
+    }
+    });
+  });
+
+  url_7.getDownloadURL().then(function(url) {
+    $("#imageEntranceLogin_7").attr('src', url);
+
+    $("#imageEntranceLogin_7").bind("click", function() {
+      if($("#imageEntranceLoginInput_1").attr("src") == "") {
+          $("#imageEntranceLoginInput_1").attr("src", url);
+          $(".imageEntranceLoginInput_1").val(url);
+        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
+            $("#imageEntranceLoginInput_2").attr("src", url);
+            $(".imageEntranceLoginInput_2").val(url);
+        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
+            $("#imageEntranceLoginInput_3").attr("src", url);
+            $(".imageEntranceLoginInput_3").val(url);
+        }
+        else if ($("#imageEntranceLoginInput_4").attr("src") == ""){
+           $("#imageEntranceLoginInput_4").attr("src", url);
+           $(".imageEntranceLoginInput_4").val(url);
+       }
+       else if ($("#imageEntranceLoginInput_5").attr("src") == ""){
+          $("#imageEntranceLoginInput_5").attr("src", url);
+          $(".imageEntranceLoginInput_5").val(url);
+      }
+      else if ($("#imageEntranceLoginInput_6").attr("src") == ""){
+         $("#imageEntranceLoginInput_6").attr("src", url);
+         $(".imageEntranceLoginInput_6").val(url);
+     }
+     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
+        $("#imageEntranceLoginInput_7").attr("src", url);
+        $(".imageEntranceLoginInput_7").val(url);
+    }
+    });
+  });
+  // Подгруз логина КОНЕЦ
+
+  // Подгруз пароля НАЧАЛО
+   url_1.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_1").attr('src', url);
+
+     $("#imageEntrancePassword_1").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_2.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_2").attr('src', url);
+
+     $("#imageEntrancePassword_2").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_3.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_3").attr('src', url);
+
+     $("#imageEntrancePassword_3").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_4.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_4").attr('src', url);
+
+     $("#imageEntrancePassword_4").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_5.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_5").attr('src', url);
+
+     $("#imageEntrancePassword_5").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_6.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_6").attr('src', url);
+
+     $("#imageEntrancePassword_6").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+
+   url_7.getDownloadURL().then(function(url) {
+     $("#imageEntrancePassword_7").attr('src', url);
+
+     $("#imageEntrancePassword_7").bind("click", function() {
+       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
+           $("#imageEntrancePasswordInput_1").attr("src", url);
+           $(".imageEntrancePasswordInput_1").val(url);
+           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
+           console.log (url + " url");
+         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
+             $("#imageEntrancePasswordInput_2").attr("src", url);
+              $(".imageEntrancePasswordInput_2").val(url);
+         }
+         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
+            $("#imageEntrancePasswordInput_3").attr("src", url);
+              $(".imageEntrancePasswordInput_3").val(url);
+        }
+        else if ($("#imageEntrancePasswordInput_4").attr("src") == ""){
+           $("#imageEntrancePasswordInput_4").attr("src", url);
+             $(".imageEntrancePasswordInput_4").val(url);
+       }
+       else if ($("#imageEntrancePasswordInput_5").attr("src") == ""){
+          $("#imageEntrancePasswordInput_5").attr("src", url);
+            $(".imageEntrancePasswordInput_5").val(url);
+      }
+      else if ($("#imageEntrancePasswordInput_6").attr("src") == ""){
+         $("#imageEntrancePasswordInput_6").attr("src", url);
+           $(".imageEntrancePasswordInput_6").val(url);
+     }
+     else if ($("#imageEntrancePasswordInput_7").attr("src") == ""){
+        $("#imageEntrancePasswordInput_7").attr("src", url);
+          $(".imageEntrancePasswordInput_7").val(url);
+    }
+     });
+   });
+// Подгруз пароля КОНЕЦ
+
+
+// УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ НАЧАЛО
+
+  // Удаление поэлементно в логине
+   $("#imageEntranceLoginInput_1").bind("click", function() {
+         $("#imageEntranceLoginInput_1").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_2").bind("click", function() {
+         $("#imageEntranceLoginInput_2").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_3").bind("click", function() {
+         $("#imageEntranceLoginInput_3").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_4").bind("click", function() {
+         $("#imageEntranceLoginInput_4").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_5").bind("click", function() {
+         $("#imageEntranceLoginInput_5").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_6").bind("click", function() {
+         $("#imageEntranceLoginInput_6").attr("src", "");
+   });
+   $("#imageEntranceLoginInput_7").bind("click", function() {
+         $("#imageEntranceLoginInput_7").attr("src", "");
+   });
+
+  // Удаление всех элементов в логине
+   $("#delete_all_images_login").bind("click", function() {
+      $("#imageEntranceLoginInput_1").attr("src", "");
+      $("#imageEntranceLoginInput_2").attr("src", "");
+      $("#imageEntranceLoginInput_3").attr("src", "");
+      $("#imageEntranceLoginInput_4").attr("src", "");
+      $("#imageEntranceLoginInput_5").attr("src", "");
+      $("#imageEntranceLoginInput_6").attr("src", "");
+      $("#imageEntranceLoginInput_7").attr("src", "");
+   });
+
+
+   // Удаление поэлементно в пароле
+    $("#imageEntrancePasswordInput_1").bind("click", function() {
+          $("#imageEntrancePasswordInput_1").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_2").bind("click", function() {
+          $("#imageEntrancePasswordInput_2").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_3").bind("click", function() {
+          $("#imageEntrancePasswordInput_3").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_4").bind("click", function() {
+          $("#imageEntrancePasswordInput_4").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_5").bind("click", function() {
+          $("#imageEntrancePasswordInput_5").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_6").bind("click", function() {
+          $("#imageEntrancePasswordInput_6").attr("src", "");
+    });
+    $("#imageEntrancePasswordInput_7").bind("click", function() {
+          $("#imageEntrancePasswordInput_7").attr("src", "");
+    });
+
+   // Удаление всех элементов в пароле
+    $("#delete_all_images_password").bind("click", function() {
+       $("#imageEntrancePasswordInput_1").attr("src", "");
+       $("#imageEntrancePasswordInput_2").attr("src", "");
+       $("#imageEntrancePasswordInput_3").attr("src", "");
+       $("#imageEntrancePasswordInput_4").attr("src", "");
+       $("#imageEntrancePasswordInput_5").attr("src", "");
+       $("#imageEntrancePasswordInput_6").attr("src", "");
+       $("#imageEntrancePasswordInput_7").attr("src", "");
+    });
+
+// УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ КОНЕЦ
+
+</script>

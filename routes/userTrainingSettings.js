@@ -52,7 +52,7 @@ exports.post = function(req, res, next) {
      });
     }
   });
-  
+
 };
 
 exports.get = function(req, res) {
@@ -66,7 +66,7 @@ exports.get = function(req, res) {
 
      refStudents.once("value")
       .then(function(snapshot) {
-        var loginStudent = snapshot.child('login').val();
+        //var loginStudent = snapshot.child('login').val();
         var currentTest = snapshot.child('current_test').val();
         var refStudentsSettings = refStudents.child("tests/" + currentTest + "/settings/");
         var refStudentsManageButtons = refStudents.child("tests/" + currentTest + "/manage_buttons/");
@@ -111,7 +111,7 @@ exports.get = function(req, res) {
                  var textDislikeQuestion = snapshotSettingsPreTest.child('description_text_btn_dislike').val();
 
                  res.render("userTrainingSettings", {
-                     loginStudent: loginStudent,
+                    //  loginStudent: loginStudent,
                      currentTest: currentTest,
                      id: snapshot.key,
 

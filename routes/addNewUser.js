@@ -6,8 +6,8 @@ var firebase = require('firebase');
 
 exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
-    var login = req.body.loginNewUser + "@gmail.com";
-    var password = req.body.passwordNewUser;
+    //var login = req.body.loginNewUser + "@gmail.com";
+    //var password = req.body.passwordNewUser;
     var name = req.body.usernameNewUser;// P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
     var age = req.body.ageNewUser;                                      // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
     var gender = req.body.genderNewUser;
@@ -16,21 +16,24 @@ exports.post = function(req, res, next) {
 
     var loginFirst;
 
-    // Проверим имеется ли такой логин в БД
-    var refStudents = firebase.database().ref("students");
-    refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
-    loginFirst = snapshot.child("login").val();
-    });
+    //var imageEntranceLoginInput_1 = req.body.imageEntranceLoginInput_1;
 
-      if (login != loginFirst) {
+    // Т.к сделали пока изображения - нету уникальности - закомментил
+    // Проверим имеется ли такой логин в БД
+    // var refStudents = firebase.database().ref("students");
+    // refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
+    // loginFirst = snapshot.child("login").val();
+    // });
+
+
+
+      //if (login != loginFirst) {
   //Генерируем уникальный ключ
   var userIdStudents =  firebase.app().database().ref().push().getKey();
 
   var ref = firebase.app().database().ref();
   var usersRef = ref.child('students/' + userIdStudents);
   var userRef = usersRef.set({
-  login: login,
-  password: password,
   name: name,
   age: age,
   gender: gender,
@@ -38,6 +41,30 @@ exports.post = function(req, res, next) {
   current_test: "1",
   current_result_web: "1"
   });
+
+//console.log (req.body.imageEntranceLoginInput_1 + " imageEntranceLoginInput_1");
+  var userLogin = usersRef.child("/login");
+  var userLogin = userLogin.set({
+  "0": req.body.imageEntranceLoginInput_1,
+  "1": req.body.imageEntranceLoginInput_2,
+  "2": req.body.imageEntranceLoginInput_3,
+  "3": req.body.imageEntranceLoginInput_4,
+  "4": req.body.imageEntranceLoginInput_5,
+  "5": req.body.imageEntranceLoginInput_6,
+  "6": req.body.imageEntranceLoginInput_7
+  });
+
+  var userPassword = usersRef.child("/password");
+  var userPassword = userPassword.set({
+  "0": req.body.imageEntrancePasswordInput_1,
+  "1": req.body.imageEntrancePasswordInput_2,
+  "2": req.body.imageEntrancePasswordInput_3,
+  "3": req.body.imageEntrancePasswordInput_4,
+  "4": req.body.imageEntrancePasswordInput_5,
+  "5": req.body.imageEntrancePasswordInput_6,
+  "6": req.body.imageEntrancePasswordInput_7
+  });
+
 
   var studentState = usersRef.child("/student_state");
   var studentState = studentState.set({
@@ -439,7 +466,7 @@ var refNewTestCategories2 = refNewTestCategories2.set({
   });
 // Без этого не обновляет страницу
 res.redirect("/personalArea");
-} else {
-    return next(new HttpError(403, "This login already exists")); //403 - отказ регистрации
-  }
+// } else {
+//     return next(new HttpError(403, "This login already exists")); //403 - отказ регистрации
+//   }
 };

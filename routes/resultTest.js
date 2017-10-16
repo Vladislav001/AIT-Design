@@ -46,11 +46,11 @@ exports.get = function(req, res) {
 
      refStudents.once("value")
       .then(function(snapshot) {
-        var loginStudent = snapshot.child('login').val();
+        //var loginStudent = snapshot.child('login').val();
         var nameStudent = snapshot.child('name').val();
         var genderStudent = snapshot.child('gender').val();
         var ageStudent = snapshot.child('age').val();
-        var passwordStudent = snapshot.child('password').val();
+        //var passwordStudent = snapshot.child('password').val();
         var currentTest = snapshot.child('current_test').val();
         var currentResult = snapshot.child('current_result_web').val();
 
@@ -69,11 +69,9 @@ exports.get = function(req, res) {
            var currentState = snapshotState.child('state').val();
 
            res.render("resultTest", {
-               loginStudent: loginStudent,
                nameStudent: nameStudent,
                genderStudent: genderStudent,
                ageStudent: ageStudent,
-               passwordStudent: passwordStudent,
                currentTest: currentTest,
                currentResult: currentResult,
 
