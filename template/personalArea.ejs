@@ -132,6 +132,11 @@
         <OPTION>Female</OPTION>
       </SELECT>
     </div>
+    <input type="file" class="upload" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
+<hr>
+<div id="myProgress">
+    <div id="myBar"></div>
+</div>
     <div class="form-group">
       <label class="btn-addNewUser">
         <button type="submit" class="btn btn-primary" data-loading-text="Sending..."id="addNewUser">Add new student</button>
@@ -193,6 +198,10 @@ return false;
   // Получаем доступ к Хранилищу
   var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
 
+  //Web (JavaScript)
+  var storageRef = firebase.storage().ref();
+
+
   // Подкгружаем из хранилища набор дефолтных каритнок для составления логина и пароля
    var url_1= storage.ref("entrance/1.png");
    var url_2 = storage.ref("entrance/2.png");
@@ -236,6 +245,7 @@ return false;
     else if ($("#imageEntranceLoginInput_7").attr("src") == ""){
        $("#imageEntranceLoginInput_7").attr("src", url);
          $(".imageEntranceLoginInput_7").val(url);
+
    }
     });
   });
@@ -273,7 +283,6 @@ return false;
    }
     });
   });
-
 
   url_3.getDownloadURL().then(function(url) {
     $("#imageEntranceLogin_3").attr('src', url);
@@ -768,5 +777,39 @@ return false;
     });
 
 // УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ КОНЕЦ
+</script>
 
+
+<script>
+// Загрузка файлов
+function loadFile(input) {
+
+        //Step 1 : Defining element to show the progress
+        var elem = document.getElementById("myBar");
+        var filetoUpload=input.files[0];
+
+
+        //Step 2 : Initializing the reference of database with the filename
+        var storageRef = firebase.storage().ref("entrance/" + filetoUpload.name);
+        //Step 3 : Uploading file
+         var task = storageRef.put(filetoUpload);
+
+        //Step 4 : sata_changed Event
+         // state_changed events occures when file is getting uploaded
+         //(Note : when we want to show the progress what's the uploading status that time we will use this function.)
+         task.on('state_changed',
+            function progress(snapshot){
+                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                //uploader.value = percentage;
+                 elem.style.width = parseInt(percentage) + '%';
+                 elem.innerHTML=parseInt(percentage)+'%';
+            },
+            function error(err){
+
+            },
+            function complete(){
+                var downloadURL = task.snapshot.downloadURL;
+            }
+        );
+}
 </script>

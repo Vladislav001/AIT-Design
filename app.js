@@ -10,8 +10,8 @@ var firebase = require('firebase');
 var configFirebase = require ('./config/configFirebase');
 //var ref = firebase.app().database().ref();
 
-
  
+
 
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();
