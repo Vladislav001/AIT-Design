@@ -18,8 +18,8 @@ exports.post = function(req, res, next) {
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
      var refStudents = refStudents.update({
-      //  login: updateLoginStudent,
-      //  password: updatePasswordStudent,
+      //ogin: updateLoginStudent,
+      // password: updatePasswordStudent,
        name: updateNameStudent,
        age: updateAgeStudent,
        gender: updateGenderStudent,

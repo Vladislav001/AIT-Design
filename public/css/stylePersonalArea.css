@@ -104,6 +104,7 @@ tr:last-child td.last {
 
 .leftSide .chiefAdministrator {
     margin-left: 2%;
+
 }
 
 .form-addNewUser {
@@ -156,7 +157,13 @@ tr:last-child td.last {
 	border: 0px dotted #546E7A; /* Параметры границы */
 }
 
+
+
+#input-updateImage{
+	max-width: 120px;
+}
 #myProgress {
+	max-width: 120px;
   width: 100%;
   background-color: #ddd;
   text-align: left;

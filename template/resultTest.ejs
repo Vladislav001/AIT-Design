@@ -53,7 +53,8 @@
       </tr>
   </table>
   </div>
-  <h4>Current Login</h4>
+
+  <h4>  Current Login</h4>
   <div class = "settings_entrance_input" id="">
   <img src="<%=url_1_login%>" class="img-responsive" id="imageEntranceLoginInput_1">
   <img src="<%=url_2_login%>" class="img-responsive" id="imageEntranceLoginInput_2">
@@ -101,7 +102,7 @@
   <input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
   <!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password"> -->
   </div>
-  <!-- <br><br><br><br> -->
+  <br><br>
   <!-- <div class = "settings_entrance_input" id="">
   <img src="" class="img-responsive" id="imageEntrancePassword_1">
   <img src="" class="img-responsive" id="imageEntrancePassword_2">
@@ -111,8 +112,9 @@
   <img src="" class="img-responsive" id="imageEntrancePassword_6">
   <img src="" class="img-responsive" id="imageEntrancePassword_7">
   </div> -->
+
 </form>
-<br><br><br><br>
+<br><br>
 <div class="currentQuestion">
 <div id="textCurrentQuestion"><b>Current question: </div></b><div id="currentQuestion"><%=currentQuestion%></div>
 <br>
@@ -857,27 +859,27 @@ refCategory.on('child_added', function(snapshotCountCategory) {
   // УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ НАЧАЛО
 
   // Удаление поэлементно в логине
-   $("#imageEntranceLoginInput_1").bind("click", function() {
-         $("#imageEntranceLoginInput_1").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_2").bind("click", function() {
-         $("#imageEntranceLoginInput_2").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_3").bind("click", function() {
-         $("#imageEntranceLoginInput_3").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_4").bind("click", function() {
-         $("#imageEntranceLoginInput_4").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_5").bind("click", function() {
-         $("#imageEntranceLoginInput_5").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_6").bind("click", function() {
-         $("#imageEntranceLoginInput_6").attr("src", "");
-   });
-   $("#imageEntranceLoginInput_7").bind("click", function() {
-         $("#imageEntranceLoginInput_7").attr("src", "");
-   });
+  //  $("#imageEntranceLoginInput_1").bind("click", function() {
+  //        $("#imageEntranceLoginInput_1").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_2").bind("click", function() {
+  //        $("#imageEntranceLoginInput_2").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_3").bind("click", function() {
+  //        $("#imageEntranceLoginInput_3").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_4").bind("click", function() {
+  //        $("#imageEntranceLoginInput_4").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_5").bind("click", function() {
+  //        $("#imageEntranceLoginInput_5").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_6").bind("click", function() {
+  //        $("#imageEntranceLoginInput_6").attr("src", "");
+  //  });
+  //  $("#imageEntranceLoginInput_7").bind("click", function() {
+  //        $("#imageEntranceLoginInput_7").attr("src", "");
+  //  });
 
   // Удаление всех элементов в логине
    $("#delete_all_images_login").bind("click", function() {
@@ -892,27 +894,27 @@ refCategory.on('child_added', function(snapshotCountCategory) {
 
 
    // Удаление поэлементно в пароле
-    $("#imageEntrancePasswordInput_1").bind("click", function() {
-          $("#imageEntrancePasswordInput_1").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_2").bind("click", function() {
-          $("#imageEntrancePasswordInput_2").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_3").bind("click", function() {
-          $("#imageEntrancePasswordInput_3").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_4").bind("click", function() {
-          $("#imageEntrancePasswordInput_4").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_5").bind("click", function() {
-          $("#imageEntrancePasswordInput_5").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_6").bind("click", function() {
-          $("#imageEntrancePasswordInput_6").attr("src", "");
-    });
-    $("#imageEntrancePasswordInput_7").bind("click", function() {
-          $("#imageEntrancePasswordInput_7").attr("src", "");
-    });
+    // $("#imageEntrancePasswordInput_1").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_1").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_2").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_2").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_3").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_3").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_4").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_4").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_5").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_5").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_6").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_6").attr("src", "");
+    // });
+    // $("#imageEntrancePasswordInput_7").bind("click", function() {
+    //       $("#imageEntrancePasswordInput_7").attr("src", "");
+    // });
 
    // Удаление всех элементов в пароле
     $("#delete_all_images_password").bind("click", function() {
