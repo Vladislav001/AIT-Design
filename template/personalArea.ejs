@@ -1,174 +1,159 @@
-
 <link rel="stylesheet" href="css/stylePersonalArea.css">
 <% layout('layout/page') -%>
 <% block('title') -%>
 
-<h1><b>AIT</b></h1>
-<div class="card-row clearfix">
 
-  <div class="col-md-6">
-  <div class="card">
-<form class="leftSide" name="cabinet_leftForm">
-  <h3 class="welcomeUser">Welcome, <%=email%></h3>
 
+
+
+  <!-- LEFT START -->
+    <div class="main-and-sidebar-wrapper-left">
+        <section class="main-left">
+            <h2>Welcome, <%=email%>!</h2>
 
 <% if (accessLevel == "Trainer") { %>
-  <table cellspacing="0">
+<table>
+  <caption>My students</caption>
+  <thead>
     <tr>
-        <th>№</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <!-- <th>Login</th> -->
-        <!-- <th>Password</th> -->
+      <th scope="col">№</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age</th>
     </tr>
-     <% for(var i=0; i<links.length; i++) { %>
+  </thead>
+   <% for(var i=0; i<links.length; i++) { %>
+  <tbody>
     <tr>
-        <td><%=[i+1]%></td>
-        <td><a href="<%=links[i]%>"><%=usernames[i]%></a></td>
-        <td><%=genders[i]%></td>
-        <td><%=ages[i]%></td>
-
+      <td aria-label="№"><%=[i+1]%></td>
+      <td aria-label="Name"><a href="<%=links[i]%>"><%=usernames[i]%></a></td>
+      <td aria-label="Gender"><%=genders[i]%></td>
+      <td aria-label="Age"><%=ages[i]%></td>
     </tr>
-       <% } %>
+  </tbody>
+    <% } %>
 </table>
 <% } %>
 
-
-
-  <% if (email == "admin@mail.ru") { %>
-  <!-- <h4>Login</h4> -->
-  <div class="chiefAdministrator">
-
-
-  <!-- <br><br><br>
-  <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/getAllUsersInJSON\'></form>');$('#submitme').submit();return false;">Список пользователей в JSON-формате</a></li>
-  <br><br>
-  <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/dropDatabase\'></form>');$('#submitme').submit();return false;">ОЧИСТИТЬ БАЗУ ДАННЫХ</a></li> -->
-</div>
-
-<h4>Select where to upload the image</h4>
-<SELECT name="updateImage" type="text" class="form-control" id="input-updateImage" required>
-  <OPTION>1</OPTION>
-  <OPTION>2</OPTION>
-  <OPTION>3</OPTION>
-  <OPTION>4</OPTION>
-  <OPTION>5</OPTION>
-  <OPTION>6</OPTION>
-  <OPTION>7</OPTION>
+<% if (email == "admin@mail.ru") { %>
+  <h3>Select where to upload the image</h3>
+  <SELECT name="updateImage" type="text" class="select-updateImage" id="input-updateImage" required>
+<OPTION>1</OPTION>
+<OPTION>2</OPTION>
+<OPTION>3</OPTION>
+<OPTION>4</OPTION>
+<OPTION>5</OPTION>
+<OPTION>6</OPTION>
+<OPTION>7</OPTION>
 </SELECT>
-<br>
-<input type="file" class="upload" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
-<div id="myProgress">
+  <input type="file" class="upload" id="upload_file" size="50" name="icon" onchange="loadFile(this);">
+  <div id="myProgress">
     <div id="myBar"></div>
-</div>
+  </div>
   <% } %>
+        </section>
+    </div>
+  <!-- LEFT END -->
 
-</form>
-  </div>
+<!-- CENTER START -->
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+            <h1>AIT</h1>
+            <p></p>
+        </section>
     </div>
+<!-- CENTER END -->
 
-  <% if (accessLevel == "Trainer") { %>
-    <div class="col-md-6">
-      <div class="card">
-<form class="form-addNewUser" name="cabinet_addNewUser">
-  <h4>Login</h4>
-  <div class="form-group">
-    <!-- <input name="loginNewUser" type="text" class="form-control" id="input-loginNewUser" placeholder="Login" required> -->
-    <div class = "settings_entrance_input" id="">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_1">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_2">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_3">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_4">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_5">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_6">
-    <img src="" class="img-responsive" id="imageEntranceLoginInput_7">
-    <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
-    <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
-    <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
-    <input name="imageEntranceLoginInput_4" class="imageEntranceLoginInput_4" type="hidden" value="">
-    <input name="imageEntranceLoginInput_5" class="imageEntranceLoginInput_5" type="hidden" value="">
-    <input name="imageEntranceLoginInput_6" class="imageEntranceLoginInput_6" type="hidden" value="">
-    <input name="imageEntranceLoginInput_7" class="imageEntranceLoginInput_7" type="hidden" value="">
-    <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login">
+  <!-- RIGHT START -->
+    <div class="main-and-sidebar-wrapper-right">
+        <section class="main-right">
+            <h2 style="text-align: center">Settings</h2>
 
-    </div>
+            <form class="form-addNewUser" name="cabinet_addNewUser">
+            <h2>Login</h2>
+            <div class="settings_entrance_input" id="">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_1">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_2">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_3">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_4">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_5">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_6">
+              <img src="" class="img-responsive" id="imageEntranceLoginInput_7">
+              <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
+              <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
+              <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
+              <input name="imageEntranceLoginInput_4" class="imageEntranceLoginInput_4" type="hidden" value="">
+              <input name="imageEntranceLoginInput_5" class="imageEntranceLoginInput_5" type="hidden" value="">
+              <input name="imageEntranceLoginInput_6" class="imageEntranceLoginInput_6" type="hidden" value="">
+              <input name="imageEntranceLoginInput_7" class="imageEntranceLoginInput_7" type="hidden" value="">
+              <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login">
+            </div>
 
-    <br><br><br><br>
-    <div class = "settings_entrance" id="styleSettingsEntrance">
-    <img src="" class="img-responsive" id="imageEntranceLogin_1">
-    <img src="" class="img-responsive" id="imageEntranceLogin_2">
-    <img src="" class="img-responsive" id="imageEntranceLogin_3">
-    <img src="" class="img-responsive" id="imageEntranceLogin_4">
-    <img src="" class="img-responsive" id="imageEntranceLogin_5">
-    <img src="" class="img-responsive" id="imageEntranceLogin_6">
-    <img src="" class="img-responsive" id="imageEntranceLogin_7">
-    </div>
-  </div>
-  <br><br><br><br>
-    <h4>Password</h4>
-    <div class="form-group">
-      <!-- <input name="passwordNewUser" type="text" class="form-control" id="input-passwordNewUser" placeholder="Password - (min 4 symbols)" required > -->
-      <div class = "settings_entrance_input" id="">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_1">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_2">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_3">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_4">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_5">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_6">
-      <img src="" class="img-responsive" id="imageEntrancePasswordInput_7">
-      <input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_5" class="imageEntrancePasswordInput_5" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_6" class="imageEntrancePasswordInput_6" type="hidden" value="">
-      <input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
-      <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password">
-      </div>
-      <br><br><br><br>
-      <div class = "settings_entrance" id="">
-      <img src="" class="img-responsive" id="imageEntrancePassword_1">
-      <img src="" class="img-responsive" id="imageEntrancePassword_2">
-      <img src="" class="img-responsive" id="imageEntrancePassword_3">
-      <img src="" class="img-responsive" id="imageEntrancePassword_4">
-      <img src="" class="img-responsive" id="imageEntrancePassword_5">
-      <img src="" class="img-responsive" id="imageEntrancePassword_6">
-      <img src="" class="img-responsive" id="imageEntrancePassword_7">
-      </div>
-    </div>
-    <br><br><br>
-    <h4>Username</h4>
-    <div class="form-group">
-      <input name="usernameNewUser" type="text" class="form-control" id="input-usernameNewUser" placeholder="Name" required>
-    </div>
-    <h4>Age</h4>
-    <div class="form-group">
-      <input name="ageNewUser" type="text" class="form-control" id="input-ageNewUser" placeholder="Age" required pattern="^[ 0-9]+$">
-    </div>
-    <h4>Gender</h4>
-    <div class="form-group">
-      <SELECT name="genderNewUser" type="text" class="form-control" id="input-genderNewUser" required>
+<div class="settings_entrance" id="styleSettingsEntrance">
+  <img src="" class="img-responsive" id="imageEntranceLogin_1">
+  <img src="" class="img-responsive" id="imageEntranceLogin_2">
+  <img src="" class="img-responsive" id="imageEntranceLogin_3">
+  <img src="" class="img-responsive" id="imageEntranceLogin_4">
+  <img src="" class="img-responsive" id="imageEntranceLogin_5">
+  <img src="" class="img-responsive" id="imageEntranceLogin_6">
+  <img src="" class="img-responsive" id="imageEntranceLogin_7">
+</div>
+
+  <h2>Password</h2>
+<div class="settings_entrance_input" id="">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_1">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_2">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_3">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_4">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_5">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_6">
+  <img src="" class="img-responsive" id="imageEntrancePasswordInput_7">
+  <input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_5" class="imageEntrancePasswordInput_5" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_6" class="imageEntrancePasswordInput_6" type="hidden" value="">
+  <input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
+  <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password">
+</div>
+
+<div class="settings_entrance" id="">
+  <img src="" class="img-responsive" id="imageEntrancePassword_1">
+  <img src="" class="img-responsive" id="imageEntrancePassword_2">
+  <img src="" class="img-responsive" id="imageEntrancePassword_3">
+  <img src="" class="img-responsive" id="imageEntrancePassword_4">
+  <img src="" class="img-responsive" id="imageEntrancePassword_5">
+  <img src="" class="img-responsive" id="imageEntrancePassword_6">
+  <img src="" class="img-responsive" id="imageEntrancePassword_7">
+</div>
+
+  <h2>Username</h2>
+  <input name="usernameNewUser" type="text" class="input-personal-data" id="input-usernameNewUser" placeholder="Name" required>
+
+  <h2>Age</h2>
+  <input name="ageNewUser" type="text" class="input-personal-data" id="input-ageNewUser" placeholder="Age" required pattern="^[ 0-9]+$">
+
+  <h2>Gender</h2>
+  <SELECT name="genderNewUser" type="text" class="input-personal-data" id="input-genderNewUser" required>
         <OPTION>Male</OPTION>
         <OPTION>Female</OPTION>
-      </SELECT>
+  </SELECT>
+
+   <button type="submit" class="add-new-student" data-loading-text="Adding..."id="addNewUser">Add new student</button>
+ </form>
+
+   <span class="help-block error"></span>
+        </section>
     </div>
-    <!-- <input type="file" class="upload" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
-<hr>
- <div id="myProgress">
-    <div id="myBar"></div>
-</div> -->
-    <div class="form-group">
-      <label class="btn-addNewUser">
-        <button type="submit" class="btn btn-primary" data-loading-text="Sending..."id="addNewUser">Add new student</button>
-      </form>
-        <span class="help-block error"></span>
-        </label>
+  <!-- RIGHT END -->
+
     </div>
-</div>
-  </div>
-  <% } %>
-</div>
+
+    <footer>
+        <h3>Footer</h3>
+        <p>Something.</p>
+    </footer>
 
 
 <script>

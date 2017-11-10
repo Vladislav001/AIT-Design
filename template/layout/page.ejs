@@ -2,12 +2,12 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- НУЖНО ДЛЯ ПЕРЕДАЧИ НА СЕРВЕР !!! -->
 <script src="/js/bootstrap.min.js"></script>
 
 <!-- ИНИЦИАЛИЗАЦИЯ FIREBASE НАЧАЛО. ВСТАВЬТЕ СВОЙ КОД ИЗ КОНСОЛИ FIREBASE СЮДА-->
 <!-- <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 <script>
-
  var config = {
    apiKey: "AIzaSyDIWcqGtk1OaGHXq1s8hNjF2_sGkg4iAgc",
    authDomain: "fir-auth-f9e4a.firebaseapp.com",
@@ -21,24 +21,27 @@
 <!-- ИНИЦИАЛИЗАЦИЯ FIREBASE КОНЕЦ.-->
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-<header>
-  <%-blocks.header%>
-</header>
+<div class="container">
+  <header>
+    <%-blocks.header%>
+      <%-partial('../partials/topNavigation')%>
+  </header>
+</div>
 
-<%-partial('../partials/topNavigation')%>
+<h1><%=blocks.title%></h1>
 
+<div class="container">
+  <div class="container-menu">
+    <%-body -%>
+  </div>
+</div>
 
-
-<section class="container">
- <h1><%=blocks.title%></h1>
- </section>
-
-<%-body -%>
+</html>

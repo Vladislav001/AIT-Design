@@ -5,7 +5,8 @@
     "async": "^2.5.0",
     "ejs-locals": "~1.0.2",
     "express": "^3.1.2",
-    "firebase": "^3.5.3"
+    "firebase": "^3.5.3",
+    "socket.io": "^2.0.4"
   },
   "engines": {
     "node": "6.9.3",
