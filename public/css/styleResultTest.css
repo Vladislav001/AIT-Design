@@ -1,172 +1,209 @@
-.navbar-default{
-	background-color: #ffffff;
-	    border-color: #ffffff;
+/* Левая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-left {
+    display: flex;
+    width: 5%;
+    margin-top: 200px;
 }
 
-h1 {
-  font-size: 120px;
-  font-family: serif;
-  text-align: center;
-  margin-top: 2%;
-}
+.main-left {
+    text-align: center;
+    margin-left: 10px;
 
-.currentQuestion {
-	margin-left: 1%;
+    flex: 3;
 }
- #textCurrentQuestion, #currentQuestion  {
-  float: left;
-}
-.informationAboutStudent {
-  margin-left: 5%;
-	width: 90%;
-}
-
-.informationAboutStudent .form-control {
-	width: 95px;
-}
-
-.form-deleteStudent .deleteStudent {
-margin-left: 900px;
-margin-top: -327px;
-background-color: red;
-border-color: red;
-color: white;
-}
-
-h2 {
-  font-size: 40px;
-  font-family: serif;
-  text-align: center;
-  margin-top: 2%;
-}
+/* Левая сторона КОНЕЦ*/
 
 
-.form-resultsTest {
-  float: left; /* Обтекание по правому краю */
-  padding: 15px;
-  margin-left: 1%;
-  margin-top: -1%;
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 90%;
 }
 
-.informationAboutStudentTest {
-  margin-left: 8%;
-	width: 220%;
+.main {
+    text-align: center;
+/*    margin-right: 60px;*/
+    flex: 3;
 }
 
-.informationAboutAcceptCategory {
-	float: right;
-  width: 90%;
-	margin-right: -180%;
-	margin-top: -20.3%;
+/* Центр НАЧАЛО*/
+.main h1 {
+    font-size: 110px;
+    margin-bottom: 55px;
+    font-family: serif;
 }
 
-/*С ИНТЕРНЕТА */
-table {
-    border:1px solid #d3d3d3;
-    background:#fefefe;
-    width:60%;
-    margin-left: -5%; /* Обтекание по правому краю */
-    -moz-border-radius:5px; /* FF1+ */
-    -webkit-border-radius:5px; /* Saf3-4 */
-    border-radius:5px;
-    -moz-box-shadow:   4px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow:   4px rgba(0, 0, 0, 0.2);
+.main h2 {
+	font-size: 20px;
+	margin-top: 65px;
+	text-align: left;
 }
 
-th, td {
-    padding:2px 6px 6px;
-    text-align:center;
+/* Настройки размеров картинок НАЧАЛО*/
+.main .settings_entrance_input {
+  width: 50%;
 }
 
-th {
-    padding-top:5px;
-    text-shadow: 1px 1px 1px #fff;
-    background:#e8eaeb;
+.main .settings_entrance {
+  width: 50%;
 }
 
-td {
-    border-top:1px solid #e0e0e0;
-    border-right:1px solid #e0e0e0;
-}
-
-tr.odd-row td {
-    background:#f6f6f6;
-}
-
-td.first, th.first {
-    text-align:left
-}
-
-td.last {
-    border-right:none;
-}
-
-td {
-    background: -moz-linear-gradient(100% 25% 90deg, #fefefe, #f9f9f9);
-    background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f9f9f9), to(#fefefe));
-}
-
-tr.odd-row td {
-    background: -moz-linear-gradient(100% 25% 90deg, #f6f6f6, #f1f1f1);
-    background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
-}
-
-th {
-    background: -moz-linear-gradient(100% 20% 90deg, #e8eaeb, #ededed);
-    background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#ededed), to(#e8eaeb));
-}
-
-tr:first-child th.first {
-    -moz-border-radius-topleft:5px;
-    -webkit-border-top-left-radius:5px; /* Saf3-4 */
-}
-
-tr:first-child th.last {
-    -moz-border-radius-topright:5px;
-    -webkit-border-top-right-radius:5px; /* Saf3-4 */
-}
-
-tr:last-child td.first {
-    -moz-border-radius-bottomleft:5px;
-    -webkit-border-bottom-left-radius:5px; /* Saf3-4 */
-}
-
-tr:last-child td.last {
-    -moz-border-radius-bottomright:5px;
-    -webkit-border-bottom-right-radius:5px; /* Saf3-4 */
-}
-/*С ИНТЕРНЕТА */
-}
-
-.settings_entrance img {
+.main .settings_entrance_input img {
 	float: left;
-	max-width: 65px;
-	max-height: 75px;
-}
-
-.settings_entrance_input img {
-	float: left;
-	min-width: 60px;
-	min-height: 70px;
-	max-width: 60px;
-	max-height: 70px;
+	width: 12%;
+  height:7%;
 	border: 1px dotted #546E7A; /* Параметры границы */
 }
 
-#delete_all_images_login {
+.main .settings_entrance img {
 	float: left;
-	min-width: 60px;
-	min-height: 70px;
-	max-width: 60px;
-	max-height: 70px;
-	border: 0px dotted #546E7A; /* Параметры границы */
+	width: 12%;
+  height:7%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* Настройки размеров картинок КОНЕЦ*/
+
+.main #currentQuestion {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 80px;
 }
 
-#delete_all_images_password {
-	float: left;
-	min-width: 60px;
-	min-height: 70px;
-	max-width: 60px;
-	max-height: 70px;
-	border: 0px dotted #546E7A; /* Параметры границы */
+.main #currentState {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+		margin-bottom: 50px;
+}
+/* Центер КОНЕЦ*/
+
+
+/* Правая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-right {
+    display: flex;
+    width: 5%;
+    margin-top: 200px;
+}
+
+.main-right {
+    text-align: center;
+    margin-right: 10px;
+
+    flex: 3;
+}
+/* Правая сторона КОНЕЦ*/
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+
+/* Настройки размеров полей ввода НАЧАЛО*/
+.update-personal-data {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Настройки размеров полей ввода КОНЕЦ*/
+
+/* Настройка кнопок обновить/удалить студента НАЧАЛО*/
+.update-student {
+  float: left;
+  width: 10%;
+  background-color: #0277BD;
+  color: white;
+  padding: 12px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.delete-student {
+  float: right;
+  width: 10%;
+  background-color: #D50000;
+  color: white;
+  padding: 12px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+/* Настройки кнопок обновить/удалить студента КОНЕЦ*/
+
+/* Настройки таблицы студентов НАЧАЛО*/
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+table tr {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+table caption {
+	font-size: 30px;
+}
+/* Настройки таблицы студентов КОНЕЦ*/
+
+
+
+@media (max-width: 600px) {
+    .main-and-sidebar-wrapper {
+        flex-direction: column;
+    }
+
+    .main {
+        margin-right: 0;
+        margin-bottom: 60px;
+    }
+
+    table thead {
+      display: none;
+    }
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+    }
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      text-align: right;
+    }
+    table td:before {
+      content: attr(aria-label);
+      float: left;
+    }
+
 }

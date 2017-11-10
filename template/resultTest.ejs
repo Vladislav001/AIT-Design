@@ -2,157 +2,179 @@
 <% layout('layout/page') -%>
 <% block('title') -%>
 
-<h1><b>AIT</b></h1>
-  <form class="form-updateStudent" name="cabinet_updateStudent">
-  <div class="informationAboutStudent">
+<!-- LEFT START -->
+  <div class="main-and-sidebar-wrapper-left">
+      <section class="main-left">
 
-    <table cellspacing="0">
-      <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <!-- <th>Login</th> -->
-          <!-- <th>Password</th> -->
-          <th>Current test</th>
-          <th>Current result</th>
-          <th>Test settings</th>
-      </tr>
-      <tr>
-          <td><input name="updateNameStudent" type="text" value="<%=nameStudent%>" class="form-control" id="input-updateNameStudent" placeholder="Name" required></td>
-          <td><SELECT name="updateGenderStudent" type="text" class="form-control" id="input-genderNewUser" required>
-            <% switch (genderStudent) {
-                case "Male": %>
-                  <OPTION><%=genderStudent%></OPTION>
-                  <OPTION>Female</OPTION>
-                   <% break; %><%
-                  case "Female": %>
-                    <OPTION><%=genderStudent%></OPTION>
-                    <OPTION>Male</OPTION>
-                     <% break; %> <% } %>
-          </SELECT></td>
-          <td><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="form-control" id="input-updateAgeStudent" placeholder="Age" required pattern="^[ 0-9]+$"></td>
-          <td><SELECT name="updateCurrentTest" type="text" class="form-control" id="input-currentTest" required>
-            <% switch (currentTest) {
-                case "1": %>
+      </section>
+  </div>
+<!-- LEFT END -->
+
+<!-- CENTER START -->
+  <div class="main-and-sidebar-wrapper">
+      <section class="main">
+          <h1>AIT</h1>
+          <p></p>
+          <form class="form-updateStudent" name="cabinet_updateStudent">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Age</th>
+                <th scope="col">Current test</th>
+                <th scope="col">Current result</th>
+                <th scope="col">Test settings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td aria-label="Name"><input name="updateNameStudent" type="text" value="<%=nameStudent%>" class="update-personal-data" id="input-updateNameStudent" placeholder="Name" required></td>
+                <td aria-label="Gender">
+                  <SELECT name="updateGenderStudent" type="text" class="update-personal-data" id="input-genderNewUser" required>
+                    <% switch (genderStudent) {
+                         case "Male": %>
+                           <OPTION><%=genderStudent%></OPTION>
+                           <OPTION>Female</OPTION>
+                            <% break; %><%
+                           case "Female": %>
+                             <OPTION><%=genderStudent%></OPTION>
+                             <OPTION>Male</OPTION>
+                              <% break; %> <% } %>
+                    </SELECT></td>
+                <td aria-label="Age"><input name="updateAgeStudent" type="text" value="<%=ageStudent%>" class="update-personal-data" id="input-updateAgeStudent" placeholder="Age" required pattern="^[ 0-9]+$"></td>
+                <td aria-label="Current test">
+                  <SELECT name="updateCurrentTest" type="text" class="update-personal-data" id="input-currentTest" required>
+                    <% switch (currentTest) {
+                    case "1": %>
+                      <OPTION><%=currentTest%></OPTION>
+                      <OPTION>2</OPTION>
+                       <% break; %><%
+                      case "2": %>
+                        <OPTION><%=currentTest%></OPTION>
+                        <OPTION>1</OPTION>
+                         <% break; %> <% } %>
                   <OPTION><%=currentTest%></OPTION>
-                  <OPTION>2</OPTION>
-                   <% break; %><%
-                  case "2": %>
-                    <OPTION><%=currentTest%></OPTION>
-                    <OPTION>1</OPTION>
-                     <% break; %> <% } %>
-          </SELECT></td>
-            <td><SELECT name="updateCurrentResult" type="text" class="form-control" id="input-currentResult" required>
-            <OPTION><%=currentResult%></OPTION>
-              <% for(var i=1; i<=numbersResults; i++) { %>
-            <OPTION><%=[i]%></OPTION>
-             <% } %>
-          </SELECT></td>
-          <td><a href="<%=link%>">Start</a></td>
-          <td><button type="submit" class="btn btn-primary updateStudent" data-loading-text="Sending..."id="updateStudent">Update student</button></td>
-      </tr>
-  </table>
-  </div>
+                  <OPTION>1</OPTION>
+        </SELECT></td>
+                <td aria-label="Current result">
+                  <SELECT name="updateCurrentResult" type="text" class="update-personal-data" id="input-currentResult" required>
+                    <OPTION><%=currentResult%></OPTION>
+                      <% for(var i=1; i<=numbersResults; i++) { %>
+                    <OPTION><%=[i]%></OPTION>
+                     <% } %>
+        </SELECT></td>
+                <td aria-label="Test settings"><a href="<%=link%>">Start</a></td>
 
-  <h4>  Current Login</h4>
-  <div class = "settings_entrance_input" id="">
-  <img src="<%=url_1_login%>" class="img-responsive" id="imageEntranceLoginInput_1">
-  <img src="<%=url_2_login%>" class="img-responsive" id="imageEntranceLoginInput_2">
-  <img src="<%=url_3_login%>" class="img-responsive" id="imageEntranceLoginInput_3">
-  <img src="<%=url_4_login%>" class="img-responsive" id="imageEntranceLoginInput_4">
-  <img src="<%=url_5_login%>" class="img-responsive" id="imageEntranceLoginInput_5">
-  <img src="<%=url_6_login%>" class="img-responsive" id="imageEntranceLoginInput_6">
-  <img src="<%=url_7_login%>" class="img-responsive" id="imageEntranceLoginInput_7">
-  <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
-  <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
-  <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
-  <input name="imageEntranceLoginInput_4" class="imageEntranceLoginInput_4" type="hidden" value="">
-  <input name="imageEntranceLoginInput_5" class="imageEntranceLoginInput_5" type="hidden" value="">
-  <input name="imageEntranceLoginInput_6" class="imageEntranceLoginInput_6" type="hidden" value="">
-  <input name="imageEntranceLoginInput_7" class="imageEntranceLoginInput_7" type="hidden" value="">
-  <!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login"> -->
-  </div>
-  <br><br>
-  <!-- <div class = "settings_entrance_input" id="styleSettingsEntrance">
-  <img src="" class="img-responsive" id="imageEntranceLogin_1">
-  <img src="" class="img-responsive" id="imageEntranceLogin_2">
-  <img src="" class="img-responsive" id="imageEntranceLogin_3">
-  <img src="" class="img-responsive" id="imageEntranceLogin_4">
-  <img src="" class="img-responsive" id="imageEntranceLogin_5">
-  <img src="" class="img-responsive" id="imageEntranceLogin_6">
-  <img src="" class="img-responsive" id="imageEntranceLogin_7">
-  </div> -->
+              </tr>
+            </tbody>
+          </table>
+    <button type="submit" class="update-student" data-loading-text="Updating..."id="updateStudent">Update student</button>
+    </form>
 
-  <br><br>
-  <h4>Current Password</h4>
-  <div class = "settings_entrance_input" id="">
-  <img src="<%=url_1_password%>" class="img-responsive" id="imageEntrancePasswordInput_1">
-  <img src="<%=url_2_password%>" class="img-responsive" id="imageEntrancePasswordInput_2">
-  <img src="<%=url_3_password%>" class="img-responsive" id="imageEntrancePasswordInput_3">
-  <img src="<%=url_4_password%>" class="img-responsive" id="imageEntrancePasswordInput_4">
-  <img src="<%=url_5_password%>" class="img-responsive" id="imageEntrancePasswordInput_5">
-  <img src="<%=url_6_password%>" class="img-responsive" id="imageEntrancePasswordInput_6">
-  <img src="<%=url_7_password%>" class="img-responsive" id="imageEntrancePasswordInput_7">
-  <input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_5" class="imageEntrancePasswordInput_5" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_6" class="imageEntrancePasswordInput_6" type="hidden" value="">
-  <input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
-  <!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password"> -->
-  </div>
-  <br><br>
-  <!-- <div class = "settings_entrance_input" id="">
-  <img src="" class="img-responsive" id="imageEntrancePassword_1">
-  <img src="" class="img-responsive" id="imageEntrancePassword_2">
-  <img src="" class="img-responsive" id="imageEntrancePassword_3">
-  <img src="" class="img-responsive" id="imageEntrancePassword_4">
-  <img src="" class="img-responsive" id="imageEntrancePassword_5">
-  <img src="" class="img-responsive" id="imageEntrancePassword_6">
-  <img src="" class="img-responsive" id="imageEntrancePassword_7">
-  </div> -->
+    <form class="form-deleteStudent" name="cabinet_deleteStudent">
+    <button type="submit" class="delete-student" data-loading-text="Deleting..."id="deleteStudent">Delete student</button>
+    </form>
 
-</form>
-<br><br>
-<div class="currentQuestion">
-<div id="textCurrentQuestion"><b>Current question: </div></b><div id="currentQuestion"><%=currentQuestion%></div>
-<br>
-<div id="textCurrentQuestion"><b>Current state: </div></b><div id="currentState"><%=currentState%></div>
+<h2>Current Login</h2>
+<div class = "settings_entrance_input" id="">
+<img src="<%=url_1_login%>" class="img-responsive" id="imageEntranceLoginInput_1">
+<img src="<%=url_2_login%>" class="img-responsive" id="imageEntranceLoginInput_2">
+<img src="<%=url_3_login%>" class="img-responsive" id="imageEntranceLoginInput_3">
+<img src="<%=url_4_login%>" class="img-responsive" id="imageEntranceLoginInput_4">
+<img src="<%=url_5_login%>" class="img-responsive" id="imageEntranceLoginInput_5">
+<img src="<%=url_6_login%>" class="img-responsive" id="imageEntranceLoginInput_6">
+<img src="<%=url_7_login%>" class="img-responsive" id="imageEntranceLoginInput_7">
+<input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
+<input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
+<input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
+<input name="imageEntranceLoginInput_4" class="imageEntranceLoginInput_4" type="hidden" value="">
+<input name="imageEntranceLoginInput_5" class="imageEntranceLoginInput_5" type="hidden" value="">
+<input name="imageEntranceLoginInput_6" class="imageEntranceLoginInput_6" type="hidden" value="">
+<input name="imageEntranceLoginInput_7" class="imageEntranceLoginInput_7" type="hidden" value="">
+<!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login"> -->
+</div>
+<!-- <div class = "settings_entrance_input" id="styleSettingsEntrance">
+<img src="" class="img-responsive" id="imageEntranceLogin_1">
+<img src="" class="img-responsive" id="imageEntranceLogin_2">
+<img src="" class="img-responsive" id="imageEntranceLogin_3">
+<img src="" class="img-responsive" id="imageEntranceLogin_4">
+<img src="" class="img-responsive" id="imageEntranceLogin_5">
+<img src="" class="img-responsive" id="imageEntranceLogin_6">
+<img src="" class="img-responsive" id="imageEntranceLogin_7">
+</div> -->
+
+<h2>Current Password</h2>
+<div class = "settings_entrance_input" id="">
+<img src="<%=url_1_password%>" class="img-responsive" id="imageEntrancePasswordInput_1">
+<img src="<%=url_2_password%>" class="img-responsive" id="imageEntrancePasswordInput_2">
+<img src="<%=url_3_password%>" class="img-responsive" id="imageEntrancePasswordInput_3">
+<img src="<%=url_4_password%>" class="img-responsive" id="imageEntrancePasswordInput_4">
+<img src="<%=url_5_password%>" class="img-responsive" id="imageEntrancePasswordInput_5">
+<img src="<%=url_6_password%>" class="img-responsive" id="imageEntrancePasswordInput_6">
+<img src="<%=url_7_password%>" class="img-responsive" id="imageEntrancePasswordInput_7">
+<input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
+<input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
+<input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
+<input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
+<input name="imageEntrancePasswordInput_5" class="imageEntrancePasswordInput_5" type="hidden" value="">
+<input name="imageEntrancePasswordInput_6" class="imageEntrancePasswordInput_6" type="hidden" value="">
+<input name="imageEntrancePasswordInput_7" class="imageEntrancePasswordInput_7" type="hidden" value="">
+<!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password"> -->
 </div>
 
-<form class="form-deleteStudent" name="cabinet_deleteStudent">
-<button type="submit" class="btn btn-primary deleteStudent" data-loading-text="Sending..."id="deleteStudent">Delete student</button>
-</form>
+<!-- <div class = "settings_entrance_input" id="">
+<img src="" class="img-responsive" id="imageEntrancePassword_1">
+<img src="" class="img-responsive" id="imageEntrancePassword_2">
+<img src="" class="img-responsive" id="imageEntrancePassword_3">
+<img src="" class="img-responsive" id="imageEntrancePassword_4">
+<img src="" class="img-responsive" id="imageEntrancePassword_5">
+<img src="" class="img-responsive" id="imageEntrancePassword_6">
+<img src="" class="img-responsive" id="imageEntrancePassword_7">
+</div> -->
 
-  <h2><b>Test results</b></h2>
-  <form class="form-resultsTest">
-  <div class="informationAboutStudentTest">
-  <table cellspacing="0" id="tl_results">
+<h3 id="currentQuestion">Current question: <%=currentQuestion%></h3>
+<h3 id="currentState">Current state: <%=currentState%></h3>
+
+<table id="tl_results">
+  <caption><b>Test results</b></caption>
     <tr>
-        <th>№</th>
-        <th>Category</th>
-        <th>Title</th>
-        <th>Answer</th>
-        <th>Level of happiness</th>
+      <th scope="col">№</th>
+      <th scope="col">Category</th>
+      <th scope="col">Title</th>
+      <th scope="col">Answer</th>
+      <th scope="col">Level of happiness</th>
     </tr>
 </table>
-</div>
-<br><br>
 
-
-<h2><b>Category results</b></h2>
-<div class="informationAboutStudentTest">
-<table cellspacing="0" id="tl_category_results">
-  <tr>
-      <th>№</th>
-      <th>Category</th>
-      <th>Accept</th>
-      <th>Counter</th>
-  </tr>
+<table id="tl_category_results">
+  <caption><b>Category results</b></caption>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Category</th>
+      <th scope="col">Accept</th>
+      <th scope="col">Counter</th>
+    </tr>
 </table>
-</div>
-</form>
+
+      </section>
+  </div>
+<!-- CENTER END -->
+
+<!-- RIGHT START -->
+  <div class="main-and-sidebar-wrapper-right">
+      <section class="main-right">
+
+      </section>
+  </div>
+<!-- RIGHT END -->
+
+  </div>
+
+  <footer>
+      <h3>Footer</h3>
+      <p>Something.</p>
+  </footer>
 
 
 

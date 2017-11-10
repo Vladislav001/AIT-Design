@@ -88,14 +88,6 @@
     margin-bottom: 55px;
     font-family: serif;
 }
-
-.main p {
-    margin-bottom: 50px;
-}
-
-.main img {
-    width: 100%;
-}
 /* Центер КОНЕЦ*/
 
 
@@ -118,11 +110,6 @@
     margin-bottom: 15px;
     text-align: left;
 }
-
-.main-right  p {
-    margin-bottom: 10px;
-}
-
 /* Настройки размеров картинок НАЧАЛО*/
 .main-right .settings_entrance_input img {
 	float: left;
