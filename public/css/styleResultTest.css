@@ -1,7 +1,7 @@
 /* Левая сторона НАЧАЛО*/
 .main-and-sidebar-wrapper-left {
     display: flex;
-    width: 5%;
+    width: 2.5%;
     margin-top: 200px;
 }
 
@@ -16,7 +16,7 @@
 
 .main-and-sidebar-wrapper {
     display: flex;
-    width: 90%;
+    width: 95%;
 }
 
 .main {
@@ -27,6 +27,7 @@
 
 /* Центр НАЧАЛО*/
 .main h1 {
+    margin-right: 1.385%;
     font-size: 110px;
     margin-bottom: 55px;
     font-family: serif;
@@ -49,19 +50,23 @@
 
 .main .settings_entrance_input img {
 	float: left;
-	width: 12%;
+	width: 10%;
   height:7%;
 	border: 1px dotted #546E7A; /* Параметры границы */
 }
 
 .main .settings_entrance img {
 	float: left;
-	width: 12%;
+	width: 10%;
   height:7%;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 /* Настройки размеров картинок КОНЕЦ*/
+
+.main a {
+    color: #2196F3; /* Цвет обычной ссылки */
+   }
 
 .main #currentQuestion {
     text-align: left;
@@ -81,7 +86,7 @@
 /* Правая сторона НАЧАЛО*/
 .main-and-sidebar-wrapper-right {
     display: flex;
-    width: 5%;
+    width: 2.5%;
     margin-top: 200px;
 }
 
