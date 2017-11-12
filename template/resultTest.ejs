@@ -73,7 +73,7 @@
     </form>
 
     <form class="form-deleteStudent" name="cabinet_deleteStudent">
-    <button type="submit" class="delete-student" data-loading-text="Deleting..."id="deleteStudent">Delete student</button>
+    <button type="submit" class="delete-student" onclick="return confirmDelete();" data-loading-text="Deleting..."id="deleteStudent">Delete student</button>
     </form>
 
 <h2>Current Login</h2>
@@ -153,7 +153,6 @@
       <th scope="col">№</th>
       <th scope="col">Category</th>
       <th scope="col">Accept</th>
-      <th scope="col">Counter</th>
     </tr>
 </table>
 
@@ -985,6 +984,17 @@ $.ajax({
 return false;
 
 });
+</script>
+
+<script>
+// Подтверждение удаления //
+function confirmDelete() {
+	if (confirm("Do you confirm the deletion?")) {
+		return true;
+	} else {
+		return false;
+	}
+}
 </script>
 
 <script>

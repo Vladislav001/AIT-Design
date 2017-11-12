@@ -35,30 +35,31 @@
 
 .main h2 {
 	font-size: 20px;
-	margin-top: 65px;
+	margin-top: 75px;
 	text-align: left;
 }
 
 /* Настройки размеров картинок НАЧАЛО*/
 .main .settings_entrance_input {
-  width: 50%;
+  width: 500px;
+  margin-bottom: 75px;
 }
 
 .main .settings_entrance {
-  width: 50%;
+  width: 500px;
 }
 
 .main .settings_entrance_input img {
 	float: left;
-	width: 10%;
-  height:7%;
+	width: 60px;
+  height: 70px;
 	border: 1px dotted #546E7A; /* Параметры границы */
 }
 
 .main .settings_entrance img {
 	float: left;
-	width: 10%;
-  height:7%;
+	width: 60px;
+  height: 70px;
   margin-top: 10px;
   margin-bottom: 20px;
 }
@@ -133,7 +134,7 @@ footer p {
 /* Настройка кнопок обновить/удалить студента НАЧАЛО*/
 .update-student {
   float: left;
-  width: 10%;
+  width: 125px;
   background-color: #0277BD;
   color: white;
   padding: 12px 10px;
@@ -146,7 +147,7 @@ footer p {
 
 .delete-student {
   float: right;
-  width: 10%;
+  width: 125px;
   background-color: #D50000;
   color: white;
   padding: 12px 10px;
