@@ -2,144 +2,135 @@
 <% layout('layout/page') -%>
 <% block('title') -%>
 
+<!-- LEFT START -->
+    <div class="main-and-sidebar-wrapper-left">
+      <form class="form-testImages" name="userTrainingSettings">
+        <section class="main-left">
 
-<form class="form-testSetting">
-<h3><b>Settings</b></h3>
+        <h2>Settings</h2>
 
 <div class="checkbox">
-  <label><input type="checkbox" value="<%=checkText%>" id="checkText" disabled><div class="text">Text</div></label>
+  <label><input type="checkbox" value="<%=checkText%>" id="checkText" disabled><label class="text"> Text</label></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="<%=checkSound%>" id="checkSound" disabled><div class="sound">Sound</div></label>
+  <label><input type="checkbox" value="<%=checkSound%>" id="checkSound" disabled><label class="sound"> Sound</label></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="<%=checkSwap%>" id="checkSwap" disabled><div class="swap">Swap</div></label>
+  <label><input type="checkbox" value="<%=checkSwap%>" id="checkSwap" disabled><label class="swap"> Swap</label></label>
 </div>
 <div class="checkbox checkSwapFinger">
-  <label id="checkSwapFingerText"><input type="checkbox" value="<%=checkSwapFinger%>" id="checkSwapFinger" disabled><div class="finger">Finger</div></label>
+  <label id="checkSwapFingerText"><input type="checkbox" value="<%=checkSwapFinger%>" id="checkSwapFinger" disabled><label class="finger"> Finger</label></label>
 </div>
 <div class="checkbox checkSwapArrows">
-  <label id="checkSwapArrowsText"><input type="checkbox" value="<%=checkSwapArrows%>" id="checkSwapArrows" disabled><div class="arrows">Arrows</div></label>
+  <label id="checkSwapArrowsText"><input type="checkbox" value="<%=checkSwapArrows%>" id="checkSwapArrows" disabled><label class="arrows"> Arrows</label></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value="<%=checkProgressBar%>" id="checkProgressBar" disabled><div class="progressBar">Progress bar</div></label>
+  <label><input type="checkbox" value="<%=checkProgressBar%>" id="checkProgressBar" disabled><label class="progressBar"> Progress bar</label></label>
 </div>
-  <div class="checkbox">
-    <label><input type="checkbox" value="<%=checkBtnResult%>" id="checkBtnResult" disabled><div class="btnResult">Btn Results</div></label>
-  </div>
+<div class="checkbox">
+  <label><input type="checkbox" value="<%=checkBtnResult%>" id="checkBtnResult" disabled><label class="btnResult"> Btn Results</label></label>
+</div>
+<br>
 
-    <div class="styleImages">
+<div class="styleImages">
 
-  <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
-  <div class="inputStyleImageSwap">
-  <input type="range" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" disabled>
-  </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+<h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
+<input type="range" name="styleImagesSwap" class="inputStyleImageSwap" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" disabled>
+<!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
-  <h5><b><div class="styleImageLikeDislike">Style Images: Like/Dislike</div></b></h5>
-  <div class="inputStyleImagesLikeDislike">
-  <input type="range" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike" disabled>
-  </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+<h5><b><div class="styleImageLikeDislike">Style Images: Like/Dislike</div></b></h5>
+<input type="range" name="styleImagesLikeDislike" class="inputStyleImagesLikeDislike" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike" disabled>
+<!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
-  <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
-  <div class="inputStyleImageStopTest">
-  <input type="range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest" disabled>
-  </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+<h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
+<input type="range" name="styleImageStopTest" class="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest" disabled>
+<!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
-  <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
-  <div class="inputStyleImageResults">
-    <input type="range" value="1" min="1" max="5" id="styleImagesResults" disabled>
-  </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+<h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
+  <input type="range" class="styleImageResults" value="1" min="1" max="5" id="styleImagesResults" disabled>
+<!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
-  <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
-  <div class="inputStyleImageFinish">
-  <input type="range" value="1" min="1" max="5" id="styleImagesFinish" disabled>
-  </div>
-  <button type="submit" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button>
+<h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
+<input type="range" class="styleImageFinish" value="1" min="1" max="5" id="styleImageFinish" disabled>
+<!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
-  </div>
+  <h6>Language</h6>
+<SELECT name="Language" type="text" class="select-language" id="input-Language" disabled>
+  <OPTION>English</OPTION>
+  <OPTION>Russian</OPTION>
+</SELECT>
 
+<button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button>
 
-    <br>
-    <h5><b>Language</b></h5>
-    <SELECT name="Language" type="text" class="form-control" id="input-Language" disabled>
-      <OPTION>English</OPTION>
-      <OPTION>Russian</OPTION>
-    </SELECT>
-
-
-  <br><br><br>
-  <!-- КОСТЫЛЬ - ОТПРАВКА В ДРУГОЙ ФОРМЕ>
-  <!-- <div class="form-group">
-    <label class="btn-acceptSettings">
-      <button type="submit" class="btn btn-primary" data-loading-text="Sending..." t>Accept settings</button>
-      <span class="help-block error"></span>
-      </label>
-  </div> -->
-
-</form>
-  </div>
-
-<form class="form-testImages" name="userTrainingSettings">
-  <h1><b>AIT</b></h1>
-
-<div class="ImageStopTest">
-  <input type='text' name='inputTitleStopTest' class="inputTitleStopTest" value="<%=textTitleStopTest%>" id="titleStopTest" placeholder="Button stop test">
-  <input type='text' name='inputTextStopTest' class="inputTextStopTest" value="<%=textStopTest%>" id="stopTest" placeholder="If you want to stop the test">
-  <img src="" class="img-responsive stopTest" id="imageStopTest">
 </div>
 
-    <div class="wrapper">
-    <div class="left">
-      <input type='text' name='inputTitleTextBack' class="inputTitleBack" value="<%=textTitleBackQuestion%>" id="titleBackText" placeholder="Button back">
-      <input type='text' name='inputTextBack' class="inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
-      <img src="" class="img-responsive notConstantly" id="imageBack">
-      <input type='text' name='inputTitleTextLike' class="inputTitleLike" value="<%=textTitleLikeQuestion%>" id="titleLikeQuestionText" placeholder="Button like">
-      <input type='text' name='inputTextLike' class="inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
-      <img src="" class="img-responsive constantly" id="imageLike">
+
+        </section>
     </div>
+  <!-- LEFT END -->
 
-    <div class="center">
-      <h3 class="notConstantly" id="textQuestion">Text question</h3>
-      <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+<!-- CENTER START -->
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+            <h1>AIT</h1>
+
+            <div class="main-left-part">
+              <input type='text' name='inputTitleTextBack' class="input-training-data inputTitleBack" value="<%=textTitleBackQuestion%>" id="titleBackText" placeholder="Button back">
+              <input type='text' name='inputTextBack' class="input-training-data inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
+              <img src="" class="img-responsive notConstantly" id="imageBack">
+              <input type='text' name='inputTitleTextLike' class="input-training-data inputTitleLike" value="<%=textTitleLikeQuestion%>" id="titleLikeQuestionText" placeholder="Button like">
+              <input type='text' name='inputTextLike' class="input-training-data inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
+              <img src="" class="img-responsive constantly" id="imageLike">
+            </div>
+
+            <div class="main-center-part">
+              <h3 class="notConstantly" id="textQuestion">Text question</h3>
+              <img src="/imagesDefault/1234.png" class="img-responsive constantly">
+            </div>
+
+            <div class="main-right-part">
+              <input type='text' name='inputTitleStopTest' class="input-training-data inputTitleStopTest" value="<%=textTitleStopTest%>" id="titleStopTest" placeholder="Button stop test">
+              <input type='text' name='inputTextStopTest' class="input-training-data inputTextStopTest" value="<%=textStopTest%>" id="stopTest" placeholder="If you want to stop the test">
+              <img src="" class="img-responsive stopTest" id="imageStopTest">
+              <input type='text' name='inputTitleTextNext' class="input-training-data inputTitleNext" value="<%=textTitleNextQuestion%>" id="titleNextText" placeholder="Button next">
+              <input type='text' name='inputTextNext' class="input-training-data inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
+              <img src="" class="img-responsive notConstantly" id="imageNext">
+              <input type='text' name='inputTitleTextDislike' class="input-training-data inputTitleDislike" value="<%=textTitleDislikeQuestion%>" id="titleDislikeQuestionText" placeholder="Button dislike">
+              <input type='text' name='inputTextDislike' class="input-training-data inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
+              <img src="" class="img-responsive constantly" id="imageDislike">
+            </div>
+
+            <div class="progress-bar" role="progressbar" id="progressBar"aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+            40%
+          </div>
+
+          <div class="pagination">
+            <a href="<%=linkTestSettings%>">Test</a>
+            <a class="active">User training</a>
+            <a href="<%=linkPreResultSettings%>">Pre-result</a>
+            <a href="<%=linkResultSettings%>">Result</a>
+            <a href="<%=linkFinishSettings%>">Finish</a>
+          </div>
+
+        </section>
+  </div>
+<!-- CENTER END -->
+
+  <!-- RIGHT START -->
+    <div class="main-and-sidebar-wrapper-right">
+        <section class="main-right">
+
+        </section>
+        </form>
     </div>
+  <!-- RIGHT END -->
 
-    <div class="right">
-      <input type='text' name='inputTitleTextNext' class="inputTitleNext" value="<%=textTitleNextQuestion%>" id="titleNextText" placeholder="Button next">
-      <input type='text' name='inputTextNext' class="inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
-      <img src="" class="img-responsive notConstantly" id="imageNext">
-      <input type='text' name='inputTitleTextDislike' class="inputTitleDislike" value="<%=textTitleDislikeQuestion%>" id="titleDislikeQuestionText" placeholder="Button dislike">
-      <input type='text' name='inputTextDislike' class="inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
-      <img src="" class="img-responsive constantly" id="imageDislike">
-    </div>
+    <!-- <footer>
+        <h3>Footer</h3>
+        <p>Something.</p>
+    </footer> -->
 
-</div>
-    <br><br>
-    <div class="progress" id="progressBar">
-      <div class="progress-bar progress-bar-striped active" role="progressbar"
-      aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-        40%
-      </div>
-    </div>
 
-<ul class="pagination">
-  <li><span><a href="<%=linkTestSettings%>">Test</a></span></li>
-  <li class="active"><a>User training</a></li>
-  <li><a href="<%=linkPreResultSettings%>">Pre-result</a></li>
-  <li><a href="<%=linkResultSettings%>">Result</a></li>
-  <li><a href="<%=linkFinishSettings%>">Finish</a></li>
-</ul>
-
-<div class="form-group">
-  <label class="btn-acceptSettings">
-    <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Accept settings</button>
-    <span class="help-block error"></span>
-    </label>
-</div>
-</form>
 
 <script>
 

@@ -1,116 +1,245 @@
-.navbar-default{
-	background-color: #ffffff;
-	    border-color: #ffffff;
+/* Левая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-left {
+    display: flex;
+    width: 17.5%;
+    margin-top: 150px;
 }
 
-h1 {
-  font-size: 120px;
-  font-family: serif;
-  text-align: center;
-	margin-right: 39%;
+.main-left {
+    text-align: left;
+    margin-left: 10px;
+
+    flex: 3;
 }
 
-.form-testSetting {
-  max-width: 330px;
-  float: left; /* Обтекание по правому краю */
-  padding: 15px;
-  margin-left: 1%;
-  margin-top: -1%;
+.main-left  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-.form-testSetting .form-control {
-    max-width: 120px;
-    max-height: 33px;
+.main-left  h5 {
+    font-size: 15px;
+    text-align: left;
 }
 
-.form-testSetting .btn-primary {
-  max-width:none;
+.main-left  h6 {
+    font-size: 13px;
+    text-align: center;
 }
 
-.form-testImages {
-  max-width: 75%;
-  float:right; /* Обтекание по правому краю */
-  padding: 15px;
-  margin-left: 5%;
-  margin-top: -6.5%;
+.main-left .checkbox {
+  margin-bottom: 5px;
+}
+/* Левая сторона КОНЕЦ*/
+
+
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 77.5%;
 }
 
-.form-testImages h3 {
-	text-align: center;
-	 border: 4px dotted #546E7A; /* Параметры границы */
+.main {
+    text-align: center;
+    flex: 3;
 }
 
-.form-testImages .constantly {
+/* Центр НАЧАЛО*/
+.main h1 {
+		margin-right: 17.83%;
+    font-size: 110px;
+    margin-bottom: 55px;
+    font-family: serif;
+}
+
+.main .constantly {
+    display: flex;
 	 border: 4px solid #546E7A; /* Параметры границы */
 }
 
-.form-testImages .notConstantly {
+.main .notConstantly {
 	 border: 4px dotted #546E7A; /* Параметры границы */
+}
+
+/* Левая часть Начало*/
+.main .main-left-part {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  margin-top: 100px;
+}
+
+.main .main-left-part .notConstantly {
+    height: 125px;
+		width: 200px;
+    margin-bottom: 30px;
+}
+
+.main .main-left-part .constantly {
+  height: 220px;
+  width: 200px;
+}
+/* Левая часть  КОНЕЦ*/
+
+/* Центральная часть Начало*/
+.main .main-center-part {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 300px;
+  margin-top: -450px;
+}
+
+.main .main-center-part .notConstantly {
+margin-bottom: 10px;
+}
+
+.main .main-center-part .constantly {
+  height: 450px;
+  width: 430px;
+}
+/* Центральная часть  КОНЕЦ*/
+
+/* Правая часть Начало*/
+.main .main-right-part {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 750px;
+  margin-top: -415px;
+}
+
+.main .main-right-part .notConstantly {
+  height: 125px;
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.main .main-right-part .constantly {
+  height: 220px;
+  width: 200px;
 }
 
 .stopTest {
     height: 125px;
-    width: 190px;
-		margin-left: 83.2%;
-    float:left;; /* Обтекание по правому краю */
-    margin-top: -8%;
-		margin-bottom: -2%;
+    width: 200px;
+		margin-top: -150px;
+		margin-bottom: 25px;
     border: 4px solid #546E7A; /* Параметры границы */
 }
+/* Правая часть  КОНЕЦ*/
 
 
-.wrapper {overflow: hidden; width:875px; }
-
-.left {float: left; width: 190px; margin-right: 3%; margin-top: -3.5%;}
-.left .notConstantly {
-    height: 125px;
-		width: 200px;
-		margin-top: 100px;
-}
-.left .constantly {
-    height: 220px;
-		width: 200px;
-		margin-top: 35px;
-}
-
-.center {float: left;  width: 420px;  margin-right: 3%; margin-top: -2%}
-.center .constantly {
-    height: 450px;
-	  width: 430px;
-}
-
-.right {float: left; width: 190px; margin-top: -3.5%;}
-.right .notConstantly {
-    height: 125px;
-		width: 200px;
-		margin-top: 100px;
-}
-.right .constantly {
-    height: 220px;
-		width: 200px;
-		margin-top: 35px;
-}
-
-.form-testImages .progress {
-  height: 35px;
+.main .progress-bar {
+  margin-top: 75px;
+  margin-left: 80px;
+  height: 25px;
+  width: 92%;
   background-color: #BDBDBD;
-	 border: 4px dotted #546E7A; /* Параметры границы */
+	border: 4px dotted #546E7A; /* Параметры границы */
 }
 
-.form-testImages .pagination {
-  margin-left: 235px;
+/* Пагинация ГАЧАЛО*/
+.pagination {
+    margin-top: 35px;
+    display: inline-block;
 }
 
-.styleImages .settings{
-height: 22px;
-width: 40px;
-padding: 0px;
-float:left;; /* Обтекание по правому краю */
-  margin-left: 105%;
-  margin-top: -18%;
+.pagination a {
+    color: black;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
+.pagination a.active {
+    background-color: #0277BD;
+    color: white;
+    border-radius: 5px;
+}
+/* Пагинация КОНЕЦ*/
+/* Центер КОНЕЦ*/
 
+
+/* Правая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-right {
+    display: flex;
+    width: 5%;
+    margin-top: 150px;
+}
+
+.main-right {
+    text-align: center;
+    margin-right: 10px;
+
+    flex: 3;
+}
+
+.main-right  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+/* Правая сторона КОНЕЦ*/
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+
+/* Настройки размеров полей ввода НАЧАЛО*/
+.select-language {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-training-data {
+  width: 300px;
+  padding: 6px 5px;
+	position:absolute;
+	z-index: 2;
+	border-radius: 5px;
+	border: 4px dotted #546E7A; /* Параметры границы */
+	color:red;
+	background-color: #B0BEC5;
+}
+/* Настройки размеров полей ввода КОНЕЦ*/
+
+
+/* Настройки кнопки добавить студента НАЧАЛО*/
+.update-test-settings {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Настройки кнопки добавить студента КОНЕЦ*/
+
+/* Настройки слайдбаров выбора картинок НАЧАЛО*/
 input[type=range] {
   -webkit-appearance: none;
   margin: 15px 0;
@@ -143,13 +272,9 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #BDBDBD;
 }
+/* Настройки слайдбаров выбора картинок КОНЕЦ*/
 
-/*КОСТЫЛИНА*/
-.form-group .btn-acceptSettings {
-	margin-left: -30.9%;
-	margin-top: -13.15%;
-}
-
+/* Настройки видимости элементов НАЧАДЛ*/
 .text, .sound, .swap, .finger, .arrows, .progressBar,
 .btnResult, .styleImagesSwap, .styleImageLikeDislike,
 .styleImageStopTest, .styleImageResults,
@@ -158,190 +283,70 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .inputStyleImageResults, .styleImageStopTest, .inputStyleImageFinish  {
 	opacity: 0.4;
 }
-
-.ImageStopTest {
-	margin-right: 9%;
-}
-
-#styleStopTest_1{
-	display: none;
-}
-
-#styleStopTest_2{
-	display: none;
-}
+/* Настройки видимости элементов КОНЕЦ*/
 
 
-
-.inputTitleStopTest {
-	position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: -6%;
-	margin-left: 41.5%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
- 	background-color: #B0BEC5;
-}
-
-.inputTextStopTest {
-	position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: -2%;
-	margin-left: 41.5%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
-	background-color: #B0BEC5;
-}
-
-
-
+/* Настройки инпутов инструкций НАЧАЛО*/
 .inputTitleBack {
-	position:absolute;
-	width: 23%;
 	z-index: 2;
-	margin-top: 7%;
-	margin-left: 3%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
-	color:red;
-	background-color: #B0BEC5;
+	margin-top: -15px;
+	margin-left: 25px;
 }
 
-.inputBack{
-  position:absolute;
-	width: 23%;
+.inputBack {
   z-index: 2;
-	margin-top: 11%;
-	margin-left: 3%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
-	background-color: #B0BEC5;
+	margin-top: 30px;
+	margin-left: 25px;
 }
 
-.inputTitleNext{
-	position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: 7%;
-	margin-left: -11%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
-	background-color: #B0BEC5;
+.inputTitleNext {
+  margin-left: -125px;
+	margin-top: -15px;
 }
 
-.inputNext{
-  position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: 11%;
-	margin-left: -11%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
-	background-color: #B0BEC5;
+.inputNext {
+  margin-left: -125px;
+	margin-top: 30px;;
 }
 
 .inputTitleLike {
-	  position:absolute;
-		width: 23%;
-	  z-index: 2;
-		margin-top: 2%;
-		margin-left: 3%;
-		border-radius: 5px;
-		border: 4px dotted #546E7A; /* Параметры границы */
-	 	color:red;
-	 	background-color: #B0BEC5;
+  margin-top: 140px;
+	margin-left: 25px;
 }
 
-.inputLike{
-  position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: 6%;
-	margin-left: 3%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
- 	background-color: #B0BEC5;
+.inputLike {
+  margin-top: 185px;
+  margin-left: 25px;
 }
 
 .inputTitleDislike {
-	position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: 2%;
-	margin-left: -11%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
- 	background-color: #B0BEC5;
+  margin-left: -125px;
+	margin-top: 140px;
 }
 
-.inputDislike{
-  position:absolute;
-	width: 23%;
-  z-index: 2;
-	margin-top: 6%;
-	margin-left: -11%;
-	border-radius: 5px;
-	border: 4px dotted #546E7A; /* Параметры границы */
- 	color:red;
- 	background-color: #B0BEC5;
+.inputDislike {
+  margin-left: -125px;
+  margin-top: 185px;
 }
 
-
-/* МЕДИА ЗАПРОСЫ - АДАПТИВНОСТЬ ПОД РАЗНЫЕ РАЗМЕРЫ ЭКРАНА */
-/* Large Devices, Wide Screens */
-@media only screen and (max-width : 1200px) {
-
-	.form-testImages {
-	  max-width: 75%;
-	  float:right; /* Обтекание по правому краю */
-	  padding: 15px;
-	  margin-left: 5%;
-	  margin-top: -50%;
-	}
-
-	.ImageStopTest {
-		margin-right: 6%;
-	}
-
+.inputTitleStopTest {
+	margin-left: -125px;
+	margin-top: -165px;
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-
-	.navbar-default{
-		background-color: red;
-		    border-color: red;
-	}
+.inputTextStopTest {
+  margin-left: -125px;
+	margin-top: -120px;
 }
+/* Настройки инпутов инструкций  КОНЕЦ*/
 
-/* Small Devices, Tablets */
-@media only screen and (max-width : 767px) {
+@media (max-width: 600px) {
+    .main-and-sidebar-wrapper {
+        flex-direction: column;
+    }
 
-	.navbar-default{
-		background-color: red;
-		    border-color: red;
-	}
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 480px) {
-
-	.navbar-default{
-		background-color: red;
-		    border-color: red;
-	}
-}
-
-@media only screen and (min-width : 993px) {
-
-
+    .main {
+        margin-right: 0;
+        margin-bottom: 60px;
+    }
 }
