@@ -1,130 +1,242 @@
-.navbar-default{
-	background-color: #ffffff;
-	    border-color: #ffffff;
+/* Левая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-left {
+    display: flex;
+    width: 17.5%;
+    margin-top: 150px;
 }
 
-h1 {
-  font-size: 120px;
-  font-family: serif;
-  text-align: center;
-	margin-right: 43%;
+.main-left {
+    text-align: left;
+    margin-left: 10px;
+
+    flex: 3;
 }
 
-.form-testSetting {
-  max-width: 330px;
-  float: left; /* Обтекание по правому краю */
-  padding: 15px;
-  margin-left: 1%;
-  margin-top: -1%;
+.main-left  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-.form-testSetting .form-control {
-    max-width: 120px;
-    max-height: 33px;
+.main-left  h5 {
+    font-size: 15px;
+    text-align: left;
 }
 
-.form-testSetting .btn-primary {
-  max-width:none;
+.main-left  h6 {
+    font-size: 13px;
+    text-align: center;
 }
 
-.form-testImages {
-  max-width: 75%;
-  float:right; /* Обтекание по правому краю */
-  padding: 15px;
-  margin-left: 5%;
-  margin-top: -6.5%;
+.main-left .checkbox {
+  margin-bottom: 5px;
+}
+/* Левая сторона КОНЕЦ*/
+
+
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 77.5%;
 }
 
-.form-testImages h3 {
-	text-align: center;
+.main {
+    text-align: center;
+    flex: 3;
+}
+
+/* Центр НАЧАЛО*/
+.main h1 {
+		margin-right: 17.83%;
+    font-size: 110px;
+    margin-bottom: 55px;
+    font-family: serif;
+}
+
+.main .constantly {
+    display: flex;
+	 border: 4px solid #546E7A; /* Параметры границы */
+}
+
+.main .notConstantly {
 	 border: 4px dotted #546E7A; /* Параметры границы */
 }
+/* Центр КОНЕЦ*/
 
-.form-testImages .constantly {
-	 border: 3px solid #546E7A; /* Параметры границы */
+/* Левая часть Начало*/
+.main .main-left-part {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  margin-top: 100px;
 }
 
-#SecondCategory {
-  margin-left: 140px;
-  margin-top: -31%;
+.main .main-left-part .notConstantly {
+    height: 125px;
+		width: 200px;
+    margin-bottom: 30px;
 }
 
-#ThirdCategory {
-  margin-left: 280px;
-  margin-top: -30.75%;
+.main .main-left-part .constantly {
+  height: 220px;
+  width: 200px;
+
+}
+/* Левая часть  КОНЕЦ*/
+
+/* Центральная часть Начало*/
+.main .main-center-part {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 300px;
+  margin-top: -440px;
 }
 
-#Fourthategory {
-  margin-left: 70px;
+.main .main-center-part .constantly {
+	height: 120px;
+  width: 143px;
 }
 
-#FifthCategory {
-  margin-left: 210px;
-  margin-top: -31%;
+.main .main-center-part .notConstantly {
+  margin-top: -10px;
+	margin-bottom: 7px;
 }
 
-.form-testImages .notConstantly {
-	 border: 4px dotted #546E7A; /* Параметры границы */
+.main .five_images_first_row img {
+  margin-top: 5px;
+	float: left;
+	display: flex;
+	flex-direction: row;
+}
+
+.main .five_images_secong_row {
+	float: left;
+	display: flex;
+	flex-direction: row;
+  margin-left: 75px;
+}
+/* Центральная часть  КОНЕЦ*/
+
+/* Правая часть Начало*/
+.main .main-right-part {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 750px;
+  margin-top: -375px;
+}
+
+.main .main-right-part .notConstantly {
+  height: 125px;
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.main .main-right-part .constantly {
+  height: 220px;
+  width: 200px;
 }
 
 .stopTest {
     height: 125px;
-    width: 190px;
-		margin-left: 83.2%;
-    float:left;; /* Обтекание по правому краю */
-    margin-top: -8%;
-		margin-bottom: -2%;
+    width: 200px;
+		margin-top: -150px;
+		margin-bottom: 25px;
     border: 4px solid #546E7A; /* Параметры границы */
 }
+/* Правая часть  КОНЕЦ*/
 
 
-.wrapper {overflow: hidden; width:875px; }
 
-.left {float: left; width: 190px; margin-right: 3%; margin-top: -3.5%;}
-.left .notConstantly {
-    height: 125px;
-		width: 200px;
-		margin-top: 100px;
-}
-.left .constantly {
-    height: 220px;
-		width: 200px;
-		margin-top: 35px;
+/* Пагинация ГАЧАЛО*/
+.pagination {
+    margin-top: 135px;
+    display: inline-block;
 }
 
-.center {float: left;  width: 420px;  margin-right: 3%; margin-top: -2%}
-.center .constantly {
-    height: 130px;
-	  width: 140px;
+.pagination a {
+    color: black;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
-.right {float: left; width: 190px; margin-top: -3.5%;}
-.right .notConstantly {
-    height: 125px;
-		width: 200px;
-		margin-top: 100px;
+.pagination a.active {
+    background-color: #0277BD;
+    color: white;
+    border-radius: 5px;
 }
-.right .constantly {
-    height: 220px;
-		width: 200px;
-		margin-top: 35px;
-}
-
-.form-testImages .pagination {
-  margin-left: 235px;
-  margin-top: 12.5%;
-}
-
-.styleImages .settings{
-height: 22px;
-width: 40px;
-padding: 0px;
-float:left;; /* Обтекание по правому краю */
-  margin-left: 105%;
-  margin-top: -18%;
-}
+/* Пагинация КОНЕЦ*/
+/* Центер КОНЕЦ*/
 
 
+/* Правая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-right {
+    display: flex;
+    width: 5%;
+    margin-top: 150px;
+}
+
+.main-right {
+    text-align: center;
+    margin-right: 10px;
+
+    flex: 3;
+}
+
+.main-right  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+/* Правая сторона КОНЕЦ*/
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+
+/* Настройки размеров полей ввода НАЧАЛО*/
+.select-language {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* Настройки размеров полей ввода КОНЕЦ*/
+
+/* Настройки кнопки добавить студента НАЧАЛО*/
+.update-test-settings {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Настройки кнопки добавить студента КОНЕЦ*/
+
+/* Настройки слайдбаров выбора картинок НАЧАЛО*/
 input[type=range] {
   -webkit-appearance: none;
   margin: 15px 0;
@@ -157,51 +269,24 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #BDBDBD;
 }
+/* Настройки слайдбаров выбора картинок КОНЕЦ*/
 
-.form-group .btn-acceptSettings {
-	margin-left: 75px;
-}
-
+/* Настройки видимости элементов НАЧАДЛ*/
 .text, .sound, .swap, .finger, .arrows, .progressBar, .btnResult, .inputStyleImageSwap, .inputStyleImagesLikeDislike,
 .inputStyleImagesStopTest, .inputStyleImageResults, .inputStyleImageFinish, .styleImagesSwap,
-.styleImagesLikeDislike, .styleImageStopTest, .ImageStopTest, .styleImageResults, .styleImageFinish,
+.styleImagesLikeDislike, .styleImageStopTest, .main-left-part, .main-right-part, .styleImageResults, .styleImageFinish,
 .left, .right, #textCategory  {
 	opacity: 0.4;
 }
+/* Настройки видимости элементов КОНЕЦ*/
 
-.ImageStopTest {
-	margin-right: 9%;
-}
+@media (max-width: 600px) {
+    .main-and-sidebar-wrapper {
+        flex-direction: column;
+    }
 
-#styleStopTest_1{
-	display: none;
-}
-
-#styleStopTest_2{
-	display: none;
-}
-
-/* МЕДИА ЗАПРОСЫ - АДАПТИВНОСТЬ ПОД РАЗНЫЕ РАЗМЕРЫ ЭКРАНА */
-/* Large Devices, Wide Screens */
-@media only screen and (max-width : 1200px) {
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (max-width : 767px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 480px) {
-
-}
-
-@media only screen and (min-width : 993px) {
-
+    .main {
+        margin-right: 0;
+        margin-bottom: 60px;
+    }
 }
