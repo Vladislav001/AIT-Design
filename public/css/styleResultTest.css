@@ -2,7 +2,6 @@
 .main-and-sidebar-wrapper-left {
     display: flex;
     width: 2.5%;
-    margin-top: 200px;
 }
 
 .main-left {
@@ -17,6 +16,7 @@
 .main-and-sidebar-wrapper {
     display: flex;
     width: 95%;
+    margin-top: 100px;
 }
 
 .main {
@@ -26,13 +26,6 @@
 }
 
 /* Центр НАЧАЛО*/
-.main h1 {
-    margin-right: 1.385%;
-    font-size: 110px;
-    margin-bottom: 55px;
-    font-family: serif;
-}
-
 .main h2 {
 	font-size: 20px;
 	margin-top: 75px;
@@ -88,7 +81,6 @@
 .main-and-sidebar-wrapper-right {
     display: flex;
     width: 2.5%;
-    margin-top: 200px;
 }
 
 .main-right {

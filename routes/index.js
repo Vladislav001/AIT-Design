@@ -30,6 +30,4 @@ module.exports = function(app) {
   // ПРОВЕРИТЬ ПУТЬ !!!
   //app.post('/updateTestSettings', require('./updateSettings/updateTestSettings').post);
 
-
-  app.get('/getAllUsersInJSON', require('./getAllUsersInJSON').get);
 };

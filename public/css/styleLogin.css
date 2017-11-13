@@ -1,95 +1,88 @@
+/* Костылина для надписи AIT и скрытия навбара*/
 h1 {
-  font-size: 120px;
-  font-family: serif;
-  text-align: center;
-  margin-top: 9.35%;
+  margin-right: 16.5px;
 }
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-  margin-top: 2%;
-}
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
+nav {
+  visibility: hidden;
 }
 
-.form-signin .btn-signin {
-  align-content: center;
-  text-align: center;
-}
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.btn-signin{
-  width: 300px;
-}
-.headReg{
-  text-align: center;
-}
-.form-group{
-  border-radius: 4px !important;
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 25%;
+    margin-left: 37%;
 }
 
-
-/* МЕДИА ЗАПРОСЫ - АДАПТИВНОСТЬ ПОД РАЗНЫЕ РАЗМЕРЫ ЭКРАНА */
-/* Large Devices, Wide Screens */
-@media only screen and (max-width : 1200px) {
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (max-width : 767px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 480px) {
-
-  h1 {
-    font-size: 120px;
-    font-family: serif;
+.main {
     text-align: center;
-    margin-top: 2%;
-  }
-
-  .form-signin {
-    max-width: 530px;
-    padding: 15px;
-    margin: 0 auto;
-    margin-top: -4%;
-  }
-
+    flex: 3;
 }
 
-@media only screen and (min-width : 993px) {
+.main p {
+    visibility: hidden;
+}
+
+.main a {
+    color: #2196F3; /* Цвет обычной ссылки */
+   }
+
+
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+
+/* Настройки размеров полей ввода НАЧАЛО*/
+.input-personal-data {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* Настройки размеров полей ввода КОНЕЦ*/
+
+/* Настройки кнопки добавить студента НАЧАЛО*/
+.authorization {
+  width: 100%;
+  background-color: #0277BD;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+/* Настройки кнопки добавить студента КОНЕЦ*/
+
+
+
+
+@media (max-width: 600px) {
+    .main-and-sidebar-wrapper {
+        flex-direction: column;
+    }
+
+    .main {
+        margin-right: 0;
+        margin-bottom: 60px;
+    }
 
 }

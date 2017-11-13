@@ -24,12 +24,12 @@ app.set('views', __dirname + '/template');
 
 // Движок для шаблонов - ejs
 app.set('view engine', 'ejs');
-
+   
 // connect-овский middleware (стандартный)
 // если url вот такой /favicon.ico, то читает favico-ку,
 // а иначе передает управление дальше
 app.use(express.favicon());
- 
+
 // logger - middleware (стандартный )
 if (app.get('env') == 'development') {
   // Выводит запись о том, что же за запрос нам пришел - в консоли(например GET / 404 7ms)

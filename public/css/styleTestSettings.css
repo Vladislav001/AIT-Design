@@ -1,8 +1,12 @@
+/* Костылина для надписи AIT */
+h1 {
+  margin-right: 16.5px;
+}
+
 /* Левая сторона НАЧАЛО*/
 .main-and-sidebar-wrapper-left {
     display: flex;
     width: 17.5%;
-    margin-top: 150px;
 }
 
 .main-left {
@@ -45,12 +49,6 @@
 }
 
 /* Центр НАЧАЛО*/
-.main h1 {
-		margin-right: 17.83%;
-    font-size: 110px;
-    margin-bottom: 55px;
-    font-family: serif;
-}
 
 .main .constantly {
     display: flex;

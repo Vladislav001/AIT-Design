@@ -1,43 +1,45 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/styleLogin.css">
 
+<% layout('layout/page') -%>
 <% block('title') -%>
 
-<h1 id="AIT"><b>AIT</b></h1>
-
 <form class="form-signin" name="login_form">
-  <h2><b><center>Authorization</center></b></h2>
-  <h5><center>Please log in to your account.</center></h5>
-  <div class="form-group">
-    <input name="email" type="email" class="form-control" id="input-email" placeholder="Email">
-  </div>
-  <div class="form-group">
-      <input name="password" type="password" class="form-control" id="input-password" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label class="btn-signin">
-      <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Sending...">Enter</button>
-      <span class="help-block error"></span>
-      </label>
-  </div>
-  <a href="restorePassword">Forgot your password?</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="registration">Registration</a>
+
+<!-- CENTER START -->
+<div class="main-and-sidebar-wrapper">
+    <section class="main">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+          <h2><b><center>Authorization</center></b></h2>
+          <h5><center>Please log in to your account.</center></h5>
+
+          <input name="email" type="email" class="input-personal-data" id="input-email" placeholder="Email">
+          <input name="password" type="password" class="input-personal-data" id="input-password" placeholder="Password">
+
+          <button type="submit" class="authorization" data-loading-text="Sending...">Enter</button>
+          <span class="help-block error"></span>
+
+
+          <a href="restorePassword" class="restorePassword">Forgot your password?</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="registration" class="registration">Registration</a>
+    </section>
+</div>
+<!-- CENTER END -->
+
+
+  <!-- <footer>
+      <h3>Footer</h3>
+      <p>Something.</p>
+  </footer> -->
 </form>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="js/bootstrap.min.js"></script> -->
 
-    <!-- <label>
-        <textarea name="message" style="display:block;width:400px;height:80px"></textarea>
-      </label> -->
     <script>
-
     // Клиентский код //
     // Человек вводит логин, пароль
       $(document.forms['login_form']).on('submit', function() {
