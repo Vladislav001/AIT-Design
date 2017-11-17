@@ -15,6 +15,9 @@ var configFirebase = require ('./config/configFirebase');
 
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 
 // ejs-locals(шаблонная система) - почти тоже, что и ejs, но есть layoyt partial block
 app.engine('ejs', require('ejs-locals')); //т.е ejs не очень хорошо справляется с тем, что должно быть много почти одинаковых страних
@@ -24,7 +27,7 @@ app.set('views', __dirname + '/template');
 
 // Движок для шаблонов - ejs
 app.set('view engine', 'ejs');
-   
+
 // connect-овский middleware (стандартный)
 // если url вот такой /favicon.ico, то читает favico-ку,
 // а иначе передает управление дальше
@@ -94,9 +97,67 @@ app.use(express.static(path.join(__dirname, './public')));
 
 
 var port = process.env.PORT || 5000;
-app.listen(port, function() {
+server.listen(port, function() {
   console.log("Listening on " + port);
 });
+
+
+// Обновление настроек теста на СОКЕТАХ
+io.on('connection', function(socket) {
+
+  socket.on('message', function(data) {
+    socket.broadcast.emit('new message', data);
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        var refStudents = firebase.database().ref("students/" + data.userID);
+
+        refStudents.once("value")
+          .then(function(snapshot) {
+            var currentTest = snapshot.child('current_test').val();
+
+            //Формируем узлы с номерами тестов и соответствующими под-узлами
+            var refNewTest = refStudents.child("tests/" + currentTest);
+
+            //Текст
+            socket.on('message', function(data) {
+              socket.broadcast.emit('new message', data);
+              var refNewTestSettings = refNewTest.child("/settings");
+              var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+              //var refNewTestPreTest = refNewTest.child("/pre_test");
+
+              var refNewTestSettings = refNewTestSettings.update({
+                text: data.text,
+                sound: data.sound,
+                swap: data.swap,
+                swap_finger: data.swap_finger,
+                swap_arrows: data.swap_arrows,
+                progress_bar: data.progress_bar,
+                btn_results: data.btn_results
+              });
+
+              var refNewTestManageButtons = refNewTestManageButtons.update({
+                style_images_swap_arrows: data.style_images_swap_arrows,
+                style_images_like_dislike: data.style_images_like_dislike,
+                style_image_stop_test: data.style_image_stop_test,
+                style_image_results: data.style_image_results,
+                style_image_finish: data.style_image_finish
+              });
+
+              // var refNewTestPreTest = refNewTestPreTest.update({
+              //   title_text_btn_back: data.title_text_btn_back
+              // });
+
+console.log(socket.id);
+
+            })
+        });
+      }
+    });
+  })
+})
+
+
 
 // Вешаем http сервер -> express будет обрабатывать все приходящие запросы
 // http.createServer(app).listen(5000, function(){

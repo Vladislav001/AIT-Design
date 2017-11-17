@@ -35,11 +35,11 @@
 <div class="styleImages">
 
 <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
-<input type="range" class="inputStyleImageSwap" name="styleImagesSwap" value="1" min="0" max="1" id="styleImagesSwap" disabled>
+<input type="range" class="inputStyleImageSwap" name="styleImagesSwap" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImagesLikeDislike">Style Images: Like/Dislike</div></b></h5>
-<input type="range" name="styleImagesLikeDislike" class="inputStyleImagesLikeDislike" value="1" min="0" max="1" id="styleImagesLikeDislike" disabled>
+<input type="range" name="styleImagesLikeDislike" class="inputStyleImagesLikeDislike" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageStopTest">Style Image: STOP TEST</div></b></h5>
@@ -47,11 +47,11 @@
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
-<input type="range" class="inputStyleImageResults" name="styleImageResult" value="1" min="0" max="1" id="styleImageResult" disabled>
+<input type="range" class="inputStyleImageResults" name="styleImageResult" value="<%=styleImageResults%>" min="0" max="1" id="styleImageResult" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
-<input type="range" class="styleImageFinish" name="styleImageFinish" value="<%=styleImageFinish%>" min="0" max="1" id="styleImageFinish">
+<input type="range" class="styleImageFinish checkbox_range" name="styleImageFinish" value="<%=styleImageFinish%>" min="0" max="1" id="styleImageFinish">
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
   <h6>Language</h6>
@@ -60,7 +60,7 @@
   <OPTION>Russian</OPTION>
 </SELECT>
 
-<button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button>
+<!-- <button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button> -->
 
 </div>
 
@@ -112,6 +112,62 @@
         <h3>Footer</h3>
         <p>Something.</p>
     </footer> -->
+
+
+    <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+    // Обновление настроек теста на СОКЕТАХ
+          var socket = io.connect();
+          var id = "<%=id%>";
+
+          var modifiedElement = document.querySelectorAll('.checkbox_range')
+
+          for(var i=0; i < modifiedElement.length; i++){
+              modifiedElement[i].addEventListener('change', ev => {
+
+                // Чекбоксы
+                let checkText = $("#checkText").is(':checked');
+                let checkSound = $("#checkSound").is(':checked');
+                let checkSwap = $("#checkSwap").is(':checked');
+                let checkSwapFinger = $("#checkSwapFinger").is(':checked');
+                let checkSwapArrows = $("#checkSwapArrows").is(':checked');
+                let checkProgressBar = $("#checkProgressBar").is(':checked');
+                let checkBtnResult = $("#checkBtnResult").is(':checked');
+
+                // Ranges
+                let styleImagesSwap = $("#styleImagesSwap").val();
+                let styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
+                let styleImageStopTest = $("#styleImageStopTest").val();
+                let styleImageResult = $("#styleImageResult").val();
+                let styleImageFinish = $("#styleImageFinish").val();
+
+                socket.emit('message', { text: String (checkText), sound: String (checkSound),
+                  swap: String (checkSwap), swap_finger: String (checkSwapFinger),
+                  swap_arrows: String (checkSwapArrows), progress_bar: String (checkProgressBar),
+                  btn_results: String (checkBtnResult),
+                   style_images_swap_arrows: String (styleImagesSwap),
+                   style_images_like_dislike: String (styleImagesLikeDislike),
+                   style_image_stop_test: String (styleImageStopTest),
+                   style_image_results: String (styleImageResult),
+                   style_image_finish: String (styleImageFinish),
+                    userID: id });
+
+
+                  // МАГИЯ - без этого со 2 раза срабатывает только
+                  console.log (socket.emit('message', { text: String (checkText), sound: String (checkSound),
+                    swap: String (checkSwap), swap_finger: String (checkSwapFinger),
+                    swap_arrows: String (checkSwapArrows), progress_bar: String (checkProgressBar),
+                    btn_results: String (checkBtnResult),
+                     style_images_swap_arrows: String (styleImagesSwap),
+                     style_images_like_dislike: String (styleImagesLikeDislike),
+                     style_image_stop_test: String (styleImageStopTest),
+                     style_image_results: String (styleImageResult),
+                     style_image_finish: String (styleImageFinish),
+                     userID: id }) + " socket");
+            })
+          }
+        </script>
 
 <script>
 

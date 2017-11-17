@@ -70,8 +70,11 @@ exports.get = function(req, res) {
 
             refStudentsManageButtons.once("value")
              .then(function(snapshotManageButtons) {
+               var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
+               var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
                var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
                var styleImageResult = snapshotManageButtons.child('style_image_results').val();
+               var styleImageFinish = snapshotManageButtons.child('style_image_finish').val();
 
                res.render("pre-resultSettings", {
                   //  loginStudent: loginStudent,
@@ -91,8 +94,11 @@ exports.get = function(req, res) {
                    checkProgressBar: checkProgressBar,
                    checkBtnResult: checkBtnResult,
 
+                   styleImagesSwap: styleImagesSwap,
+                   styleImagesLikeDislike: styleImagesLikeDislike,
                    styleImageStopTest: styleImageStopTest,
-                   styleImageResult: styleImageResult
+                   styleImageResult: styleImageResult,
+                   styleImageFinish: styleImageFinish
                  });
 
              });

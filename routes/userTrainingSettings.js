@@ -91,6 +91,8 @@ exports.get = function(req, res) {
               var styleImagesSwap = snapshotManageButtons.child('style_images_swap_arrows').val();
               var styleImagesLikeDislike = snapshotManageButtons.child('style_images_like_dislike').val();
               var styleImageStopTest = snapshotManageButtons.child('style_image_stop_test').val();
+              var styleImageResults = snapshotManageButtons.child('style_image_results').val();
+              var styleImageFinish = snapshotManageButtons.child('style_image_finish').val();
 
 
               refStudentsPreTest.once("value")
@@ -141,7 +143,9 @@ exports.get = function(req, res) {
 
                      styleImagesSwap: styleImagesSwap,
                      styleImagesLikeDislike: styleImagesLikeDislike,
-                     styleImageStopTest: styleImageStopTest
+                     styleImageStopTest: styleImageStopTest,
+                     styleImageResults: styleImageResults,
+                     styleImageFinish: styleImageFinish
                    });
                  });
 

@@ -46,11 +46,11 @@
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
-  <input type="range" class="inputStyleImageResults" value="1" min="1" max="5" id="styleImagesResults" disabled>
+  <input type="range" class="inputStyleImageResults" value="<%=styleImageResults%>" min="0" max="1" id="styleImagesResults" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
-<input type="range" class="inputStyleImageFinish" value="1" min="1" max="5" id="styleImageFinish" disabled>
+<input type="range" class="inputStyleImageFinish" value="<%=styleImageFinish%>" min="0" max="1" id="styleImageFinish" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
   <h6>Language</h6>
@@ -59,7 +59,7 @@
   <OPTION>Russian</OPTION>
 </SELECT>
 
-<button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button>
+<!-- <button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button> -->
 
 </div>
 
@@ -70,7 +70,7 @@
 
 <!-- CENTER START -->
     <div class="main-and-sidebar-wrapper">
-        <section class="main">        
+        <section class="main">
 
             <div class="main-left-part">
               <img src="" class="img-responsive notConstantly" id="imageBack">
