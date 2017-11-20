@@ -1,36 +1,35 @@
 // Модуль авторизации
 var firebase = require('firebase');
 
-exports.post = function(req, res, next) {
-
-  var styleImageFinish = req.body.styleImageFinish;
-
-
-  firebase.auth().onAuthStateChanged(user => {
-   if (user) {
-    var refStudents = firebase.database().ref("students/" + req.params.idTag);
-
-    refStudents.once("value")
-     .then(function(snapshot) {
-       var currentTest = snapshot.child('current_test').val();
-
-       //Формируем узлы с номерами тестов и соответствующими под-узлами
-      var refNewTest = refStudents.child("tests/" + currentTest);
-      var refNewTestSettings = refNewTest.child("/settings");
-      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
-
-      var refNewTestManageButtons = refNewTestManageButtons.update({
-       style_image_finish: styleImageFinish
-      });
-
-      //Для обновления страницы - костыль
-      var linkFinishSettings = "/" + currentTest + "/finish_settings/id" + req.params.idTag;
-      res.redirect(linkFinishSettings);
-     });
-    }
-  });
-
-};
+// Т.к перенес на сокеты - пока не нужно
+// exports.post = function(req, res, next) {
+//
+//   var styleImageFinish = req.body.styleImageFinish;
+//
+//   firebase.auth().onAuthStateChanged(user => {
+//    if (user) {
+//     var refStudents = firebase.database().ref("students/" + req.params.idTag);
+//
+//     refStudents.once("value")
+//      .then(function(snapshot) {
+//        var currentTest = snapshot.child('current_test').val();
+//
+//        //Формируем узлы с номерами тестов и соответствующими под-узлами
+//       var refNewTest = refStudents.child("tests/" + currentTest);
+//       var refNewTestSettings = refNewTest.child("/settings");
+//       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+//
+//       var refNewTestManageButtons = refNewTestManageButtons.update({
+//        style_image_finish: styleImageFinish
+//       });
+//
+//       //Для обновления страницы - костыль
+//       var linkFinishSettings = "/" + currentTest + "/finish_settings/id" + req.params.idTag;
+//       res.redirect(linkFinishSettings);
+//      });
+//     }
+//   });
+// };
 
 exports.get = function(req, res) {
 

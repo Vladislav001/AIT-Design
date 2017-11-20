@@ -60,7 +60,7 @@
   <OPTION>Russian</OPTION>
 </SELECT>
 
-<button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button>
+<!-- <button type="submit" class="update-test-settings" id="updateTestSettings" data-loading-text="Accepting...">Accept</button> -->
 
 </div>
 
@@ -75,11 +75,11 @@
 
 
             <div class="main-left-part">
-              <input type='text' name='inputTitleTextBack' class="input-training-data inputTitleBack" value="<%=textTitleBackQuestion%>" id="titleBackText" placeholder="Button back">
-              <input type='text' name='inputTextBack' class="input-training-data inputBack" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
+              <input type='text' name='inputTitleTextBack' class="input-training-data inputTitleBack checkbox_range" value="<%=textTitleBackQuestion%>" id="titleBackText" placeholder="Button back">
+              <input type='text' name='inputTextBack' class="input-training-data inputBack  checkbox_range" value="<%=textBackQuestion%>" id="backQuestionText" placeholder="If you want to return to the previous question">
               <img src="" class="img-responsive notConstantly" id="imageBack">
-              <input type='text' name='inputTitleTextLike' class="input-training-data inputTitleLike" value="<%=textTitleLikeQuestion%>" id="titleLikeQuestionText" placeholder="Button like">
-              <input type='text' name='inputTextLike' class="input-training-data inputLike" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
+              <input type='text' name='inputTitleTextLike' class="input-training-data inputTitleLike  checkbox_range" value="<%=textTitleLikeQuestion%>" id="titleLikeQuestionText" placeholder="Button like">
+              <input type='text' name='inputTextLike' class="input-training-data inputLike  checkbox_range" value="<%=textLikeQuestion%>" id="likeQuestionText" placeholder="If you like to click here">
               <img src="" class="img-responsive constantly" id="imageLike">
             </div>
 
@@ -89,14 +89,14 @@
             </div>
 
             <div class="main-right-part">
-              <input type='text' name='inputTitleStopTest' class="input-training-data inputTitleStopTest" value="<%=textTitleStopTest%>" id="titleStopTest" placeholder="Button stop test">
-              <input type='text' name='inputTextStopTest' class="input-training-data inputTextStopTest" value="<%=textStopTest%>" id="stopTest" placeholder="If you want to stop the test">
+              <input type='text' name='inputTitleStopTest' class="input-training-data inputTitleStopTest checkbox_range" value="<%=textTitleStopTest%>" id="titleStopTest" placeholder="Button stop test">
+              <input type='text' name='inputTextStopTest' class="input-training-data inputTextStopTest checkbox_range" value="<%=textStopTest%>" id="stopTest" placeholder="If you want to stop the test">
               <img src="" class="img-responsive stopTest" id="imageStopTest">
-              <input type='text' name='inputTitleTextNext' class="input-training-data inputTitleNext" value="<%=textTitleNextQuestion%>" id="titleNextText" placeholder="Button next">
-              <input type='text' name='inputTextNext' class="input-training-data inputNext" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
+              <input type='text' name='inputTitleTextNext' class="input-training-data inputTitleNext checkbox_range" value="<%=textTitleNextQuestion%>" id="titleNextText" placeholder="Button next">
+              <input type='text' name='inputTextNext' class="input-training-data inputNext checkbox_range" value="<%=textNextQuestion%>" id="nextQuestionText" placeholder="If you want to go to the text question">
               <img src="" class="img-responsive notConstantly" id="imageNext">
-              <input type='text' name='inputTitleTextDislike' class="input-training-data inputTitleDislike" value="<%=textTitleDislikeQuestion%>" id="titleDislikeQuestionText" placeholder="Button dislike">
-              <input type='text' name='inputTextDislike' class="input-training-data inputDislike" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
+              <input type='text' name='inputTitleTextDislike' class="input-training-data inputTitleDislike checkbox_range" value="<%=textTitleDislikeQuestion%>" id="titleDislikeQuestionText" placeholder="Button dislike">
+              <input type='text' name='inputTextDislike' class="input-training-data inputDislike checkbox_range" value="<%=textDislikeQuestion%>" id="dislikeQuestionText" placeholder="If you don't like to click here">
               <img src="" class="img-responsive constantly" id="imageDislike">
             </div>
 
@@ -143,45 +143,44 @@
           for(var i=0; i < modifiedElement.length; i++){
               modifiedElement[i].addEventListener('change', ev => {
 
-                // Чекбоксы
-                let checkText = $("#checkText").is(':checked');
-                let checkSound = $("#checkSound").is(':checked');
-                let checkSwap = $("#checkSwap").is(':checked');
-                let checkSwapFinger = $("#checkSwapFinger").is(':checked');
-                let checkSwapArrows = $("#checkSwapArrows").is(':checked');
-                let checkProgressBar = $("#checkProgressBar").is(':checked');
-                let checkBtnResult = $("#checkBtnResult").is(':checked');
+                // Текстовые инструкции
+                let titleTextBtnBack = $("#titleBackText").val();
+                let backQuestionText = $("#backQuestionText").val();
+                let titleLikeQuestionText = $("#titleLikeQuestionText").val();
+                let likeQuestionText = $("#likeQuestionText").val();
+                let titleStopTest = $("#titleStopTest").val();
+                let stopTest = $("#stopTest").val();
+                let titleNextText = $("#titleNextText").val();
+                let nextQuestionText = $("#nextQuestionText").val();
+                let titleDislikeQuestionText = $("#titleDislikeQuestionText").val();
+                let dislikeQuestionText = $("#dislikeQuestionText").val();
 
-                // Ranges
-                let styleImagesSwap = $("#styleImagesSwap").val();
-                let styleImagesLikeDislike = $("#styleImagesLikeDislike").val();
-                let styleImageStopTest = $("#styleImageStopTest").val();
-                let styleImageResult = $("#styleImageResult").val();
-                let styleImageFinish = $("#styleImageFinish").val();
-
-
-                socket.emit('message', { text: String (checkText), sound: String (checkSound),
-                  swap: String (checkSwap), swap_finger: String (checkSwapFinger),
-                  swap_arrows: String (checkSwapArrows), progress_bar: String (checkProgressBar),
-                  btn_results: String (checkBtnResult),
-                   style_images_swap_arrows: String (styleImagesSwap),
-                   style_images_like_dislike: String (styleImagesLikeDislike),
-                   style_image_stop_test: String (styleImageStopTest),
-                   style_image_results: String (styleImageResult),
-                   style_image_finish: String (styleImageFinish),
+                socket.emit('message_user_training', {
+                   title_text_btn_back: String (titleTextBtnBack),
+                   description_text_btn_back: String (backQuestionText),
+                   title_text_btn_like: String (titleLikeQuestionText),
+                   description_text_btn_like: String (likeQuestionText),
+                   title_text_btn_stop: String (titleStopTest),
+                   description_text_btn_stop: String (stopTest),
+                   title_text_btn_next: String (titleNextText),
+                   description_text_btn_next: String (nextQuestionText),
+                   title_text_btn_dislike: String (titleDislikeQuestionText),
+                   description_text_btn_dislike: String (dislikeQuestionText),
                     userID: id });
 
 
                   // МАГИЯ - без этого со 2 раза срабатывает только
-                  console.log (socket.emit('message', { text: String (checkText), sound: String (checkSound),
-                    swap: String (checkSwap), swap_finger: String (checkSwapFinger),
-                    swap_arrows: String (checkSwapArrows), progress_bar: String (checkProgressBar),
-                    btn_results: String (checkBtnResult),
-                     style_images_swap_arrows: String (styleImagesSwap),
-                     style_images_like_dislike: String (styleImagesLikeDislike),
-                     style_image_stop_test: String (styleImageStopTest),
-                     style_image_results: String (styleImageResult),
-                     style_image_finish: String (styleImageFinish),
+                  console.log (socket.emit('message_user_training', {
+                    title_text_btn_back: String (titleTextBtnBack),
+                    description_text_btn_back: String (backQuestionText),
+                    title_text_btn_like: String (titleLikeQuestionText),
+                    description_text_btn_like: String (likeQuestionText),
+                    title_text_btn_stop: String (titleStopTest),
+                    description_text_btn_stop: String (stopTest),
+                    title_text_btn_next: String (titleNextText),
+                    description_text_btn_next: String (nextQuestionText),
+                    title_text_btn_dislike: String (titleDislikeQuestionText),
+                    description_text_btn_dislike: String (dislikeQuestionText),
                      userID: id }) + " socket");
             })
           }
@@ -322,35 +321,35 @@ if (document.getElementById('checkBtnResult').value == "true") {
 
 <script>
 // Клиентский код //
-// name="testSetting" !!!
-  $(document.forms['userTrainingSettings']).on('submit', function() {
-    var form = $(this);
-
-    $('.error', form).html('');
-    $(":submit", form).button("loading");
-
-    // Этот логин, пароль отправляется на сервер
-    $.ajax({
-      url: "/updateUserTrainingSettings/id<%=id%>", // роут: require('./login').post
-      method: "POST",
-      data: form.serialize(),
-      complete: function() {
-        $(":submit", form).button("reset");
-      },
-      statusCode: {
-        // если ответ сервера 200 - перенаправляем человека в личный кабинет
-        200: function() {
-          location.reload();
-        },
-        // если 403 - высвечивается ошибка
-        403: function(jqXHR) {
-          var error = JSON.parse(jqXHR.responseText);
-          $('.error', form).html(error.message);
-        }
-      }
-    });
-  return false;
-  });
+// Т.к перенес на сокеты - пока не нужно
+  // $(document.forms['userTrainingSettings']).on('submit', function() {
+  //   var form = $(this);
+  //
+  //   $('.error', form).html('');
+  //   $(":submit", form).button("loading");
+  //
+  //   // Этот логин, пароль отправляется на сервер
+  //   $.ajax({
+  //     url: "/updateUserTrainingSettings/id<%=id%>", // роут: require('./login').post
+  //     method: "POST",
+  //     data: form.serialize(),
+  //     complete: function() {
+  //       $(":submit", form).button("reset");
+  //     },
+  //     statusCode: {
+  //       // если ответ сервера 200 - перенаправляем человека в личный кабинет
+  //       200: function() {
+  //         location.reload();
+  //       },
+  //       // если 403 - высвечивается ошибка
+  //       403: function(jqXHR) {
+  //         var error = JSON.parse(jqXHR.responseText);
+  //         $('.error', form).html(error.message);
+  //       }
+  //     }
+  //   });
+  // return false;
+  // });
 </script>
 
 

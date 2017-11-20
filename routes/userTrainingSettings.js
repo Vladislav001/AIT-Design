@@ -1,59 +1,60 @@
 // Модуль авторизации
 var firebase = require('firebase');
 
-exports.post = function(req, res, next) {
-
-  var textTitleStopTest = req.body.inputTitleStopTest;
-  var textTitleBackQuestion = req.body.inputTitleTextBack;
-  var textTitleNextQuestion = req.body.inputTitleTextNext;
-  var textTitleLikeQuestion = req.body.inputTitleTextLike;
-  var textTitleDislikeQuestion = req.body.inputTitleTextDislike;
-
-  var textStopTest = req.body.inputTextStopTest;
-  var textBackQuestion = req.body.inputTextBack;
-  var textNextQuestion = req.body.inputTextNext;
-  var textLikeQuestion = req.body.inputTextLike;
-  var textDislikeQuestion = req.body.inputTextDislike;
-
-  firebase.auth().onAuthStateChanged(user => {
-   if (user) {
-    var refStudents = firebase.database().ref("students/" + req.params.idTag);
-
-    refStudents.once("value")
-     .then(function(snapshot) {
-      var currentTest = snapshot.child('current_test').val();
-
-       //Формируем узлы с номерами тестов и соответствующими под-узлами
-      var refNewTest = refStudents.child("tests/" + currentTest);
-      var refNewTestSettings = refNewTest.child("/settings");
-      var refStudentsPreTest = refStudents.child("tests/" + currentTest + "/pre_test/");
-      var refNewTestManageButtons = refNewTest.child("/manage_buttons");
-
-      var refNewTestSettings = refStudentsPreTest.update({
-       title_text_btn_stop: textTitleStopTest,
-       description_text_btn_stop: textStopTest,
-
-       title_text_btn_back: textTitleBackQuestion, // Заголовок
-       description_text_btn_back: textBackQuestion, // Описание
-
-       title_text_btn_next: textTitleNextQuestion,
-       description_text_btn_next: textNextQuestion,
-
-       title_text_btn_like: textTitleLikeQuestion,
-       description_text_btn_like: textLikeQuestion,
-
-       title_text_btn_dislike: textTitleDislikeQuestion,
-       description_text_btn_dislike: textDislikeQuestion
-      });
-
-      //Для обновления страницы - костыль
-      var linkUserTrainingSettings = "/" + currentTest + "/user_training_settings/id" + req.params.idTag;
-      res.redirect(linkUserTrainingSettings);
-     });
-    }
-  });
-
-};
+// Т.к перенес на сокеты - пока не нужно
+// exports.post = function(req, res, next) {
+// 
+//   var textTitleStopTest = req.body.inputTitleStopTest;
+//   var textTitleBackQuestion = req.body.inputTitleTextBack;
+//   var textTitleNextQuestion = req.body.inputTitleTextNext;
+//   var textTitleLikeQuestion = req.body.inputTitleTextLike;
+//   var textTitleDislikeQuestion = req.body.inputTitleTextDislike;
+//
+//   var textStopTest = req.body.inputTextStopTest;
+//   var textBackQuestion = req.body.inputTextBack;
+//   var textNextQuestion = req.body.inputTextNext;
+//   var textLikeQuestion = req.body.inputTextLike;
+//   var textDislikeQuestion = req.body.inputTextDislike;
+//
+//   firebase.auth().onAuthStateChanged(user => {
+//    if (user) {
+//     var refStudents = firebase.database().ref("students/" + req.params.idTag);
+//
+//     refStudents.once("value")
+//      .then(function(snapshot) {
+//       var currentTest = snapshot.child('current_test').val();
+//
+//        //Формируем узлы с номерами тестов и соответствующими под-узлами
+//       var refNewTest = refStudents.child("tests/" + currentTest);
+//       var refNewTestSettings = refNewTest.child("/settings");
+//       var refStudentsPreTest = refStudents.child("tests/" + currentTest + "/pre_test/");
+//       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+//
+//       var refNewTestSettings = refStudentsPreTest.update({
+//        title_text_btn_stop: textTitleStopTest,
+//        description_text_btn_stop: textStopTest,
+//
+//        title_text_btn_back: textTitleBackQuestion, // Заголовок
+//        description_text_btn_back: textBackQuestion, // Описание
+//
+//        title_text_btn_next: textTitleNextQuestion,
+//        description_text_btn_next: textNextQuestion,
+//
+//        title_text_btn_like: textTitleLikeQuestion,
+//        description_text_btn_like: textLikeQuestion,
+//
+//        title_text_btn_dislike: textTitleDislikeQuestion,
+//        description_text_btn_dislike: textDislikeQuestion
+//       });
+//
+//       //Для обновления страницы - костыль
+//       var linkUserTrainingSettings = "/" + currentTest + "/user_training_settings/id" + req.params.idTag;
+//       res.redirect(linkUserTrainingSettings);
+//      });
+//     }
+//   });
+//
+// };
 
 exports.get = function(req, res) {
 

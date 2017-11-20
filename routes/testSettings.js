@@ -1,64 +1,65 @@
 // Модуль авторизации
 var firebase = require('firebase');
 
-exports.post = function(req, res, next) {
-
-  var checkText = Boolean(req.body.checkText);
-  checkText = String(checkText);
-  var checkSound = Boolean(req.body.checkSound);
-  checkSound = String(checkSound);
-  var checkSwap = Boolean(req.body.checkSwap);
-  checkSwap = String(checkSwap);
-  var checkSwapFinger = Boolean(req.body.checkSwapFinger);
-  checkSwapFinger = String(checkSwapFinger);
-  var checkSwapArrows = Boolean(req.body.checkSwapArrows);
-  checkSwapArrows = String(checkSwapArrows);
-  var checkProgressBar = Boolean(req.body.checkProgressBar);
-  checkProgressBar = String(checkProgressBar);
-
-  var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
-  var styleImagesSwap = req.body.styleImagesSwap;
-  var styleImageStopTest = req.body.styleImageStopTest;
-
-  firebase.auth().onAuthStateChanged(user => {
-   if (user) {
-    //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
-    var refStudents = firebase.database().ref("students/" + req.params.idTag);
-
-    refStudents.once("value")
-     .then(function(snapshot) {
-       var currentTest = snapshot.child('current_test').val();
-
-       //Формируем узлы с номерами тестов и соответствующими под-узлами
-       var refNewTest = refStudents.child("tests/" + currentTest);
-       var refNewTestSettings = refNewTest.child("/settings");
-       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
-
-       var refNewTestSettings = refNewTestSettings.update({
-        text: checkText,
-        sound: checkSound,
-        swap: checkSwap,
-        swap_finger: checkSwapFinger,
-        swap_arrows: checkSwapArrows,
-        progress_bar: checkProgressBar
-       });
-
-
-       var refNewTestManageButtons = refNewTestManageButtons.update({
-        style_images_swap_arrows: styleImagesSwap,
-        style_images_like_dislike: styleImagesLikeDislike,
-        style_image_stop_test: styleImageStopTest
-       });
-
-
-       //Для обновления страницы - костыль
-       var linkTestSettings = "/" + currentTest +  "/test_settings/id" + req.params.idTag;
-       res.redirect(linkTestSettings);
-     });
-    }
-  });
-
-};
+// Т.к перенес на сокеты - пока не нужно
+// exports.post = function(req, res, next) {
+//
+//   var checkText = Boolean(req.body.checkText);
+//   checkText = String(checkText);
+//   var checkSound = Boolean(req.body.checkSound);
+//   checkSound = String(checkSound);
+//   var checkSwap = Boolean(req.body.checkSwap);
+//   checkSwap = String(checkSwap);
+//   var checkSwapFinger = Boolean(req.body.checkSwapFinger);
+//   checkSwapFinger = String(checkSwapFinger);
+//   var checkSwapArrows = Boolean(req.body.checkSwapArrows);
+//   checkSwapArrows = String(checkSwapArrows);
+//   var checkProgressBar = Boolean(req.body.checkProgressBar);
+//   checkProgressBar = String(checkProgressBar);
+//
+//   var styleImagesLikeDislike = req.body.styleImagesLikeDislike;
+//   var styleImagesSwap = req.body.styleImagesSwap;
+//   var styleImageStopTest = req.body.styleImageStopTest;
+//
+//   firebase.auth().onAuthStateChanged(user => {
+//    if (user) {
+//     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
+//     var refStudents = firebase.database().ref("students/" + req.params.idTag);
+//
+//     refStudents.once("value")
+//      .then(function(snapshot) {
+//        var currentTest = snapshot.child('current_test').val();
+//
+//        //Формируем узлы с номерами тестов и соответствующими под-узлами
+//        var refNewTest = refStudents.child("tests/" + currentTest);
+//        var refNewTestSettings = refNewTest.child("/settings");
+//        var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+//
+//        var refNewTestSettings = refNewTestSettings.update({
+//         text: checkText,
+//         sound: checkSound,
+//         swap: checkSwap,
+//         swap_finger: checkSwapFinger,
+//         swap_arrows: checkSwapArrows,
+//         progress_bar: checkProgressBar
+//        });
+//
+//
+//        var refNewTestManageButtons = refNewTestManageButtons.update({
+//         style_images_swap_arrows: styleImagesSwap,
+//         style_images_like_dislike: styleImagesLikeDislike,
+//         style_image_stop_test: styleImageStopTest
+//        });
+//
+//
+//        //Для обновления страницы - костыль
+//        var linkTestSettings = "/" + currentTest +  "/test_settings/id" + req.params.idTag;
+//        res.redirect(linkTestSettings);
+//      });
+//     }
+//   });
+//
+// };
 
 exports.get = function(req, res) {
 
@@ -122,15 +123,7 @@ exports.get = function(req, res) {
                     });
 
                    });
-
-
-
-
-
             });
-
-
-
        });
     }
   });

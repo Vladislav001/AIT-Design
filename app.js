@@ -105,11 +105,12 @@ server.listen(port, function() {
 // Обновление настроек теста на СОКЕТАХ
 io.on('connection', function(socket) {
 
-  socket.on('message', function(data) {
-    socket.broadcast.emit('new message', data);
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
 
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
+      // Для всех страниц кроме userTrainingSettings - дабы везде не тащить данные под него
+      socket.on('message', function(data) {
+
         var refStudents = firebase.database().ref("students/" + data.userID);
 
         refStudents.once("value")
@@ -119,44 +120,63 @@ io.on('connection', function(socket) {
             //Формируем узлы с номерами тестов и соответствующими под-узлами
             var refNewTest = refStudents.child("tests/" + currentTest);
 
-            //Текст
-            socket.on('message', function(data) {
-              socket.broadcast.emit('new message', data);
-              var refNewTestSettings = refNewTest.child("/settings");
-              var refNewTestManageButtons = refNewTest.child("/manage_buttons");
-              //var refNewTestPreTest = refNewTest.child("/pre_test");
+            var refNewTestSettings = refNewTest.child("/settings");
+            var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+            var refNewTestPreTest = refNewTest.child("/pre_test");
 
-              var refNewTestSettings = refNewTestSettings.update({
-                text: data.text,
-                sound: data.sound,
-                swap: data.swap,
-                swap_finger: data.swap_finger,
-                swap_arrows: data.swap_arrows,
-                progress_bar: data.progress_bar,
-                btn_results: data.btn_results
-              });
+            var refNewTestSettings = refNewTestSettings.update({
+              text: data.text,
+              sound: data.sound,
+              swap: data.swap,
+              swap_finger: data.swap_finger,
+              swap_arrows: data.swap_arrows,
+              progress_bar: data.progress_bar,
+              btn_results: data.btn_results
+            });
 
-              var refNewTestManageButtons = refNewTestManageButtons.update({
-                style_images_swap_arrows: data.style_images_swap_arrows,
-                style_images_like_dislike: data.style_images_like_dislike,
-                style_image_stop_test: data.style_image_stop_test,
-                style_image_results: data.style_image_results,
-                style_image_finish: data.style_image_finish
-              });
+            var refNewTestManageButtons = refNewTestManageButtons.update({
+              style_images_swap_arrows: data.style_images_swap_arrows,
+              style_images_like_dislike: data.style_images_like_dislike,
+              style_image_stop_test: data.style_image_stop_test,
+              style_image_results: data.style_image_results,
+              style_image_finish: data.style_image_finish
+            });
+            console.log(socket.id);
+          });
+      }) 
 
-              // var refNewTestPreTest = refNewTestPreTest.update({
-              //   title_text_btn_back: data.title_text_btn_back
-              // });
+      // для userTrainingSettings
+      socket.on('message_user_training', function(data) {
 
-console.log(socket.id);
+        var refStudents = firebase.database().ref("students/" + data.userID);
 
-            })
-        });
-      }
-    });
-  })
+        refStudents.once("value")
+          .then(function(snapshot) {
+            var currentTest = snapshot.child('current_test').val();
+
+            //Формируем узлы с номерами тестов и соответствующими под-узлами
+            var refNewTest = refStudents.child("tests/" + currentTest);
+            var refNewTestPreTest = refNewTest.child("/pre_test");
+
+            var refNewTestPreTest = refNewTestPreTest.update({
+              title_text_btn_back: data.title_text_btn_back,
+              description_text_btn_back: data.description_text_btn_back,
+              title_text_btn_like: data.title_text_btn_like,
+              description_text_btn_like: data.description_text_btn_like,
+              title_text_btn_stop: data.title_text_btn_stop,
+              description_text_btn_stop: data.description_text_btn_stop,
+              title_text_btn_next: data.title_text_btn_next,
+              description_text_btn_next: data.description_text_btn_next,
+              title_text_btn_dislike: data.title_text_btn_dislike,
+              description_text_btn_dislike: data.description_text_btn_dislike
+            });
+            console.log(socket.id);
+          });
+      })
+
+    }
+  });
 })
-
 
 
 // Вешаем http сервер -> express будет обрабатывать все приходящие запросы

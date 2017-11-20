@@ -1,45 +1,33 @@
 // Модуль авторизации
 var firebase = require('firebase');
 
-exports.post = function(req, res, next) {
-
-
-
-  firebase.auth().onAuthStateChanged(user => {
-   if (user) {
-    //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
-    var refStudents = firebase.database().ref("students/" + req.params.idTag);
-
-    refStudents.once("value")
-     .then(function(snapshot) {
-       var currentTest = snapshot.child('current_test').val();
-
-       //Формируем узлы с номерами тестов и соответствующими под-узлами
-       var refNewTest = refStudents.child("tests/" + currentTest);
-
-       var refNewTestSettings = refNewTest.child("/settings");
-       var refNewTestManageButtons = refNewTest.child("/manage_buttons");
-
-       //Для обновления страницы - костыль
-       var linkResultSettings = "/" + currentTest + "/result_settings/id" + req.params.idTag;
-       res.redirect(linkResultSettings);
-     });
-
-
-    //  var refNewTestSettings = refNewTestSettings.update({
-    //   text: checkText,
-    //   sound: checkSound,
-    //   swap: checkSwap,
-    //   swap_finger: checkSwapFinger,
-    //   swap_arrows: checkSwapArrows,
-    //   progress_bar: checkProgressBar,
-    //   btn_results: checkBtnResult
-    //  });
-
-    }
-  });
-
-};
+// Т.к перенес на сокеты - пока не нужно
+// exports.post = function(req, res, next) {
+//
+//   firebase.auth().onAuthStateChanged(user => {
+//    if (user) {
+//     //var refStudents = firebase.database().ref("students/" + "TnC8UsZuj5TBPJP4ckVhgV5qQle2/");
+//     var refStudents = firebase.database().ref("students/" + req.params.idTag);
+//
+//     refStudents.once("value")
+//      .then(function(snapshot) {
+//        var currentTest = snapshot.child('current_test').val();
+//
+//        //Формируем узлы с номерами тестов и соответствующими под-узлами
+//        var refNewTest = refStudents.child("tests/" + currentTest);
+//
+//        var refNewTestSettings = refNewTest.child("/settings");
+//        var refNewTestManageButtons = refNewTest.child("/manage_buttons");
+//
+//        //Для обновления страницы - костыль
+//        var linkResultSettings = "/" + currentTest + "/result_settings/id" + req.params.idTag;
+//        res.redirect(linkResultSettings);
+//      });
+//
+//     }
+//   });
+//
+// };
 
 exports.get = function(req, res) {
 
