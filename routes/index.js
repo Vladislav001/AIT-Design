@@ -28,7 +28,9 @@ module.exports = function(app) {
   app.get('/restorePassword', require('./restorePassword').get);
   app.post('/restorePassword', require('./restorePassword').post);
 
-  // ПРОВЕРИТЬ ПУТЬ !!!
-  //app.post('/updateTestSettings', require('./updateSettings/updateTestSettings').post);
+  // Информация о тренере
+  app.get('/coach/id:idTag', checkAuth, require('./profileCoach').get);
+  // app.post('/deleteCoach/id:idTag', require('./deleteCoach').post);
+
 
 };

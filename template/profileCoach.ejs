@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="/css/styleProfileCoach.css">
+<% layout('layout/page') -%>
+<% block('title') -%>
+
+<!-- LEFT START -->
+  <div class="main-and-sidebar-wrapper-left">
+      <section class="main-left">
+
+      <h2>Coach, <%=email%>!</h2>
+      <!-- <h3>Count students: <%=countStudents%> </h3> -->
+
+      <table>
+        <caption>Students</caption>
+        <thead>
+          <tr>
+            <th scope="col">№</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+         <% for(var i=0; i<usernames.length; i++) { %>
+        <tbody>
+          <tr>
+            <td aria-label="№"><%=[i+1]%></td>
+            <td aria-label="Name"><%=usernames[i]%></td>
+            <td aria-label="Gender"><%=genders[i]%></td>
+            <td aria-label="Age"><%=ages[i]%></td>
+          </tr>
+        </tbody>
+          <% } %>
+      </table>
+      </section>
+  </div>
+<!-- LEFT END -->
+
+<!-- CENTER START -->
+  <div class="main-and-sidebar-wrapper">
+      <section class="main">
+
+      </section>
+  </div>
+<!-- CENTER END -->
+
+<!-- RIGHT START -->
+  <div class="main-and-sidebar-wrapper-right">
+      <section class="main-right">
+        <!-- <form class="form-deleteCoach" name="cabinet_deleteCoach">
+        <button type="submit" class="delete-coach" onclick="return confirmDelete();" data-loading-text="Deleting..."id="deleteTrainer">Delete coach</button>
+        </form> -->
+      </section>
+  </div>
+<!-- RIGHT END -->
+
+  </div>
+
+  <!-- <footer>
+      <h3>Footer</h3>
+      <p>Something.</p>
+  </footer> -->
+
+
+
+
+<script>
+var config = {
+  apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+  authDomain: "profpref-c5ce0.firebaseapp.com",
+  databaseURL: "https://profpref-c5ce0.firebaseio.com",
+  projectId: "profpref-c5ce0",
+  storageBucket: "profpref-c5ce0.appspot.com",
+  messagingSenderId: "664101035809"
+};
+firebase.initializeApp(config);
+
+// Получаем доступ к Хранилищу
+var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+</script>
+
+
+
+<script>
+// Подтверждение удаления //
+function confirmDelete() {
+	if (confirm("Do you confirm the deletion?")) {
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_deleteCoach']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/deleteCoach/id<%=id%>", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  }
+  // ,
+  // statusCode: {
+  //   // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+  //   200: function() {
+  //     form.html("Вы успешно зарегестрировались").addClass('alert-success');
+  //     window.location.href = "/personalArea";
+  //   }
+  //,
+  //   // если 403 - высвечивается ошибка(уже есть такой пользователь)
+  //   403: function(jqXHR) {
+  //     var error = JSON.parse(jqXHR.responseText);
+  //     $('.error', form).html(error.message);
+  //   }
+  // }
+});  //window.location.href = "/";
+//return false;
+window.location.href = "/personalArea";
+return false;
+location.reload();
+});
+</script>

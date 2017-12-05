@@ -5,12 +5,17 @@ var firebase = require('firebase'); //https://metanit.com/web/nodejs/4.10.php
 
 exports.get = function(req, res) {
 
+  // Для данных о студентах
   var links = [];  // массив в котором будут храниться сформированные адреса профилей юзеров
 	var usernames = []; // хранит имена юзеров
   var genders = []; // хранит пол юзеров
   var ages = []; // хранит возраст юзеров
-  //var logins = []; // хранит логины юзеров
-  //var passwords = [] // хранит пароли юзеров
+
+    // Для данных о тренерах
+  var linksTrainers = [];
+  var emailTrainers = [];
+  var countStudents = [];
+  var dateRegistration = [];
 
   var accessLevel;
   var unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -24,7 +29,10 @@ exports.get = function(req, res) {
         .then(function(snapshot) {
              accessLevel = snapshot.child("accessLevel").val();
                var refStudents = firebase.database().ref("students");
+               var refTrainers = firebase.database().ref("trainers");
                var count_students = snapshot.child("count_students").val();
+
+               // Подтягиваем студентов конкретного тренера
                 refStudents.orderByChild("trainer_ID").equalTo(userId).on("child_added", function(snapshot) {
                   //console.log(snapshot.key);
                   links.push("result_test/id" + snapshot.key);
@@ -45,6 +53,14 @@ exports.get = function(req, res) {
                   //   });
                   // }
                 });
+
+                // Подтягиваем тренеров для главного админа
+                refTrainers.on("child_added", function(snapshotTrainers) {
+                  linksTrainers.push("coach/id" + snapshotTrainers.key);
+                  emailTrainers.push(snapshotTrainers.child('email').val());
+                  countStudents.push(snapshotTrainers.child('count_students').val());
+                });
+
                 unsubscribe(); // убирает состояние
                 res.render("personalArea", {
                     email: user.email,
@@ -53,7 +69,11 @@ exports.get = function(req, res) {
                     links: links,
                     usernames: usernames,
                     genders: genders,
-                    ages: ages
+                    ages: ages,
+
+                    linksTrainers: linksTrainers,
+                    emailTrainers: emailTrainers,
+                    countStudents: countStudents
                 });
 
         });

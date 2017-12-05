@@ -7,7 +7,7 @@
         <section class="main-left">
             <h2>Welcome, <%=email%>!</h2>
 
-<% if (accessLevel == "Trainer") { %>
+<% if (accessLevel == "Trainer" && email != "admin@mail.ru") { %>
 <table>
   <caption>My students</caption>
   <thead>
@@ -46,6 +46,29 @@
   <div id="myProgress">
     <div id="myBar"></div>
   </div>
+
+  <table>
+    <caption>Trainers</caption>
+    <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Email</th>
+        <th scope="col">Count Students</th>
+      </tr>
+    </thead>
+     <% for(var i=0; i<linksTrainers.length; i++) { %>
+    <tbody>
+      <tr>
+        <td aria-label="№"><%=[i+1]%></td>
+        <td aria-label="Email"><a href="<%=linksTrainers[i]%>"><%=emailTrainers[i]%></a></td>
+        <td aria-label="Count Students"><%=countStudents[i]%></td>
+      </tr>
+    </tbody>
+      <% } %>
+  </table>
+
+
+
   <% } %>
         </section>
     </div>

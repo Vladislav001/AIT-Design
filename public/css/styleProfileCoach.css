@@ -1,0 +1,170 @@
+/* Левая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-left {
+    display: flex;
+    width: 40%;
+    margin-top: 100px;
+}
+
+.main-left {
+    text-align: center;
+    margin-left: 10px;
+
+    flex: 3;
+}
+
+.main-left  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.main-left  h3 {
+    font-size: 16px;
+		margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+
+.main-left a {
+    color: #2196F3; /* Цвет обычной ссылки */
+   }
+/* Левая сторона КОНЕЦ*/
+
+
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 20%;
+}
+
+.main {
+    text-align: center;
+/*    margin-right: 60px;*/
+    flex: 3;
+}
+
+/* Центр НАЧАЛО*/
+
+/* Центер КОНЕЦ*/
+
+
+/* Правая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-right {
+    display: flex;
+    width: 40%;
+    margin-top: 100px;
+}
+
+.main-right {
+    text-align: center;
+    margin-right: 10px;
+
+    flex: 3;
+}
+
+.main-right  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+/* Настройки размеров картинок НАЧАЛО*/
+.main-right .settings_entrance_input img {
+	float: left;
+  width: 12%;
+  height:7%;
+	border: 1px dotted #546E7A; /* Параметры границы */
+}
+
+.main-right .settings_entrance img {
+	float: left;
+  width: 12%;
+  height: 7%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* Настройки размеров картинок КОНЕЦ*/
+
+/* Правая сторона КОНЕЦ*/
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+.delete-coach {
+  float: right;
+  width: 125px;
+  background-color: #D50000;
+  color: white;
+  padding: 12px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+
+/* Настройки таблицы студентов НАЧАЛО*/
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+table tr {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+/* Настройки таблицы студентов КОНЕЦ*/
+
+
+
+@media (max-width: 600px) {
+    .main-and-sidebar-wrapper {
+        flex-direction: column;
+    }
+
+    .main {
+        margin-right: 0;
+        margin-bottom: 60px;
+    }
+
+    table thead {
+      display: none;
+    }
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+    }
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      text-align: right;
+    }
+    table td:before {
+      content: attr(aria-label);
+      float: left;
+    }
+
+}

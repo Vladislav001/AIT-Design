@@ -8,6 +8,10 @@ exports.post = function(req, res, next) {
   var email = req.body.email; // P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
   var password = req.body.password; // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
 
+  // Возвращает дату регистрации
+  var Data = new Date();
+  var dateRegistration = String(Data.toUTCString());
+
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -39,7 +43,8 @@ var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
    email: email,
    password: password,
    count_students: 0,
-   accessLevel: "Trainer"
+   accessLevel: "Trainer",
+   date_registraion: dateRegistration
   });
 
   //Отправляем ему email
