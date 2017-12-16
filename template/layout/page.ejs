@@ -28,7 +28,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/main.css">
+
+  <script type="text/javascript">
+      // запрет на перетаскивание
+      document.ondragstart = noselect;
+      // запрет на выделение элементов страниц
+      document.onselectstart = noselect;
+      // запрет на выведение контекстного меню
+      document.oncontextmenu = noselect;
+      function noselect() {return false;}
+
+// Запрет F12
+document.onkeydown = function (event) {
+       event = (event || window.event);
+       if (event.keyCode == 123) {
+           //alert('No F-keys');
+           return false;
+       }
+   }
+
+  </script>
 </head>
+
 <div class="container">
   <header>
     <%-blocks.header%>
