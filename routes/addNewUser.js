@@ -24,14 +24,14 @@ exports.post = function(req, res, next) {
 
     // Т.к сделали пока изображения - нету уникальности - закомментил
     // Проверим имеется ли такой логин в БД
-    // var refStudents = firebase.database().ref("students");
-    // refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
-    // loginFirst = snapshot.child("login").val();
-    // });
+    var refStudents = firebase.database().ref("students");
+    refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
+    loginFirst = snapshot.child("login").val();
+    });
 
 
 
-      //if (login != loginFirst) {
+      if (login != loginFirst) {
   //Генерируем уникальный ключ
   var userIdStudents =  firebase.app().database().ref().push().getKey();
 
@@ -472,7 +472,7 @@ var refNewTestCategories2 = refNewTestCategories2.set({
   });
 // Без этого не обновляет страницу
 res.redirect("/personalArea");
-// } else {
-//     return next(new HttpError(403, "This login already exists")); //403 - отказ регистрации
-//   }
+} else {
+    return next(new HttpError(403, "This login already exists")); //403 - отказ регистрации
+  }
 };
