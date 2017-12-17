@@ -22,7 +22,7 @@ exports.post = function(req, res, next) {
 
     //var imageEntranceLoginInput_1 = req.body.imageEntranceLoginInput_1;
 
-    // Т.к сделали пока изображения - нету уникальности - закомментил
+    //  Т.к сделали пока изображения - нету уникальности - закомментил
     // Проверим имеется ли такой логин в БД
     var refStudents = firebase.database().ref("students");
     refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
