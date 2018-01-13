@@ -415,48 +415,58 @@ var refNewTestPreTest2 = refNewTestPreTest2.set({
   style_image_finish: "0",
  });
 
-var refNewTestCategories2 = refNewTestCategories2.set({
-  "0": {
-    name: "CATEGORY 1",
-    questions: {
-    "0": {
-      title: "CATEGORY 1 question 1"
-    },
-    "1": {
-      title: "CATEGORY 1 question 2"
-    },
-    "2": {
-      title: "CATEGORY 1 question 3"
-    },
-    "3": {
-      title: "CATEGORY 1 question 4"
-    },
-    "4": {
-      title: "CATEGORY 1 question 5"
+ var refNewTestCategories2 = refNewTestCategories2.set({
+   "0": {
+     name: "CATEGORY 1",
+     questions: {
+     "0": {
+       title: "CATEGORY 1 question 1",
+       type: "gif"
+     },
+     "1": {
+       title: "CATEGORY 1 question 2",
+       type: "gif"
+     },
+     "2": {
+       title: "CATEGORY 1 question 3",
+       type: "gif"
+     },
+     "3": {
+       title: "CATEGORY 1 question 4",
+       type: "gif"
+     },
+     "4": {
+       title: "CATEGORY 1 question 5",
+       type: "gif"
+     }
+    }
+   },
+   "1": {
+     name: "CATEGORY 2",
+     questions: {
+     "0": {
+       title: "CATEGORY 2 question 1",
+       type: "gif"
+     },
+     "1": {
+       title: "CATEGORY 2 question 2",
+       type: "gif"
+     },
+     "2": {
+       title: "CATEGORY 2 question 3",
+       type: "gif"
+     },
+     "3": {
+       title: "CATEGORY 3 question 4",
+       type: "gif"
+     },
+     "4": {
+       title: "CATEGORY 4 question 5",
+       type: "gif"
+     }
     }
    }
-  },
-  "1": {
-    name: "CATEGORY 2",
-    questions: {
-    "0": {
-      title: "CATEGORY 2 question 1",
-    },
-    "1": {
-      title: "CATEGORY 2 question 2"
-    },
-    "2": {
-      title: "CATEGORY 2 question 3",
-    },
-    "3": {
-      title: "CATEGORY 3 question 4"
-    },
-    "4": {
-      title: "CATEGORY 4 question 5"
-    }
-   }
-  }
-});
+ });
 
   //получить тренера
   //и нарастить у него поле counte
