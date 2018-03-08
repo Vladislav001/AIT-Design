@@ -8,9 +8,14 @@ module.exports = function(app) {
   app.get('/registration', require('./registration').get);
   app.post('/registration', require('./registration').post);
   app.get('/personalArea', require('./personalArea').get);
+
   app.get('/result_test/id:idTag', checkAuth, require('./resultTest').get);
   app.post('/result_test/id:idTag', require('./resultTest').post); // Обновление данных студента
+
+app.get('/result_test/id:idTag/graphs', checkAuth, require('./resultTestGraphs').get);
+
   app.get('/:currentTest/test_settings/id:idTag', checkAuth, require('./testSettings').get);
+
   app.get('/:currentTest/user_training_settings/id:idTag', checkAuth, require('./userTrainingSettings').get);
   app.get('/:currentTest/pre_result_settings/id:idTag', checkAuth, require('./pre-resultSettings').get);
   app.get('/:currentTest/result_settings/id:idTag', checkAuth, require('./resultSettings').get);

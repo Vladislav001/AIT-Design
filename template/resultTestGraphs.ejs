@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/css/styleResultTest.css">
+<% layout('layout/page') -%>
+<% block('title') -%>
+
+<div class="container">
+  <div class="call">
+
+    <div class="row">
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    </div>
+
+    <div class="row">
+      <table id="tl_results">
+        <caption><b>Test results</b></caption>
+          <tr>
+            <th scope="col">№</th>
+            <th scope="col">Category</th>
+            <th scope="col">Title</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Level of happiness</th>
+          </tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+function Category(name, points) {
+  this.name = name;
+  this.points = points;
+};
+
+var categories = new Array();
+
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Category with points"
+	},
+	axisY: {
+		title: "Points"
+	},
+	data: [{
+		type: "column",
+		showInLegend: true,
+		legendMarkerColor: "grey",
+		legendText: "maximum 5 points in category"
+	}]
+});
+var config = {
+  apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+  authDomain: "profpref-c5ce0.firebaseapp.com",
+  databaseURL: "https://profpref-c5ce0.firebaseio.com",
+  projectId: "profpref-c5ce0",
+  storageBucket: "profpref-c5ce0.appspot.com",
+  messagingSenderId: "664101035809"
+};
+firebase.initializeApp(config);
+
+// Отслеживаем текущий вопрос студента
+var refStudents = firebase.database().ref("students/" + "<%=id%>");
+var refCurrentQuestion = refStudents.child("/student_state/");
+
+// Получаем доступ к Хранилищу
+var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
+
+// устанавливаем слушатель child_changed
+refStudents.on('child_changed', function(data) {
+// существующий текущий вопр был изменен, получаем снэпшот, берем оттуда данные и обновляем пользовательский интерфейс
+refCurrentQuestion.once("value")
+ .then(function(snapshotState) {
+   var currentQuestion = snapshotState.child('current_question').val();
+   var currentState = snapshotState.child('state').val();
+
+       var currentQuestionHTML = currentQuestion;
+       var currentStateHTML = currentState;
+      
+       console.log(currentQuestion + " studentState");
+ });
+});
+
+
+var refAnswer = firebase.database().ref("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>");
+//console.log("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>");
+
+// устанавливаем слушатель child_changed
+refAnswer.on('child_added', function(snapshot) {
+  // console.log(snapshot.child('answer').val());
+  // console.log(snapshot.child('category').val());
+  // console.log(snapshot.child('title').val());
+  var answer;
+  var levelHappiness;
+
+  if(snapshot.child('answer').val() == "-1") {
+     answer = "<font color=" + "#D50000" + ">Dislike</font>"
+   }
+   if(snapshot.child('answer').val() == "0") {
+     answer = "<font color=" + "#F9A825" + ">Swap</font>"
+   }
+    if(snapshot.child('answer').val() == "1") {
+     answer = "<font color=" + "#4CAF50"+ ">Like</font>"
+   }
+
+  if (snapshot.child('category').val() != null) {
+    $('#tl_results tbody').append('<tr cla ss="child"><td>' + (Number(snapshot.key) + 1) + '</td>' +
+                                                    '<td>' + snapshot.child('category').val() + '</td>' +
+                                                    '<td>' + snapshot.child('title').val() + '</td>' +
+                                                    '<td>' + answer + '</td>' +
+                                                    '<td>' + snapshot.child('pushHappines').val() + '</td>' +
+                                                           + '</tr>');
+
+    var find = false
+    for (var i = 0 ; i < categories.length; i++) {
+        if (categories[i].name == snapshot.child('category').val()) {
+          if(snapshot.child('answer').val() == "-1") {
+             categories[i].points -= snapshot.child('answer').val()
+           }
+
+          if(snapshot.child('answer').val() == "1") {
+             categories[i].points += snapshot.child('answer').val()
+           }
+           find = true
+        }
+    }
+
+    if (!find) {
+        categories.push(new Category(snapshot.child('category').val(), snapshot.child('answer').val()))
+    }
+
+    var dataForChart = Array();
+
+    for (var i = 0; i < categories.length; i++) {
+       dataForChart.push({ label: categories[i].name,  y: categories[i].points  });
+    }
+
+    chart.options.data[0].dataPoints = dataForChart;
+    chart.render();
+    console.log(categories);
+  }
+});
+
+}
+
+</script>
