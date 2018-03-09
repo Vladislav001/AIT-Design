@@ -313,16 +313,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
   var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
   var countImagesSwap =  storage.ref("/manager_buttons/next_back/1/back.png");
 
-  // получаем метаданные
-  countImagesSwap.size().then(function(metadata) {
-  // Получили. Объект metadata содержит
-  // метаданные файла по адресу images/forest.jpg
-   console.log(countImagesSwap);
-  // На случай провала / ошибки
-  }).catch(function(error) {
-  // Ошибка
-  });
-
 
   // Присвоим кол-во значений в range
   $("#styleImagesSwap").attr({max:3});
