@@ -34,23 +34,23 @@
 <div class="styleImages">
 
 <h5><b><div class="styleImagesSwap">Style Images: Swap arrows</div></b></h5>
-<input type="range" class="checkbox_range" name="styleImagesSwap" value="<%=styleImagesSwap%>" min="0" max="1" id="styleImagesSwap" >
+<input type="range" class="checkbox_range" name="styleImagesSwap" value="<%=styleImagesSwap%>" min="0" id="styleImagesSwap" >
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b>Style Images: Like/Dislike</b></h5>
-<input type="range" class="checkbox_range" name="styleImagesLikeDislike" value="<%=styleImagesLikeDislike%>" min="0" max="1" id="styleImagesLikeDislike">
+<input type="range" class="checkbox_range" name="styleImagesLikeDislike" value="<%=styleImagesLikeDislike%>" min="0"  id="styleImagesLikeDislike">
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b>Style Image: STOP TEST</b></h5>
-<input type="range" class="checkbox_range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0" max="1" id="styleImageStopTest">
+<input type="range" class="checkbox_range" name="styleImageStopTest" value="<%=styleImageStopTest%>" min="0"  id="styleImageStopTest">
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageResults">Style Image: Results</div></b></h5>
-  <input type="range" class="styleImageResults checkbox_range" value="<%=styleImageResults%>" min="0" max="1" id="styleImageResult" disabled>
+  <input type="range" class="styleImageResults checkbox_range" value="<%=styleImageResults%>" min="0"  id="styleImageResult" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
 <h5><b><div class="styleImageFinish">Style Image: Finish</div></b></h5>
-<input type="range" class="styleImageFinish checkbox_range" value="<%=styleImageFinish%>" min="0" max="1" id="styleImageFinish" disabled>
+<input type="range" class="styleImageFinish checkbox_range" value="<%=styleImageFinish%>" min="0"  id="styleImageFinish" disabled>
 <!-- <button type="button" class="btn btn-primary settings" data-loading-text="Adding..." disabled>Add</button> -->
 
   <h6>Language</h6>
@@ -313,9 +313,6 @@ if (document.getElementById('checkBtnResult').value == "true") {
   var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
   var countImagesSwap =  storage.ref("/manager_buttons/next_back/1/back.png");
 
-
-  // Присвоим кол-во значений в range
-  $("#styleImagesSwap").attr({max:3});
 
       // Стиль назад и вперед
       $("#styleImagesSwap").on("input change", function() {
