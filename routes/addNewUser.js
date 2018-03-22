@@ -7,10 +7,8 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
   // Склеиваем номера картинок для логина и пароля (1 + 3 = 13)
-    var login = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3 +
-    + req.body.imageEntranceLoginInput_4 + req.body.imageEntranceLoginInput_5 + req.body.imageEntranceLoginInput_6 + req.body.imageEntranceLoginInput_7;
-    var password = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3 +
-    + req.body.imageEntrancePasswordInput_4 + req.body.imageEntrancePasswordInput_5 + req.body.imageEntrancePasswordInput_6 + req.body.imageEntrancePasswordInput_7;
+      var login = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3;
+      var password = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3;
 
     var name = req.body.usernameNewUser;// P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
     var age = req.body.ageNewUser;                                      // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
@@ -43,6 +41,7 @@ exports.post = function(req, res, next) {
   name: name,
   age: age,
   gender: gender,
+  photo: "",
   trainer_ID: trainer_ID,
   current_test: "1",
   current_result_web: "1"
