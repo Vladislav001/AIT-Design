@@ -4,7 +4,7 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
 
   var updateLoginStudent = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3 +
-  + req.body.imageEntranceLoginInput_4 + req.body.imageEntranceLoginInput_5 + req.body.imageEntranceLoginInput_6 + req.body.imageEntranceLoginInput_7;
+  + req.body.imageEntranceLoginInput_4 +  req.body.imageEntranceLoginInput_5 +  req.body.imageEntranceLoginInput_6 +  req.body.imageEntranceLoginInput_7;
   var updatePasswordStudent = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3 +
   + req.body.imageEntrancePasswordInput_4 + req.body.imageEntrancePasswordInput_5 + req.body.imageEntrancePasswordInput_6 + req.body.imageEntrancePasswordInput_7;
   var updateNameStudent = req.body.updateNameStudent;
@@ -62,10 +62,12 @@ exports.get = function(req, res) {
         var currentLogin_1 = snapshot.child('login').val()[0];
         var currentLogin_2 = snapshot.child('login').val()[1];
         var currentLogin_3 = snapshot.child('login').val()[2];
+        var currentLogin_4 = snapshot.child('login').val()[3];
 
         var currentPassword_1 = snapshot.child('password').val()[0];
         var currentPassword_2 = snapshot.child('password').val()[1];
         var currentPassword_3 = snapshot.child('password').val()[2];
+        var currentPassword_4 = snapshot.child('password').val()[3];
 
         var url_photoStudent = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/photo_students%2F" + photoStudent + "?alt=media&token=685aaaf3-bdf8-49aa-96fb-ff9087a1be1b";
 
@@ -74,10 +76,12 @@ exports.get = function(req, res) {
          var url_1_login= "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_1 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
          var url_2_login = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_2 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
          var url_3_login = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_3 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+         var url_4_login = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_4 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
 
          var url_1_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_1 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
          var url_2_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_2 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
          var url_3_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_3 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+         var url_4_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_4 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
 
 
         var link = "/" + currentTest + "/test_settings/id" + req.params.idTag;
@@ -111,10 +115,12 @@ exports.get = function(req, res) {
                url_1_login: url_1_login,
                url_2_login: url_2_login,
                url_3_login: url_3_login,
+               url_4_login: url_4_login,
 
                url_1_password: url_1_password,
                url_2_password: url_2_password,
                url_3_password: url_3_password,
+               url_4_password: url_4_password,
            });
          });
 

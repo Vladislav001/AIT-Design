@@ -64,25 +64,11 @@ firebase.initializeApp(config);
 
 // Отслеживаем текущий вопрос студента
 var refStudents = firebase.database().ref("students/" + "<%=id%>");
-var refCurrentQuestion = refStudents.child("/student_state/");
 
 // Получаем доступ к Хранилищу
 var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
 
-// устанавливаем слушатель child_changed
-refStudents.on('child_changed', function(data) {
-// существующий текущий вопр был изменен, получаем снэпшот, берем оттуда данные и обновляем пользовательский интерфейс
-refCurrentQuestion.once("value")
- .then(function(snapshotState) {
-   var currentQuestion = snapshotState.child('current_question').val();
-   var currentState = snapshotState.child('state').val();
 
-       var currentQuestionHTML = currentQuestion;
-       var currentStateHTML = currentState;
-      
-       console.log(currentQuestion + " studentState");
- });
-});
 
 
 var refAnswer = firebase.database().ref("students/" + "<%=id%>" + "/tests/" + "<%=currentTest%>" + "/results/" + "<%=currentResult%>");

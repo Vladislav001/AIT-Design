@@ -12,7 +12,7 @@ module.exports = function(app) {
   app.get('/result_test/id:idTag', checkAuth, require('./resultTest').get);
   app.post('/result_test/id:idTag', require('./resultTest').post); // Обновление данных студента
 
-app.get('/result_test/id:idTag/graphs', checkAuth, require('./resultTestGraphs').get);
+  app.get('/result_test/id:idTag/graphs', checkAuth, require('./resultTestGraphs').get);
 
   app.get('/:currentTest/test_settings/id:idTag', checkAuth, require('./testSettings').get);
 

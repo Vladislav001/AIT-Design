@@ -112,9 +112,11 @@
 <img src="<%=url_1_login%>" class="img-responsive" id="imageEntranceLoginInput_1">
 <img src="<%=url_2_login%>" class="img-responsive" id="imageEntranceLoginInput_2">
 <img src="<%=url_3_login%>" class="img-responsive" id="imageEntranceLoginInput_3">
+<img src="<%=url_4_login%>" class="img-responsive" id="imageEntranceLoginInput_4">
 <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
 <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
 <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
+<input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_4" type="hidden" value="">
 <!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_login"> -->
 </div>
 <!-- <div class = "settings_entrance_input" id="styleSettingsEntrance">
@@ -132,9 +134,11 @@
 <img src="<%=url_1_password%>" class="img-responsive" id="imageEntrancePasswordInput_1">
 <img src="<%=url_2_password%>" class="img-responsive" id="imageEntrancePasswordInput_2">
 <img src="<%=url_3_password%>" class="img-responsive" id="imageEntrancePasswordInput_3">
+<img src="<%=url_4_password%>" class="img-responsive" id="imageEntrancePasswordInput_4">
 <input name="imageEntrancePasswordInput_1" class="imageEntrancePasswordInput_1" type="hidden" value="">
 <input name="imageEntrancePasswordInput_2" class="imageEntrancePasswordInput_2" type="hidden" value="">
 <input name="imageEntrancePasswordInput_3" class="imageEntrancePasswordInput_3" type="hidden" value="">
+<input name="imageEntrancePasswordInput_4" class="imageEntrancePasswordInput_4" type="hidden" value="">
 <!-- <img src="/imagesDefault/delete_all.png" class="img-responsive delete_all" id="delete_all_images_password"> -->
 </div>
 
@@ -277,191 +281,6 @@ refCategory.on('child_added', function(snapshotCountCategory) {
  });
 
 
- // Подкгружаем из хранилища набор дефолтных каритнок для составления логина и пароля
-  var url_1= storage.ref("entrance/1.png");
-  var url_2 = storage.ref("entrance/2.png");
-  var url_3 = storage.ref("entrance/3.png");
-
-
-  // Подгруз логина НАЧАЛО
-  url_1.getDownloadURL().then(function(url) {
-
-    // Сделать функцию бы
-    var str = url;
-    var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-    var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-    $("#imageEntranceLogin_1").attr('src', url); // Для отображения в верхней части
-
-    $("#imageEntranceLogin_1").bind("click", function() { // клик по нижней части
-      if($("#imageEntranceLoginInput_1").attr("src") == "") {
-          $("#imageEntranceLoginInput_1").attr("src", url); // кладем в верхнюю изображение
-          $(".imageEntranceLoginInput_1").val(strNumber); // номер фотки для вставки в БД
-          //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
-
-        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
-            $("#imageEntranceLoginInput_2").attr("src", url);
-             $(".imageEntranceLoginInput_2").val(strNumber);
-        }
-        else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
-           $("#imageEntranceLoginInput_3").attr("src", url);
-             $(".imageEntranceLoginInput_3").val(strNumber);
-       }
-    });
-  });
-
-  url_2.getDownloadURL().then(function(url) {
-
-    // Сделать функцию бы
-    var str = url;
-    var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-    var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-    $("#imageEntranceLogin_2").attr('src', url);
-
-    $("#imageEntranceLogin_2").bind("click", function() {
-      if($("#imageEntranceLoginInput_1").attr("src") == "") {
-          $("#imageEntranceLoginInput_1").attr("src", url);
-          $(".imageEntranceLoginInput_1").val(strNumber);
-        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
-            $("#imageEntranceLoginInput_2").attr("src", url);
-            $(".imageEntranceLoginInput_2").val(strNumber);
-        }
-        else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
-           $("#imageEntranceLoginInput_3").attr("src", url);
-           $(".imageEntranceLoginInput_3").val(strNumber);
-       }
-    });
-  });
-
-  url_3.getDownloadURL().then(function(url) {
-
-    // Сделать функцию бы
-    var str = url;
-    var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-    var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-    $("#imageEntranceLogin_3").attr('src', url);
-
-    $("#imageEntranceLogin_3").bind("click", function() {
-      if($("#imageEntranceLoginInput_1").attr("src") == "") {
-          $("#imageEntranceLoginInput_1").attr("src", url);
-          $(".imageEntranceLoginInput_1").val(strNumber);
-        } else if ($("#imageEntranceLoginInput_2").attr("src") == ""){
-            $("#imageEntranceLoginInput_2").attr("src", url);
-            $(".imageEntranceLoginInput_2").val(strNumber);
-        } else if ($("#imageEntranceLoginInput_3").attr("src") == ""){
-            $("#imageEntranceLoginInput_3").attr("src", url);
-            $(".imageEntranceLoginInput_3").val(strNumber);
-        }
-    });
-  });
-  // Подгруз логина КОНЕЦ
-
-  // Подгруз пароля НАЧАЛО
-   url_1.getDownloadURL().then(function(url) {
-
-     // Сделать функцию бы
-     var str = url;
-     var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-     var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-     $("#imageEntrancePassword_1").attr('src', url);
-
-     $("#imageEntrancePassword_1").bind("click", function() {
-       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
-           $("#imageEntrancePasswordInput_1").attr("src", url);
-           $(".imageEntrancePasswordInput_1").val(strNumber);
-           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
-           console.log (url + " url");
-         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
-             $("#imageEntrancePasswordInput_2").attr("src", url);
-              $(".imageEntrancePasswordInput_2").val(strNumber);
-         }
-         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
-            $("#imageEntrancePasswordInput_3").attr("src", url);
-              $(".imageEntrancePasswordInput_3").val(strNumber);
-        }
-     });
-   });
-
-   url_2.getDownloadURL().then(function(url) {
-
-     // Сделать функцию бы
-     var str = url;
-     var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-     var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-     $("#imageEntrancePassword_2").attr('src', url);
-
-     $("#imageEntrancePassword_2").bind("click", function() {
-       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
-           $("#imageEntrancePasswordInput_1").attr("src", url);
-           $(".imageEntrancePasswordInput_1").val(strNumber);
-           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
-           console.log (url + " url");
-         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
-             $("#imageEntrancePasswordInput_2").attr("src", url);
-              $(".imageEntrancePasswordInput_2").val(strNumber);
-         }
-         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
-            $("#imageEntrancePasswordInput_3").attr("src", url);
-              $(".imageEntrancePasswordInput_3").val(strNumber);
-        }
-     });
-   });
-
-   url_3.getDownloadURL().then(function(url) {
-
-     // Сделать функцию бы
-     var str = url;
-     var strNumberPng = str.split('?alt=media')[0]; // путь до 1.png
-     var strNumber = str[strNumberPng.length - 5]; // саму цифру кладем в Бд
-
-     $("#imageEntrancePassword_3").attr('src', url);
-
-     $("#imageEntrancePassword_3").bind("click", function() {
-       if($("#imageEntrancePasswordInput_1").attr("src") == "") {
-           $("#imageEntrancePasswordInput_1").attr("src", url);
-           $(".imageEntrancePasswordInput_1").val(strNumber);
-           //console.log (imageEntranceLoginInput_1.src + " imageEntranceLoginInput_1");
-           console.log (url + " url");
-         } else if ($("#imageEntrancePasswordInput_2").attr("src") == ""){
-             $("#imageEntrancePasswordInput_2").attr("src", url);
-              $(".imageEntrancePasswordInput_2").val(strNumber);
-         }
-         else if ($("#imageEntrancePasswordInput_3").attr("src") == ""){
-            $("#imageEntrancePasswordInput_3").attr("src", url);
-              $(".imageEntrancePasswordInput_3").val(strNumber);
-        }
-     });
-   });
-
-
-  // Подгруз пароля КОНЕЦ
-
-
-  // УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ НАЧАЛО
-
-
-  // Удаление всех элементов в логине
-   $("#delete_all_images_login").bind("click", function() {
-      $("#imageEntranceLoginInput_1").attr("src", "");
-      $("#imageEntranceLoginInput_2").attr("src", "");
-      $("#imageEntranceLoginInput_3").attr("src", "");
-   });
-
-
-   // Удаление поэлементно в пароле
-
-   // Удаление всех элементов в пароле
-    $("#delete_all_images_password").bind("click", function() {
-       $("#imageEntrancePasswordInput_1").attr("src", "");
-       $("#imageEntrancePasswordInput_2").attr("src", "");
-       $("#imageEntrancePasswordInput_3").attr("src", "");
-    });
-
-  // УДАЛЕНИЕ ПИКТОГРАФИЧЕСКИХ ДАННЫХ КОНЕЦ
 
 </script>
 

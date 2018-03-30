@@ -1,39 +1,27 @@
 // Модуль результатов теста студентов
 var firebase = require('firebase');
 
-exports.post = function(req, res, next) {
-
-  var updateLoginStudent = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3 +
-  + req.body.imageEntranceLoginInput_4 + req.body.imageEntranceLoginInput_5 + req.body.imageEntranceLoginInput_6 + req.body.imageEntranceLoginInput_7;
-  var updatePasswordStudent = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3 +
-  + req.body.imageEntrancePasswordInput_4 + req.body.imageEntrancePasswordInput_5 + req.body.imageEntrancePasswordInput_6 + req.body.imageEntrancePasswordInput_7;
-  var updateNameStudent = req.body.updateNameStudent;
-  var updateAgeStudent = req.body.updateAgeStudent;
-  var updateGenderStudent = req.body.updateGenderStudent;
-  var updateCurrentTest = req.body.updateCurrentTest;
-  var updateCurrentResult = req.body.updateCurrentResult;
+exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
+     // Получаем доступ к Хранилищу
     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-     var refStudents = refStudents.update({
-      //ogin: updateLoginStudent,
-      // password: updatePasswordStudent,
-       name: updateNameStudent,
-       age: updateAgeStudent,
-       gender: updateGenderStudent,
-       current_test: updateCurrentTest,
-       current_result_web: updateCurrentResult
-     });
+     refStudents.once("value")
+      .then(function(snapshot) {
+        var currentTest = snapshot.child('current_test').val();
+        var currentResult = snapshot.child('current_result_web').val();
 
+       res.render("resultTestGraphs", {
+           currentTest: currentTest,
+           currentResult: currentResult,
+          id: snapshot.key
+       });
+     });
     }
   });
-
-//Для обновления страницы - костыль
-res.redirect("/personalArea");
 };
-
 
 
 exports.get = function(req, res) {
