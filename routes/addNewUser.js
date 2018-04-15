@@ -7,30 +7,37 @@ var firebase = require('firebase');
 exports.post = function(req, res, next) {
   // Получаем данные, которые передал посетитель
   // Склеиваем номера картинок для логина и пароля (1 + 3 = 13)
-    var login = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3 +
-     + req.body.imageEntranceLoginInput_4 + req.body.imageEntranceLoginInput_5 + req.body.imageEntranceLoginInput_6 + req.body.imageEntranceLoginInput_7;
-    var password = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3 +
-    + req.body.imageEntrancePasswordInput_4 + req.body.imageEntrancePasswordInput_5 + req.body.imageEntrancePasswordInput_6 + req.body.imageEntrancePasswordInput_7  ;
+    var login = req.body.imageEntranceLoginInput_1 + req.body.imageEntranceLoginInput_2 + req.body.imageEntranceLoginInput_3;
+    // var password = req.body.imageEntrancePasswordInput_1 + req.body.imageEntrancePasswordInput_2 + req.body.imageEntrancePasswordInput_3 +
+    // + req.body.imageEntrancePasswordInput_4 + req.body.imageEntrancePasswordInput_5 + req.body.imageEntrancePasswordInput_6 + req.body.imageEntrancePasswordInput_7  ;
     var name = req.body.usernameNewUser;// P.S req.body - нестандартное св-во, но в app.js есть middleware bodyParser(аналог)
     var age = req.body.ageNewUser;                                      // т.к он подключен до роута, то к моменту работы роута, bodyParser гарантированно прочитал все post данные
     var gender = req.body.genderNewUser;
-    console.log(login + " login");
+
     var trainer_ID = firebase.auth().currentUser.uid;
 
     var loginFirst;
 
-    //var imageEntranceLoginInput_1 = req.body.imageEntranceLoginInput_1;
 
     //  Т.к сделали пока изображения - нету уникальности - закомментил
     // Проверим имеется ли такой логин в БД
     var refStudents = firebase.database().ref("students");
-    refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
-    loginFirst = snapshot.child("login").val();
-    });
+
+//     var sturentsTrainer = refStudents.orderByChild("trainer_ID").equalTo(trainer_ID);
+// sturentsTrainer.on('value',snap => {
+//   snap.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
+//     loginFirst = snapshot.child("login").val();
+//     console.log(loginFirst + ' loginFirst');
+//   });
+// });
+    // refStudents.orderByChild("login").equalTo(login).limitToFirst(1).on("child_added", function(snapshot) {
+    // loginFirst = snapshot.child("login").val();
+    //
+    // console.log(loginFirst + ' loginFirst');
+    // });
 
 
-
-      if (login != loginFirst) {
+  if (login != loginFirst) {
   //Генерируем уникальный ключ
   var userIdStudents =  firebase.app().database().ref().push().getKey();
 
@@ -38,7 +45,7 @@ exports.post = function(req, res, next) {
   var usersRef = ref.child('students/' + userIdStudents);
   var userRef = usersRef.set({
   login: login,
-  password: password,
+  // password: password,
   name: name,
   age: age,
   gender: gender,
