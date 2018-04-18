@@ -1,0 +1,132 @@
+<!-- <link rel="stylesheet" href="css/stylePersonalArea.css"> -->
+
+
+
+<h3>Number of categories</h3>
+<input name="countCategory" type="number"  id="input-countCategory" placeholder="count" >
+<h3>Number of questions in categories</h3>
+<input name="countQuestions" type="number" id="input-countQuestions" placeholder="count" >
+<br><br>
+<input type="submit" value="Confirm" onclick="getCounts()" />
+
+
+
+<form action="/addTest" method="POST" name="AddNewTest">
+<ul id="list"></ul>
+<input type="submit" value="Add new test">
+</form>
+  <!-- LEFT START -->
+    <!-- <div class="main-and-sidebar-wrapper-left">
+        <section class="main-left">
+
+        </section>
+    </div> -->
+  <!-- LEFT END -->
+
+<!-- CENTER START -->
+    <!-- <div class="main-and-sidebar-wrapper">
+        <section class="main">
+
+        </section>
+    </div> -->
+<!-- CENTER END -->
+
+  <!-- RIGHT START -->
+    <!-- <div class="main-and-sidebar-wrapper-right">
+        <section class="main-right">
+            <h2 style="text-align: center">Add new test</h2>
+            <form class="form-addNewTest" name="cabinet_addNewTest">
+
+  <h3>Number of categories</h3>
+  <input name="countCategory" type="number"  id="input-countCategory" placeholder="count" >
+  <h3>Number of questions in categories</h3>
+  <input name="countQuestions" type="number" id="input-countQuestions" placeholder="count" >
+  <br><br>
+  <input type="submit" value="Confirm" onclick="getCounts()" />
+
+<ul id="list"><li>Компьютер</li><li>Ноутбук</li><li>Планшет</li></ul>
+   <!-- <button type="submit" class="add-new-test" data-loading-text="Adding..."id="addNewTestr">Add new test</button> -->
+   <span class="help-block error"></span>
+ </form>
+
+        </section>
+    </div>
+  <!-- RIGHT END -->
+
+    </div>
+
+    <!-- <footer>
+        <h3>Footer</h3>
+        <p>Something.</p>
+    </footer> -->
+
+
+
+
+
+
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_addNeTest']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/addNewTest", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  },
+  statusCode: {
+    // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+    200: function() {
+      //form.html("Student Added").addClass('alert-success');
+      location.reload();
+    },
+    // если 403 - высвечивается ошибка(уже есть такой пользователь)
+    403: function(jqXHR) {
+      var error = JSON.parse(jqXHR.responseText);
+      $('.error', form).html(error.message);
+    }
+  }
+});
+return false;
+// location.reload();
+});
+</script>
+
+<script>
+ function getCounts(){
+     var countCategory = document.getElementById("input-countCategory").value;
+
+    var elementUL = document.getElementById('list');
+
+     for(var i = 0; i<countCategory; i++){
+
+       var elementLI = document.createElement("input");
+       var elementBr = document.createElement("br");
+
+       var att = document.createAttribute( "name" );
+       att.value = "category_"  + String(i);
+       elementLI.setAttributeNode(att);
+
+       //создаём текстовый узел, содержащий текст "Смартфон"
+       var textSmart= document.createTextNode("Cмapтфoн " + i);
+       //добавляем созданный текстовый узел как последний дочерний элемент к только что созданному элементу LI
+       elementLI.appendChild(textSmart);
+       //получаем элемент, к которому будет добавлен созданный узел li как дочерний
+       var elementUL = document.getElementById("list");
+       //добавляем созданный элемент li как последний дочерний элемент к UL с id="list"
+       elementUL.appendChild(elementLI);
+        elementUL.appendChild(elementBr);
+
+     }
+}
+
+
+
+</script>

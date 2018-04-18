@@ -85,6 +85,7 @@ exports.get = function(req, res) {
 
 
         var link = "/" + currentTest + "/test_settings/id" + req.params.idTag;
+        var linkAddTest=  "/add_test/id" + req.params.idTag;
 
        var refNumbersResults = refStudents.child("/student_state");
        var refResultStudents = refStudents.child("tests/" + currentTest + "/results/" + currentResult);
@@ -108,6 +109,8 @@ exports.get = function(req, res) {
 
                id: snapshot.key,
                link: link,
+               linkAddTest: linkAddTest,
+               
                numbersResults: numbersResults,
                currentQuestion: currentQuestion,
                currentState: currentState,
@@ -121,6 +124,7 @@ exports.get = function(req, res) {
                url_2_password: url_2_password,
                url_3_password: url_3_password,
                url_4_password: url_4_password,
+
            });
          });
 
