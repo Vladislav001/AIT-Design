@@ -1,0 +1,331 @@
+<link rel="stylesheet" href="css/styleAddTest.css">
+<% layout('layout/page') -%>
+<% block('title') -%>
+
+<style media="screen">
+/* Левая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-left {
+    display: flex;
+    width: 40%;
+    margin-top: 100px;
+}
+
+.main-left {
+    text-align: center;
+    margin-left: 10px;
+
+    flex: 3;
+}
+
+.main-left  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.main-left  h3 {
+    font-size: 16px;
+		margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.main-left .select-updateImage {
+	float: left;
+	margin-top: 10px;
+  margin-bottom: 20px;
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.main-left .upload {
+	float: left;
+	margin-top: 10px;
+  margin-bottom: 20px;
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+#myProgress {
+	margin-top: 75px;
+	max-width: 120px;
+  width: 100%;
+  background-color: #ddd;
+  text-align: left;
+}
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.main-left a {
+    color: #2196F3; /* Цвет обычной ссылки */
+   }
+/* Левая сторона КОНЕЦ*/
+
+
+.main-and-sidebar-wrapper {
+    display: flex;
+    width: 20%;
+}
+
+.main {
+    text-align: center;
+/*    margin-right: 60px;*/
+    flex: 3;
+}
+
+/* Центр НАЧАЛО*/
+
+/* Центер КОНЕЦ*/
+
+
+/* Правая сторона НАЧАЛО*/
+.main-and-sidebar-wrapper-right {
+    display: flex;
+    width: 40%;
+    margin-top: 100px;
+}
+
+.main-right {
+    text-align: center;
+    margin-right: 10px;
+
+    flex: 3;
+}
+
+.main-right  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+/* Настройки размеров картинок НАЧАЛО*/
+.main-right .settings_entrance_input img {
+	float: left;
+  width: 12%;
+  height:7%;
+	border: 1px dotted #546E7A; /* Параметры границы */
+}
+
+.main-right .settings_entrance img {
+	float: left;
+  width: 12%;
+  height: 7%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* Настройки размеров картинок КОНЕЦ*/
+
+
+
+/* Правая сторона КОНЕЦ*/
+
+
+/* Подвал НАЧАЛО*/
+footer {
+    color: #ef5350;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    padding: 10px;
+}
+/* Подвал КОНЕЦ*/
+
+
+
+/* Настройки кнопки добавить студента КОНЕЦ*/
+
+/* Настройки таблицы студентов НАЧАЛО*/
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+table tr {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+/* Настройки таблицы студентов КОНЕЦ*/
+
+.input-question-data {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.action-delete
+{
+  background-color: #D50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.action-update
+{
+  background-color: #D50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
+
+
+  <!-- LEFT START -->
+    <div class="main-and-sidebar-wrapper-left">
+        <section class="main-left">
+        <h2 style="text-align:center">Name test</h2>
+          <div>
+             <a href="" class="category" style="width:30%">Категория №1</a>
+           <div class="questions">
+             <!-- Тут по идее цикл, дабы имя униклаьное было откуда данные сосать -->
+              <div class="question">
+                <table>
+                  <tbody>
+                    <!-- https://icons8.ru/icon/set/cross/all для иконок норм сайт-->
+                    <tr  style="background-color:#fff; border-color: #fff;">
+                      <td style="width:80%"><input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required></td>
+                      <td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
+                      <td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="question">
+                <table>
+                  <tbody>
+                    <tr  style="background-color:#fff; border-color: #fff;">
+                      <td style="width:80%"><input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required></td>
+                      <td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
+                      <td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+           </div>
+          </div>
+
+          <div>
+           <a href="" class="category">Категория №2</a>
+           <div class="questions">
+             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
+             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
+             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
+           </div>
+          </div>
+
+  
+        </section>
+    </div>
+  <!-- LEFT END -->
+
+<!-- CENTER START -->
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+
+        </section>
+    </div>
+<!-- CENTER END -->
+
+  <!-- RIGHT START -->
+    <div class="main-and-sidebar-wrapper-right">
+        <section class="main-right">
+
+        </section>
+    </div>
+  <!-- RIGHT END -->
+
+    </div>
+
+    <footer>
+        <h3>Footer</h3>
+        <p>Something.</p>
+    </footer>
+
+
+
+
+    <script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+     $('.category').click(function(){
+      $(this).parent().children('div.questions').toggle('normal');
+      return false;
+     });
+    });
+    </script>
+
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_addUpdateTest']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/updateTest", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  },
+  statusCode: {
+    // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+    200: function() {
+      //form.html("Student Added").addClass('alert-success');
+      location.reload();
+    },
+    // если 403 - высвечивается ошибка(уже есть такой пользователь)
+    403: function(jqXHR) {
+      var error = JSON.parse(jqXHR.responseText);
+      $('.error', form).html(error.message);
+    }
+  }
+});
+return false;
+// location.reload();
+});
+</script>

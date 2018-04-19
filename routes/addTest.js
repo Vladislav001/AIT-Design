@@ -17,7 +17,7 @@ exports.get = function(req, res) {
          res.render("addTest", {
              id: snapshot.key
            });
-      });
+      });  
     }
   });
 

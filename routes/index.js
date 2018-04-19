@@ -40,7 +40,8 @@ module.exports = function(app) {
   // app.post('/deleteCoach/id:idTag', require('./deleteCoach').post);
 
 
-  app.get('/add_test/id:idTag', checkAuth, require('./addTest').get);
+  app.get('/add_test', checkAuth, require('./addTest').get);
   app.post('/addTest', require('./addTest').post);
-
+  app.get('/update_test', checkAuth, require('./updateTest').get);
+  app.post('/updateTest', require('./updateTest').post);
 };
