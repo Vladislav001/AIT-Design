@@ -300,10 +300,13 @@ refAnswer.on('child_added', function(snapshot) {
 
     if (snapshot.child('name').val() != null) {
     questions_number++
-    $('#tl_tests tbody').append('<tr class="child"><td>' + questions_number + '</td>' +
+    $('#tl_tests tbody').append('<tr class="child" id =' + snapshot.getKey() +
+                                                    '><td>' + questions_number + '</td>' +
                                                     '<td>' + snapshot.child('name').val() + '</td>' +
                                                     '<td>' + snapshot.child('questions_count').val() + '</td>' +
-                                                    '<td id =' + snapshot.getKey() + ' class="delete"><button class="action-delete">Delete</button></td>' +
+                                                    '<td id =' + snapshot.getKey() +
+                                                    ' class="delete"><button id =' + snapshot.getKey() +
+                                                    ' onclick="refAnswer.child(this.id).remove()" class="action-delete">Delete</button></td>' +
                                                            + '</tr>');
                                                          }
 });
@@ -311,7 +314,8 @@ refAnswer.on('child_added', function(snapshot) {
 
 
 refAnswer.on('child_removed', function (snapshot) {
-    console.log(snapshot.getKey());
+    $( "#"  + snapshot.getKey()).remove();
+    questions_number--
 })
 
 $( "#submit" ).click(function() {
