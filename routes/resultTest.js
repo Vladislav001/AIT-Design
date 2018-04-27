@@ -64,10 +64,10 @@ exports.get = function(req, res) {
         var currentLogin_3 = snapshot.child('login').val()[2];
         var currentLogin_4 = snapshot.child('login').val()[3];
 
-        var currentPassword_1 = snapshot.child('password').val()[0];
-        var currentPassword_2 = snapshot.child('password').val()[1];
-        var currentPassword_3 = snapshot.child('password').val()[2];
-        var currentPassword_4 = snapshot.child('password').val()[3];
+      //  var currentPassword_1 = snapshot.child('password').val()[0];
+    //    var currentPassword_2 = snapshot.child('password').val()[1];
+      //  var currentPassword_3 = snapshot.child('password').val()[2];
+    //    var currentPassword_4 = snapshot.child('password').val()[3];
 
         var url_photoStudent = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/photo_students%2F" + photoStudent + "?alt=media&token=685aaaf3-bdf8-49aa-96fb-ff9087a1be1b";
 
@@ -78,10 +78,10 @@ exports.get = function(req, res) {
          var url_3_login = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_3 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
          var url_4_login = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentLogin_4 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
 
-         var url_1_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_1 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
-         var url_2_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_2 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
-         var url_3_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_3 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
-         var url_4_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_4 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+      //   var url_1_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_1 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+      //   var url_2_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_2 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+      //   var url_3_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_3 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
+      //   var url_4_password = "https://firebasestorage.googleapis.com/v0/b/profpref-c5ce0.appspot.com/o/entrance%2F" + currentPassword_4 + ".png?alt=media&token=41d83b72-77fa-4adc-8c74-0762dad52e8d";
 
 
         var link = "/" + currentTest + "/test_settings/id" + req.params.idTag;
@@ -110,7 +110,7 @@ exports.get = function(req, res) {
                id: snapshot.key,
                link: link,
                linkAddTest: linkAddTest,
-               
+
                numbersResults: numbersResults,
                currentQuestion: currentQuestion,
                currentState: currentState,
@@ -119,11 +119,11 @@ exports.get = function(req, res) {
                url_2_login: url_2_login,
                url_3_login: url_3_login,
                url_4_login: url_4_login,
-
-               url_1_password: url_1_password,
-               url_2_password: url_2_password,
-               url_3_password: url_3_password,
-               url_4_password: url_4_password,
+               // 
+               // url_1_password: url_1_password,
+               // url_2_password: url_2_password,
+               // url_3_password: url_3_password,
+               // url_4_password: url_4_password,
 
            });
          });

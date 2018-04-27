@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.get('/:currentTest/result_settings/id:idTag', checkAuth, require('./resultSettings').get);
   app.get('/:currentTest/finish_settings/id:idTag', checkAuth, require('./finishSettings').get);
 
-
+  
 
   app.post('/addNewUser', require('./addNewUser').post);
     // Т.к перенес на сокеты - пока не нужно
