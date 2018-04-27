@@ -8,14 +8,14 @@ exports.get = function(req, res) {
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
      res.render("updateTest", {
-        
+
        });
     }
   });
 
 };
 
-
+  
 
 
 exports.post = function(req, res, next) {

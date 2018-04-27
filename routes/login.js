@@ -40,5 +40,6 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
 
 
 exports.get = function(req, res) {
+
   res.render('login');
 };

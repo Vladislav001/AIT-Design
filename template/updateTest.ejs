@@ -172,7 +172,7 @@ table td {
 }
 /* Настройки таблицы студентов КОНЕЦ*/
 
-.input-question-data {
+.input-question-data, .category {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
@@ -206,31 +206,33 @@ table td {
   border-radius: 4px;
   cursor: pointer;
 }
+
+
+
 </style>
 
 
   <!-- LEFT START -->
-    <div class="main-and-sidebar-wrapper-left">
+    <div  class="main-and-sidebar-wrapper-left">
         <section class="main-left">
         <h2 style="text-align:center">Name test</h2>
-          <div>
-             <a href="" class="category" style="width:30%">Категория №1</a>
-           <div class="questions">
+          <div id="categories">
+
+
+           <table id="category_' + 1 + '">
+             <tbody>
+               <tr style="background-color:#fff; border-color: #fff;">
+                 <td style="width:80%"><input href="" class="category"></td>
+                 <td class="add_question"><button type="submit" id="submit-question" class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
+               </tr>
+             </tbody>
+           </table>
+
+
+
+           <!-- <div id="questions" class="questions">  -->
              <!-- Тут по идее цикл, дабы имя униклаьное было откуда данные сосать -->
-              <div class="question">
-                <table>
-                  <tbody>
-                    <!-- https://icons8.ru/icon/set/cross/all для иконок норм сайт-->
-                    <tr  style="background-color:#fff; border-color: #fff;">
-                      <td style="width:80%"><input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required></td>
-                      <td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
-                      <td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="question">
+              <!-- <div class="question">
                 <table>
                   <tbody>
                     <tr  style="background-color:#fff; border-color: #fff;">
@@ -240,21 +242,27 @@ table td {
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </div> -->
+
+              <!-- <div class="question">
+                <table>
+                  <tbody>
+                    <tr style="background-color:#fff; border-color: #fff;">
+                      <td style="width:80%"><input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required></td>
+                      <td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
+                      <td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td>
+                      <td class=""><input type="file" class="upload" id="upload_photo" size="50" name="icon" onchange="loadPhoto(this);"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
 
            </div>
-          </div>
+          <!-- </div> -->
 
-          <div>
-           <a href="" class="category">Категория №2</a>
-           <div class="questions">
-             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
-             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
-             <input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required>
-           </div>
-          </div>
 
-  
+<button id = "submit-categories" type="submit" class="add-new-question" data-loading-text="Adding...">Add categories</button>
+  <!-- <button id = "submit-question" type="submit" class="add-new-question" data-loading-text="Adding...">Add question</button> -->
         </section>
     </div>
   <!-- LEFT END -->
@@ -328,4 +336,28 @@ $.ajax({
 return false;
 // location.reload();
 });
+</script>
+
+
+
+<script>
+
+$( "#submit-categories" ).click(function() {
+  $('#categories').append('         <table id="category_' + 1 + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input href="" class="category"></td><td class="add_question"><button type="submit" id="submit-question" class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td></tr></tbody></table> <div id="questions_categ_num" class="questions"></div></div>');
+});
+
+$( "#submit-question" ).click(function() {
+  $('#questions_categ_num').append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class=""><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
+});
+
+</script>
+
+
+
+
+
+<script>
+// Загрузка файлов
+// искать в resultTest.ejs  ОРИГИНАЛ
+
 </script>
