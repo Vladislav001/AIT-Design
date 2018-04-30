@@ -7,9 +7,18 @@ exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-     res.render("addTest", {
+     var refStudents = firebase.database().ref("students/" + req.params.idTag);
 
-       });
+      refStudents.once("value")
+       .then(function(snapshot) {
+
+         //var linkAddTest=  "/add_test/id" + req.params.idTag;
+
+         res.render("addTest", {
+             id: snapshot.key,
+             trainer_ID : user.uid
+           });
+      });
     }
   });
 

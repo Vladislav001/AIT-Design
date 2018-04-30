@@ -7,15 +7,16 @@ exports.get = function(req, res) {
 
   firebase.auth().onAuthStateChanged(user => {
    if (user) {
-     res.render("updateTest", {
 
+     res.render("updateTest", {
+             userId : user.uid
        });
     }
   });
 
 };
 
-  
+
 
 
 exports.post = function(req, res, next) {

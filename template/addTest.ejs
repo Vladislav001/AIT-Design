@@ -329,7 +329,8 @@ $( "#submit" ).click(function() {
 
     var currentTestRef = currentTestRef.set({
     name: $( "#testName" ).val(),
-    questions_count: 0
+    questions_count: 0,
+    trainer_ID : "<%= trainer_ID %>"
     });
 
     $( "#testName" ).val("")

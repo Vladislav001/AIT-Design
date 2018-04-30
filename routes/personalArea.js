@@ -25,6 +25,7 @@ exports.get = function(req, res) {
       var userId = firebase.auth().currentUser.uid;
       var ref = firebase.database().ref("trainers/" + userId);
 
+
       ref.once("value")
         .then(function(snapshot) {
              accessLevel = snapshot.child("accessLevel").val();
@@ -39,6 +40,8 @@ exports.get = function(req, res) {
                   usernames.push(snapshot.child('name').val());
                   genders.push(snapshot.child('gender').val());
                   ages.push(snapshot.child('age').val());
+
+
                   //logins.push(snapshot.child('login').val());
                   //passwords.push(snapshot.child('password').val());
 
@@ -62,6 +65,8 @@ exports.get = function(req, res) {
                 });
 
                 unsubscribe(); // убирает состояние
+
+
                 res.render("personalArea", {
                     email: user.email,
                     accessLevel: accessLevel,
@@ -73,7 +78,8 @@ exports.get = function(req, res) {
 
                     linksTrainers: linksTrainers,
                     emailTrainers: emailTrainers,
-                    countStudents: countStudents
+                    countStudents: countStudents,
+                    userId : userId
                 });
 
         });

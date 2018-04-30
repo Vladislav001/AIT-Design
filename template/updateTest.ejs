@@ -9,27 +9,22 @@
     width: 40%;
     margin-top: 100px;
 }
-
 .main-left {
     text-align: center;
     margin-left: 10px;
-
     flex: 3;
 }
-
 .main-left  h2 {
     font-size: 20px;
     margin-bottom: 15px;
     text-align: left;
 }
-
 .main-left  h3 {
     font-size: 16px;
 		margin-top: 25px;
     margin-bottom: 15px;
     text-align: left;
 }
-
 .main-left .select-updateImage {
 	float: left;
 	margin-top: 10px;
@@ -42,7 +37,6 @@
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 .main-left .upload {
 	float: left;
 	margin-top: 10px;
@@ -52,7 +46,6 @@
   margin: 8px 0;
   display: inline-block;
 }
-
 #myProgress {
 	margin-top: 75px;
 	max-width: 120px;
@@ -68,43 +61,32 @@
   line-height: 30px;
   color: white;
 }
-
 .main-left a {
     color: #2196F3; /* Цвет обычной ссылки */
    }
 /* Левая сторона КОНЕЦ*/
-
-
 .main-and-sidebar-wrapper {
     display: flex;
     width: 20%;
 }
-
 .main {
     text-align: center;
 /*    margin-right: 60px;*/
     flex: 3;
 }
-
 /* Центр НАЧАЛО*/
-
 /* Центер КОНЕЦ*/
-
-
 /* Правая сторона НАЧАЛО*/
 .main-and-sidebar-wrapper-right {
     display: flex;
     width: 40%;
     margin-top: 100px;
 }
-
 .main-right {
     text-align: center;
     margin-right: 10px;
-
     flex: 3;
 }
-
 .main-right  h2 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -117,7 +99,6 @@
   height:7%;
 	border: 1px dotted #546E7A; /* Параметры границы */
 }
-
 .main-right .settings_entrance img {
 	float: left;
   width: 12%;
@@ -126,12 +107,7 @@
   margin-bottom: 20px;
 }
 /* Настройки размеров картинок КОНЕЦ*/
-
-
-
 /* Правая сторона КОНЕЦ*/
-
-
 /* Подвал НАЧАЛО*/
 footer {
     color: #ef5350;
@@ -139,18 +115,13 @@ footer {
     padding: 20px 0;
     margin-top: 60px;
 }
-
 footer p {
     color: #777;
     font-size: 12px;
     padding: 10px;
 }
 /* Подвал КОНЕЦ*/
-
-
-
 /* Настройки кнопки добавить студента КОНЕЦ*/
-
 /* Настройки таблицы студентов НАЧАЛО*/
 table {
   border: 1px solid #ccc;
@@ -171,7 +142,6 @@ table td {
   text-align: center;
 }
 /* Настройки таблицы студентов КОНЕЦ*/
-
 .input-question-data, .category {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -183,7 +153,6 @@ table td {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 .action-delete
 {
   background-color: #D50000;
@@ -194,8 +163,6 @@ table td {
   border-radius: 4px;
   cursor: pointer;
 }
-
-
 .action-update
 {
   background-color: #D50000;
@@ -206,7 +173,6 @@ table td {
   border-radius: 4px;
   cursor: pointer;
 }
-
 .add-new-category, .add-new-question {
   width: 100%;
   background-color: #4CAF50;
@@ -218,9 +184,6 @@ table td {
   cursor: pointer;
   margin-bottom: 10px;
 }
-
-
-
 </style>
 
 
@@ -344,22 +307,16 @@ return false;
 
 <script>
 var categories = document.getElementsByClassName('categories');
-
 $( "#submit-categories" ).click(function() {
 //  $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" class="category"></td><td class="add_question"><button type="submit" id="submit-question-categ-0" class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td></tr></tbody></table> <div id="questions-category-0" class="questions"></div></div>');
 $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" class="category" placeholder="Category"></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
 });
-
 $( "#submit-question" ).click(function() {
 //  console.log('categories.length = ' +  categories.length);
   var newQuestion = "#questions-category-" + categories.length;
-
-
   //$("#questions-category-1").append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class=""><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
   $( ".questions").last().append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class=""><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
-
 });
-
 </script>
 
 
@@ -369,5 +326,10 @@ $( "#submit-question" ).click(function() {
 <script>
 // Загрузка файлов
 // искать в resultTest.ejs  ОРИГИНАЛ
+</script>
 
+
+<script>
+
+console.log("<%= userId %>");
 </script>

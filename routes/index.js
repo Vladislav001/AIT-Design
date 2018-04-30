@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.get('/:currentTest/result_settings/id:idTag', checkAuth, require('./resultSettings').get);
   app.get('/:currentTest/finish_settings/id:idTag', checkAuth, require('./finishSettings').get);
 
-
+  
 
   app.post('/addNewUser', require('./addNewUser').post);
     // Т.к перенес на сокеты - пока не нужно
@@ -40,7 +40,7 @@ module.exports = function(app) {
   // app.post('/deleteCoach/id:idTag', require('./deleteCoach').post);
 
 
-  app.get('/add_test', require('./addTest').get);
+  app.get('/add_test', checkAuth, require('./addTest').get);
   app.post('/addTest', require('./addTest').post);
   app.get('/update_test', checkAuth, require('./updateTest').get);
   app.post('/updateTest', require('./updateTest').post);
