@@ -309,6 +309,7 @@ var config = {
 firebase.initializeApp(config);
 
 var refCurrentTest = firebase.database().ref("tests/" + "<%= testId %>");
+var storage = firebase.app().storage("profpref-c5ce0.appspot.com");
 
 var categories = document.getElementsByClassName('categories');
 
@@ -326,18 +327,20 @@ $( "#submit-categories" ).click(function() {
 
 refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
+    var lastQuestionKey = 0;
+
     if (snapshot.child('name').val() != null) {
 
         lastCategoryKey = parseInt(snapshot.getKey()) + 1
 
-        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button id = btn_add_question' + snapshot.getKey() + ' type="button">add question</button></td></tr></tbody></table> <div id="questions-category-'+ snapshot.getKey() +'" class="questions"></div></div>');
+        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="' + snapshot.child('name').val() + '" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button id = btn_add_question' + snapshot.getKey() + ' type="button">add question</button></td></tr></tbody></table> <div id="questions-category-'+ snapshot.getKey() +'" class="questions"></div></div>');
 
         var categoryId = '#titleCategory' + snapshot.getKey()
 
         $(categoryId).on('input',function(e){
 
             if ($(categoryId).val() != "") {
-              refCurrentTest.child("categories").child(snapshot.getKey()).set({
+              refCurrentTest.child("categories").child(snapshot.getKey()).update({
               name: $(categoryId).val()
               });
             }
@@ -359,20 +362,107 @@ refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
         var btnAddQuestion = "#btn_add_question" + snapshot.getKey()
 
+
+        //Отрисовка добавления вопроса к категории
+        refCurrentTest.child("categories").child(snapshot.getKey()).child("questions").on('child_added', function(snapshotOfquestion) {
+
+          lastQuestionKey = parseInt(snapshotOfquestion.getKey()) + 1
+
+           var questionId = '#questions-category-'+ snapshot.getKey()
+
+           $(questionId).append('<div class="question"><table><tbody><tr  id="str_question'+ snapshot.getKey() + snapshotOfquestion.getKey() + '" style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="inputQuestion'+ snapshot.getKey() + snapshotOfquestion.getKey() + '"type="text" value="' + snapshotOfquestion.child("title").val() + '" class="input-question-data" placeholder="Question" required></td><td class="update"><td class="delete"><button class="action-delete" id = "btn_delete'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class="btn"><input type="file" style="width:150px;" class="upload" id="iploadQuestion'+ snapshot.getKey() +"_"+ snapshotOfquestion.getKey() + '" size="50" name="icon" onchange="loadPhoto(this,' + snapshot.getKey() + "," + snapshotOfquestion.getKey() +');"></td> <td><img src="" class="img-responsive constantly" id="questionImg'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"></td></tr></tbody></table></div>');
+
+
+           //Изменение вопроса
+           var questionInputId = "#inputQuestion" + snapshot.getKey() + snapshotOfquestion.getKey()
+           $(questionInputId).on('input',function(e){
+
+               if ($(questionInputId).val() != "") {
+                 refCurrentTest.child("categories").child(snapshot.getKey()).child("questions").child(snapshotOfquestion.getKey()).update({
+                 title: $(questionInputId).val()
+                 });
+               }
+           });
+
+
+           //Удаление вопроса
+           var btnDeleteQuestionId = "#btn_delete" + snapshot.getKey() + snapshotOfquestion.getKey()
+           $(btnDeleteQuestionId).click(function(e){
+               refCurrentTest.child("categories").child(snapshot.getKey()).child("questions").child(snapshotOfquestion.getKey()).remove()
+           });
+
+
+           //Отрисовка удаления вопроса
+           refCurrentTest.child("categories").child(snapshot.getKey()).child("questions").on('child_removed', function (snapshotQuestionRemoved) {
+               var strQuestionId = "#str_question" + snapshot.getKey() + snapshotQuestionRemoved.getKey()
+               $(strQuestionId).remove();
+           });
+
+
+           //Добавление фотографии к вопросу
+           var urlQuestionPicture = storage.ref("tests/" + "iploadQuestion"+ snapshot.getKey() + "_"+ snapshotOfquestion.getKey() + "_photo.png");
+
+           urlQuestionPicture.getDownloadURL().then(function(url) {
+
+           var imageQuestionId = "#questionImg" + snapshot.getKey() + snapshotOfquestion.getKey()
+           $(imageQuestionId).attr('src', url);
+
+           });
+
+
+
+        });
+
         $(btnAddQuestion).click(function(e) {
 
-          console.log(e.target.id);
+          refCurrentTest.child("categories").child(snapshot.getKey()).child("questions").child(lastQuestionKey).update({
+            title : "Some title"
+          })
 
-          var questionId = '#questions-category-'+ snapshot.getKey()
-          console.log(questionId);
-
-          $(questionId).append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class="btn"><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
         });
 
     }
 
 })
 
+function loadPhoto(input, categotyId, questionId) {
+
+       console.log(categotyId);
+       console.log(questionId);
+
+       var filetoUpload=input.files[0];
+
+       var storageRef = firebase.storage().ref("tests/" + input.id + "_photo" + ".png");
+       var namePhotoDB = input.id + "_photo" + ".png";
+
+       var successForman = input.value.search(/^.*\.(?:jpg|jpeg|mp3|mp4)\s*$/ig)
+
+         if(successForman!=0){
+            alert("Invalid file format");
+            return;
+         }
+
+       var task = storageRef.put(filetoUpload);
+
+        task.on('state_changed',
+           function progress(snapshot){
+               var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+               console.log(percentage);
+           },
+           function error(err){
+
+           },
+           function complete() {
+
+               var downloadURL = task.snapshot.downloadURL;
+
+               refCurrentTest.child("categories").child(categotyId).child("questions").child(questionId).update({
+                   "picture": namePhotoDB
+                 });
+
+           }
+       );
+}
 
 </script>
 
