@@ -301,16 +301,54 @@ $.ajax({
 return false;
 // location.reload();
 });
+
 </script>
 
 
 
 <script>
+
+var config = {
+  apiKey: "AIzaSyDivSiqkv7QoDAe8qiY1QevU5N4vQ7aHZw",
+  authDomain: "profpref-c5ce0.firebaseapp.com",
+  databaseURL: "https://profpref-c5ce0.firebaseio.com",
+  projectId: "profpref-c5ce0",
+  storageBucket: "profpref-c5ce0.appspot.com",
+  messagingSenderId: "664101035809"
+};
+firebase.initializeApp(config);
+
+var refCurrentTest = firebase.database().ref("tests/" + "<%= testId %>");
+
 var categories = document.getElementsByClassName('categories');
+
+var lastCategoryKey = 0;
+var categoriesLength = 0;
+
 $( "#submit-categories" ).click(function() {
-//  $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" class="category"></td><td class="add_question"><button type="submit" id="submit-question-categ-0" class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td></tr></tbody></table> <div id="questions-category-0" class="questions"></div></div>');
-$('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" class="category" placeholder="Category"></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
+  refCurrentTest.child("categories").child(lastCategoryKey).set({
+  name: "Some category"
+  });
 });
+
+
+
+
+refCurrentTest.child("categories").on('child_added', function(snapshot) {
+
+    if (snapshot.child('name').val() != null) {
+        lastCategoryKey = parseInt(snapshot.getKey()) + 1
+
+        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
+
+    }
+
+})
+
+$('#titleCategory0').on('input',function(e){
+    console.log("changed");
+});
+
 $( "#submit-question" ).click(function() {
 //  console.log('categories.length = ' +  categories.length);
   var newQuestion = "#questions-category-" + categories.length;
@@ -326,10 +364,4 @@ $( "#submit-question" ).click(function() {
 <script>
 // Загрузка файлов
 // искать в resultTest.ejs  ОРИГИНАЛ
-</script>
-
-
-<script>
-
-console.log("<%= userId %>");
 </script>

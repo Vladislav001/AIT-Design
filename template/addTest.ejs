@@ -302,7 +302,7 @@ refAnswer.on('child_added', function(snapshot) {
     questions_number++
     $('#tl_tests tbody').append('<tr class="child" id =' + snapshot.getKey() +
                                                     '><td>' + questions_number + '</td>' +
-                                                    '<td>' + snapshot.child('name').val() + '</td>' +
+                                                    '<td><a href="update_test/id'+ snapshot.getKey() + '">' + snapshot.child('name').val() + '</a></td>' +
                                                     '<td>' + snapshot.child('questions_count').val() + '</td>' +
                                                     '<td id =' + snapshot.getKey() +
                                                     ' class="delete"><button id =' + snapshot.getKey() +

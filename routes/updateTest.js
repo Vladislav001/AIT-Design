@@ -9,7 +9,8 @@ exports.get = function(req, res) {
    if (user) {
 
      res.render("updateTest", {
-             userId : user.uid
+             userId : user.uid,
+             testId : req.params.idTag
        });
     }
   });
