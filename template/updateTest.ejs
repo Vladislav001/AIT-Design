@@ -153,6 +153,13 @@ table td {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.input-question-data {
+margin-left: 50px;
+}
+
+
+
 .action-delete
 {
   background-color: #D50000;
@@ -173,8 +180,22 @@ table td {
   border-radius: 4px;
   cursor: pointer;
 }
-.add-new-category, .add-new-question {
-  width: 100%;
+.add-new-category {
+  width: 15%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  outline:none;
+}
+
+
+
+.add-new-question{
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
@@ -198,6 +219,14 @@ table td {
 .btn:hover {
     background-color: RoyalBlue;
 }
+
+.img-responsive-constantly {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 120px;
+  /* margin-left: -725px; */
+}
+
 </style>
 
 
@@ -215,9 +244,9 @@ table td {
           <!-- </div> -->
 
 
-<button id = "submit-categories" type="submit" class="add-new-category" data-loading-text="Adding...">Add category</button>
-<button id = "submit-question" type="submit" class="add-new-question" data-loading-text="Adding...">Add question</button>
-  <!-- <button id = "submit-question" type="submit" class="add-new-question" data-loading-text="Adding...">Add question</button> -->
+<button id = "submit-categories" type="submit" class="add-new-category" style="background: url(../imagesDefault/addCategory.png) no-repeat; height:70"></button>
+
+
         </section>
     </div>
   <!-- LEFT END -->
@@ -333,7 +362,7 @@ refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
         lastCategoryKey = parseInt(snapshot.getKey()) + 1
 
-        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="' + snapshot.child('name').val() + '" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button id = btn_add_question' + snapshot.getKey() + ' type="button">add question</button></td></tr></tbody></table> <div id="questions-category-'+ snapshot.getKey() +'" class="questions"></div></div>');
+        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="' + snapshot.child('name').val() + '" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button id = btn_add_question' + snapshot.getKey() + ' type="button" class="add-new-question">Add question</button></td></tr></tbody></table> <div id="questions-category-'+ snapshot.getKey() +'" class="questions"></div></div>');
 
         var categoryId = '#titleCategory' + snapshot.getKey()
 
@@ -370,7 +399,7 @@ refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
            var questionId = '#questions-category-'+ snapshot.getKey()
 
-           $(questionId).append('<div class="question"><table><tbody><tr  id="str_question'+ snapshot.getKey() + snapshotOfquestion.getKey() + '" style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="inputQuestion'+ snapshot.getKey() + snapshotOfquestion.getKey() + '"type="text" value="' + snapshotOfquestion.child("title").val() + '" class="input-question-data" placeholder="Question" required></td><td class="update"><td class="delete"><button class="action-delete" id = "btn_delete'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class="btn"><input type="file" style="width:150px;" class="upload" id="iploadQuestion'+ snapshot.getKey() +"_"+ snapshotOfquestion.getKey() + '" size="50" name="icon" onchange="loadPhoto(this,' + snapshot.getKey() + "," + snapshotOfquestion.getKey() +');"></td> <td><img src="" class="img-responsive constantly" id="questionImg'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"></td></tr></tbody></table></div>');
+           $(questionId).append('<div class="question"><table><tbody><tr  id="str_question'+ snapshot.getKey() + snapshotOfquestion.getKey() + '" style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="inputQuestion'+ snapshot.getKey() + snapshotOfquestion.getKey() + '"type="text" value="' + snapshotOfquestion.child("title").val() + '" class="input-question-data" placeholder="Question" required></td><td class="update"><td class="delete"><button class="action-delete" id = "btn_delete'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td><input type="file" style="width:150px;" class="upload" id="iploadQuestion'+ snapshot.getKey() +"_"+ snapshotOfquestion.getKey() + '" size="50" name="icon" onchange="loadPhoto(this,' + snapshot.getKey() + "," + snapshotOfquestion.getKey() +');"></td> <td><img src="" class="img-responsive-constantly" id="questionImg'+ snapshot.getKey() + snapshotOfquestion.getKey() +'"></td></tr></tbody></table></div>');
 
 
            //Изменение вопроса
