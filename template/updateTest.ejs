@@ -184,6 +184,20 @@ table td {
   cursor: pointer;
   margin-bottom: 10px;
 }
+
+.btn {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: RoyalBlue;
+}
 </style>
 
 
@@ -194,30 +208,6 @@ table td {
           <div id="categories">
 
 
-            <!-- <table id="category_' + 1 + '">
-             <tbody>
-               <tr style="background-color:#fff; border-color: #fff;">
-                 <td style="width:80%"><input href="" class="category"></td>
-                 <td class="add_question"><button type="submit" id="submit-question_categ_num" class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
-               </tr>
-             </tbody>
-           </table> -->
-
-
-
-           <!-- <div id="questions" class="questions">  -->
-             <!-- Тут по идее цикл, дабы имя униклаьное было откуда данные сосать -->
-              <!-- <div class="question">
-                <table>
-                  <tbody>
-                    <tr  style="background-color:#fff; border-color: #fff;">
-                      <td style="width:80%"><input name="Category_n_Question_" type="text" class="input-question-data" placeholder="Question" required></td>
-                      <td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td>
-                      <td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div> -->
 
 
 
@@ -340,7 +330,7 @@ refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
         lastCategoryKey = parseInt(snapshot.getKey()) + 1
 
-        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
+        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button id = btn_add_question' + snapshot.getKey() + ' type="button">add question</button></td></tr></tbody></table> <div id="questions-category-'+ snapshot.getKey() +'" class="questions"></div></div>');
 
         var categoryId = '#titleCategory' + snapshot.getKey()
 
@@ -359,27 +349,31 @@ refCurrentTest.child("categories").on('child_added', function(snapshot) {
             refCurrentTest.child("categories").child(snapshot.getKey()).remove()
         });
 
-
-
         refCurrentTest.child("categories").on('child_removed', function (snapshot) {
             var strCategoryId = "#str_category" + snapshot.getKey()
             var currentBtnDeleteId = "#btn_delete" + snapshot.getKey()
 
             $(strCategoryId).remove();
             $(currentBtnDeleteId).remove();
-        })
+        });
+
+        var btnAddQuestion = "#btn_add_question" + snapshot.getKey()
+
+        $(btnAddQuestion).click(function(e) {
+
+          console.log(e.target.id);
+
+          var questionId = '#questions-category-'+ snapshot.getKey()
+          console.log(questionId);
+
+          $(questionId).append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class="btn"><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
+        });
+
     }
 
 })
 
 
-
-$( "#submit-question" ).click(function() {
-//  console.log('categories.length = ' +  categories.length);
-  var newQuestion = "#questions-category-" + categories.length;
-  //$("#questions-category-1").append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class=""><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
-  $( ".questions").last().append('<div class="question"><table><tbody><tr  style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input id="category_number_question_number" type="text" class="input-question-data" placeholder="Question" required></td><td class="update"><button class="action-update" style="background: url(../imagesDefault/pen.png) no-repeat;"></button></td><td class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td><td class=""><input type="file" style="width:150px;" class="upload" id="upload_photo_category_num_quest_num" size="50" name="icon" onchange="loadPhoto(this);"></td></tr></tbody></table></div>');
-});
 </script>
 
 
