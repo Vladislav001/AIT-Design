@@ -337,17 +337,42 @@ $( "#submit-categories" ).click(function() {
 refCurrentTest.child("categories").on('child_added', function(snapshot) {
 
     if (snapshot.child('name').val() != null) {
+
         lastCategoryKey = parseInt(snapshot.getKey()) + 1
 
-        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
+        $('#categories').append('<table class="categories" id="category_' + categories.length + '">  <tbody><tr style="background-color:#fff; border-color: #fff;"><td id=str_category' + snapshot.getKey() + ' style="width:80%"><input type="text" id = titleCategory' + snapshot.getKey() + ' value="Some category" class="category" placeholder="Category"></td><td id = btn_delete' + snapshot.getKey() + ' class="delete"><button class="action-delete" style="background: url(../imagesDefault/cross.png) no-repeat;"></button></td></tr></tbody></table> <div id="questions-category-'+ categories.length +'" class="questions"></div></div>');
 
+        var categoryId = '#titleCategory' + snapshot.getKey()
+
+        $(categoryId).on('input',function(e){
+
+            if ($(categoryId).val() != "") {
+              refCurrentTest.child("categories").child(snapshot.getKey()).set({
+              name: $(categoryId).val()
+              });
+            }
+        });
+
+        var btnDeleteId = "#btn_delete" + snapshot.getKey()
+
+        $(btnDeleteId).click(function(e){
+            refCurrentTest.child("categories").child(snapshot.getKey()).remove()
+        });
+
+
+
+        refCurrentTest.child("categories").on('child_removed', function (snapshot) {
+            var strCategoryId = "#str_category" + snapshot.getKey()
+            var currentBtnDeleteId = "#btn_delete" + snapshot.getKey()
+
+            $(strCategoryId).remove();
+            $(currentBtnDeleteId).remove();
+        })
     }
 
 })
 
-$('#titleCategory0').on('input',function(e){
-    console.log("changed");
-});
+
 
 $( "#submit-question" ).click(function() {
 //  console.log('categories.length = ' +  categories.length);
