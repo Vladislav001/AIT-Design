@@ -109,12 +109,12 @@
     <button type="submit" class="delete-student" onclick="return confirmDelete();" data-loading-text="Deleting..."id="deleteStudent">Delete student</button>
     </form>
 
+
 <h2>Current Login</h2>
 <div class = "settings_entrance_input" id="">
 <img src="<%=url_1_login%>" class="img-responsive" id="imageEntranceLoginInput_1">
 <img src="<%=url_2_login%>" class="img-responsive" id="imageEntranceLoginInput_2">
 <img src="<%=url_3_login%>" class="img-responsive" id="imageEntranceLoginInput_3">
-<img src="<%=url_4_login%>" class="img-responsive" id="imageEntranceLoginInput_4">
 <input name="imageEntranceLoginInput_1" class="imageEntranceLoginInput_1" type="hidden" value="">
 <input name="imageEntranceLoginInput_2" class="imageEntranceLoginInput_2" type="hidden" value="">
 <input name="imageEntranceLoginInput_3" class="imageEntranceLoginInput_3" type="hidden" value="">
@@ -151,6 +151,13 @@
 <img src="" class="img-responsive" id="imageEntrancePassword_6">
 <img src="" class="img-responsive" id="imageEntrancePassword_7">
 </div> -->
+
+
+
+<select name="tests" id="inputTests" size="3">
+
+</select>
+
 
 <h3 id="currentQuestion">Current question: <%=currentQuestion%></h3>
 <h3 id="currentState">Current state: <%=currentState%></h3>
@@ -227,7 +234,6 @@ refCurrentQuestion.once("value")
        var currentStateHTML = currentState;
        document.getElementById('currentQuestion').innerHTML = currentQuestionHTML;
        document.getElementById('currentState').innerHTML = currentStateHTML;
-       console.log(currentQuestion + " studentState");
  });
 });
 
@@ -280,6 +286,111 @@ refCategory.on('child_added', function(snapshotCountCategory) {
                                                              + '</tr>');
  });
 
+
+ var refTests = firebase.database().ref("tests");
+
+ refTests.on('child_added', function(snapshotTest) {
+
+   console.log(snapshotTest.child("title").val());
+
+   $('#inputTests')
+            .append($("<option></option>")
+                       .attr("value", snapshotTest.key)
+                       .text(snapshotTest.child("name").val()));
+
+
+
+ })
+
+var currentTestId = 3;
+
+ $( "#inputTests" ).click(function() {
+
+   firebase.database().ref("students/" + "<%=id%>").child("tests").child(currentTestId).child("manage_buttons").update({
+     style_image_finish: "0",
+     style_image_results: "0",
+     style_image_stop_test: "0" ,
+     style_images_like_dislike: "0",
+     style_images_swap_arrows: "0"
+   })
+
+   firebase.database().ref("students/" + "<%=id%>").child("tests").child(currentTestId).child("pre_test").update({
+     description_text_btn_back:
+"If you want to return to the previous question",
+description_text_btn_dislike:
+"If you don't like to click here",
+description_text_btn_like:
+"If you like to click here",
+description_text_btn_next:
+"If you want to go to the text question",
+description_text_btn_stop:
+"If you want to stop the test",
+title_text_btn_back:
+"Button back",
+title_text_btn_dislike:
+"Button dislike",
+title_text_btn_like:
+"Button like",
+title_text_btn_next:
+"Button next",
+title_text_btn_stop:
+"Button stop test"
+
+   })
+
+firebase.database().ref("students/" + "<%=id%>").child("tests").child(currentTestId).child("settings").update({
+  btn_results:
+"true",
+progress_bar:
+"true",
+sound:
+"true",
+swap:
+"true",
+swap_arrows:
+"true",
+swap_finger:
+"true",
+text:
+"true"
+
+})
+
+firebase.database().ref("students/" + "<%=id%>" + "/tests").off(refCurrentTest)
+
+
+
+firebase.database().ref("students/" + "<%=id%>").update({
+     current_test : "" + currentTestId
+})
+var currentIdcategory = 0;
+
+   var refCurrentTest = firebase.database().ref("tests").child($( "#inputTests" ).val()).child("categories").on('child_added', function(snapshotCategory) {
+
+
+
+        firebase.database().ref("students/" + "<%=id%>" + "/tests").child(currentTestId).child("categories").child(currentIdcategory).update({
+             name : snapshotCategory.child("name").val()
+        })
+
+        var currentQuestionId = 0;
+
+        var link = "tests/" + $( "#inputTests" ).val() + "/categories/" + snapshotCategory.key + "/questions"
+
+        var refCurCategory = firebase.database().ref(link).on('child_added', function(snapshotQuestion) {
+
+            firebase.database().ref("students/" + "<%=id%>" + "/tests").child(currentTestId).child("categories").child(currentIdcategory).child("questions").child(currentQuestionId).update({
+                 title : snapshotQuestion.child("title").val(),
+                 picture : snapshotQuestion.child("picture").val()
+            })
+
+            currentQuestionId++
+        });
+
+        currentIdcategory++
+   })
+
+ });
 
 
 </script>
@@ -365,6 +476,8 @@ return false;
 location.reload();
 });
 </script>
+
+
 
 
 <script>

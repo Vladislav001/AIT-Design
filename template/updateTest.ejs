@@ -198,12 +198,14 @@ margin-left: 50px;
 .add-new-question{
   background-color: #4CAF50;
   color: white;
-  padding: 14px 20px;
+  padding: 5px 5px 5px 5px;
   margin: 8px 0;
   border: none;
+  height: 35px;
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .btn {
@@ -221,9 +223,9 @@ margin-left: 50px;
 }
 
 .img-responsive-constantly {
-  max-width: 100px;
-  max-height: 100px;
-  margin-top: 120px;
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 220px;
   /* margin-left: -725px; */
 }
 
@@ -481,6 +483,7 @@ function loadPhoto(input, categotyId, questionId) {
            function error(err){
 
            },
+
            function complete() {
 
                var downloadURL = task.snapshot.downloadURL;
@@ -489,7 +492,17 @@ function loadPhoto(input, categotyId, questionId) {
                    "picture": namePhotoDB
                  });
 
+                 //Добавление фотографии к вопросу
+                 var urlQuestionPicture = storage.ref("tests/" + "iploadQuestion"+ categotyId + "_"+ questionId + "_photo.png");
+
+                 urlQuestionPicture.getDownloadURL().then(function(url) {
+
+                 var imageQuestionId = "#questionImg" + categotyId + questionId
+                 $(imageQuestionId).attr('src', url);
+
+                 });
            }
+
        );
 }
 
